@@ -50,6 +50,14 @@ Local `.codex/skills/oracle` and `release-electron-app` are project/provider-spe
 
 ## Runtime and project boundary
 
+### Decision update, 2026-11-04: per-ticket closure
+
+Version `1.4.1` changes implement-tickets from commit-only completion to parent-owned tracker close-out after every supplied implementation ticket. After verifying its acceptance, review, documentation, and scoped commit, the parent posts/reuses completion evidence, closes the ticket as completed, reads back its actual state and available parent progress, and only then dispatches the next worker. Workers never mutate the tracker; the parent PRD/spec stays open. This supersedes the initial batch wrapper's no-automatic-ticket-closure rule, without adding push, merge, or parent-closure authority.
+
+Ticket-specific acceptance cannot be deferred behind closure. Only broader batch regression gates may remain pending, explicitly disclosed in the completion comment. Failed or uncertain tracker writes stop advancement; later evidence that invalidates acceptance on a ticket closed by this batch triggers bounded reopen/repair/reverification. Valid earlier closures survive an unrelated queue failure. Native parent progress is read from actual linked child states, never fabricated from the batch size. The owning protocol is [implement-tickets/CLOSEOUT.md](../skills/engineering/implement-tickets/CLOSEOUT.md).
+
+GitHub's official [parent/sub-issue progress documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-parent-issue-and-sub-issue-progress-fields), checked 2026-11-04, identifies the native parent relationship and completed-sub-issue progress field. The workflow reads that relationship/state rather than maintaining a second PRD counter.
+
 The plugin contains instructions. Agent Browser must be available through the target project's approved wrapper or an installed CLI, with version-matched instructions. The actual web/Electron target, data, build, and required E2E commands must be runnable. The architecture scanner separately requires Node 24+, Git, npm, and its documented preparation; its dependency pins stay in its own package. Library documentation search needs a project's prepared copied corpus and CLI. A missing required capability is reported, not replaced with unrelated green tests.
 
 Projects should keep existing `AGENTS.md`/`CLAUDE.md`, tracker/domain/ADR pointers, runtime wrappers, fixture/session/catalog authority, UI reference decisions, and canonical user-guide/QA owners. Migrate DART-specific references before deleting local adapters. The global package's default E2E capability does not silently satisfy an explicit project requirement to load `dart-e2e-coverage`.

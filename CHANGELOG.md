@@ -1,3 +1,9 @@
+# 1.4.1 (2026-11-04)
+
+- Make the implement-tickets parent post completion evidence and close each verified implementation ticket before the next dispatch, with actual state/progress readback.
+- Keep parent PRDs/specs open, preserve workers' read-only tracker role, and separate ticket acceptance from deferred broad batch gates.
+- Add idempotent recovery for uncertain tracker writes and bounded reopen/reverification when later evidence invalidates a closure.
+
 # 1.4.0 (Kalstein fork, 2026-11-03)
 
 - Rename the fork and plugin to `kalstein-skills`, distributed through marketplace `kalstein`.

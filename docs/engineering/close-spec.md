@@ -14,7 +14,7 @@ The target project and the inputs/authority required by the owning task. Preserv
 
 **Does implementation automatically close every related issue?**
 
-No. Closure follows the established target scope and delivery authority, with incomplete acceptance left open.
+No. Standalone implement does not close issues. An explicitly invoked implement-tickets batch authorizes its parent orchestrator to close each supplied implementation ticket after its acceptance is proven, leaving the parent PRD/spec open. An explicitly invoked implement-spec has its own established ticket-and-parent close-out scope. Missing required acceptance always leaves the affected work incomplete.
 
 ## It's working if
 

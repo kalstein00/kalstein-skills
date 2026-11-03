@@ -1,6 +1,6 @@
 interface:
   display_name: "Implement Tickets"
-  short_description: "Implement tickets in sequence with shared context"
-  default_prompt: "Use $implement-tickets to implement these tickets in order."
+  short_description: "Implement and close verified tickets in sequence"
+  default_prompt: "Use $implement-tickets to implement these tickets in order, with the parent closing each verified ticket before advancing and leaving the parent PRD open."
 policy:
   allow_implicit_invocation: false

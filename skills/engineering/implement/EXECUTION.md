@@ -33,6 +33,8 @@ Update affected canonical design, user, and test documentation in the same task.
 
 Review the complete task candidate, including untracked files, against intent and project standards. `implement` owns its review and scoped commit; `implement-spec` owns one integration review; `git-commit` only consumes finished evidence. Resolve findings with affected checks, not another full workflow. Push, PR publication, and tracker closure follow the user's established delivery authority. Installing a skill does not authorize them.
 
+An explicit `implement-tickets` invocation authorizes its parent orchestrator to comment on and close each supplied implementation ticket after ticket-specific acceptance, before the next dispatch. The batch's CLOSEOUT.md owns readback, actual parent progress, deferred batch gates, and recovery. Workers do not mutate the tracker, and the parent PRD/spec remains open. Standalone `implement` retains its existing delivery boundary.
+
 ## UI delivery evidence
 
 `ui-tdd` owns the live interaction and screenshot protocol in its `EVIDENCE.md`. Carry its final-candidate evidence into the ticket result, batch result, PR, and final chat response. Summarize the action sequence and observed result, show the inspected screenshot inline when supported, and state unverified behavior. A link without the interaction result or an image saved but never inspected does not complete UI verification. Redact sensitive content before capture or delivery; preserve enough context to judge the result. Publishing images or tracker comments needs the established delivery authority.

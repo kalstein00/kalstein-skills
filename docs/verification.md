@@ -1,5 +1,35 @@
 # Fork verification
 
+## Release 1.4.1, 2026-11-04: sequential ticket close-out
+
+The accepted change is parent-owned successful closure of each supplied implementation ticket before the next dispatch, with completion evidence and tracker readback. Parent PRDs/specs remain open. Ticket acceptance and the batch's deferred broad gates are distinct; later invalidation of acceptance on a ticket closed by this batch requires bounded state reconciliation. This supersedes 1.4.0's commit-only batch completion boundary. No real project ticket is being implemented or closed by editing this instruction package.
+
+Base: `894f0f2535986bbca61bf9ad2b0d95ac670141c5`. The 1.4.0 scanner/runtime evidence below remains applicable only to unchanged package assets; it does not prove this new workflow behavior. This instruction/metadata change uses the direct route and does not require rerunning the unchanged scanner suite or app UI tests.
+
+| Check | Actual result |
+| --- | --- |
+| `npm run check-plugin-version` | Passed: package, plugin, and lockfile root version `1.4.1` |
+| Official `@anthropic-ai/claude-code@2.1.0 plugin validate` for each manifest file | Both passed, no warnings; reused the supported CLI route documented in the earlier record |
+| Codex CLI with process-only local marketplace overrides, filtered available-plugin listing | Discovered `kalstein-skills@kalstein` `1.4.1`; not installed or enabled by this task |
+| Inline structural inspection using `js-yaml` | All 41 frontmatters and Codex metadata match; 95 relative links in changed/new Markdown resolve; new prose punctuation passes. Unchanged historical changelog text was preserved |
+| Independent Standards review | One reverse-dependency finding corrected by passing the parent's loaded context into close-spec; scoped recheck reported no remaining blockers |
+| Independent Spec/forward scenario review | All 10 written-workflow scenarios consistent; stale wording about earlier in-batch tickets remaining OPEN was also corrected |
+
+| Reviewed scenario | Expected result confirmed from the written workflow |
+| --- | --- |
+| First child complete; broad batch suite pending | Parent comments/closes/confirms/checkpoints before ticket two; batch remains unverified |
+| Ticket acceptance gate missing | Keep open; run that check before closure |
+| Uncertain close response | Re-read state and comments before retry; no duplicate mutation or advancement without confirmation |
+| Already closed with valid evidence | Reuse; no reimplementation, duplicate comment, or close request |
+| Two supplied tickets of four children, with another already closed | Observe `2/4`, then `3/4` if the remaining starting states match; never substitute the batch denominator |
+| Later acceptance invalidation | Reopen only the affected ticket closed by this batch, verify state, repair/reverify, and close again |
+| Unrelated final-suite failure | Preserve valid closures; report the batch incomplete |
+| Worker attempts tracker writes | Worker remains evidence-only; parent owns reconciliation and readback |
+| All children complete | Parent PRD/spec stays open |
+| Parent progress unavailable or relationship missing | Keep confirmed child closure; report progress as unverified without inventing a counter or editing relationships |
+
+These are semantic instruction checks, not live GitHub issue mutation tests. Editing this skill did not implement or close any real project ticket. Temporary CLI validation output is retained as `kalstein-1.4.1-manifests.log` in the verification host's OS temporary directory; the commands/results here are the durable record.
+
 ## Candidate, 2026-11-03
 
 Release `1.4.0`, based on upstream `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d`. This task changes workflow instructions and plugin packaging, not an application UI. Live app screenshots and application RED/GREEN are not claimed as evidence for this documentation task.
