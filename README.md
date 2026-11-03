@@ -1,258 +1,122 @@
-<p>
-  <a href="https://www.aihero.dev/s/skills-newsletter">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png">
-      <img alt="Skills" src="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png" width="369">
-    </picture>
-  </a>
-</p>
+# Kalstein Skills
 
-# Skills For Real Engineers
+Personal engineering workflows based on [mattpocock/skills](https://github.com/mattpocock/skills), updated with portable local extensions and evidence-based UI completion. The fork ships 41 promoted skills as one Codex-compatible plugin. Upstream attribution and the MIT license are preserved.
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+## Install on any PC
 
-My agent skills that I use every day to do real engineering - not vibe coding.
+Install a compatible Codex CLI and sign in first. Run these commands in PowerShell, bash, or your terminal:
 
-Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.
+```powershell
+codex plugin marketplace add kalstein00/kalstein-skills --ref main
+codex plugin add kalstein-skills@kalstein
+```
 
-These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
+Start a **new chat/session** so the installed skills are loaded. Verify the plugin identity and version:
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
+```powershell
+codex plugin list --json
+```
 
-[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
+Expected plugin: `kalstein-skills@kalstein`, version `1.4.0` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
 
-## Installation (30-second setup)
+### Update another PC
 
-A plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.
+```powershell
+codex plugin marketplace upgrade kalstein
+codex plugin add kalstein-skills@kalstein
+```
 
-### 1. Get the skills
+Restart the app or begin a new session, then check the installed version. A release bumps the manifest version; editing the plugin cache is not the customization workflow. For exact reproducibility, replace `--ref main` with a published version tag, such as `--ref v1.4.0` after the tag exists. A pinned tag does not follow future main updates.
 
-<details>
-<summary><strong>Claude Code</strong></summary>
+### Existing mattpocock installation
+
+Install and verify this fork first, then disable `mattpocock-skills@mattpocock` in the plugin UI or remove it:
+
+```powershell
+codex plugin remove mattpocock-skills@mattpocock
+```
+
+Before removing project-local skill copies, migrate their custom rules and project adapters. Keep `AGENTS.md`/`CLAUDE.md`, project documentation, runtime wrappers, and independently installed tools. This update does not delete local skills or change your global plugin configuration. The renamed fork replaces `kalstein00/mattpocock-skills-fork`; new installations should use the canonical URL above.
+
+### Claude Code
 
 ```bash
-claude plugin install mattpocock-skills@claude-plugins-official
+claude plugin marketplace add kalstein00/kalstein-skills
+claude plugin install kalstein-skills@kalstein
 ```
 
-Updates itself by default.
-
-</details>
-
-<details>
-<summary><strong>Codex</strong></summary>
-
-```bash
-codex plugin marketplace add mattpocock/skills
-codex plugin add mattpocock-skills@mattpocock
-```
-
-Updates itself at startup.
-
-</details>
-
-<details>
-<summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>
-
-```bash
-copilot plugin marketplace add mattpocock/skills
-copilot plugin install mattpocock-skills@mattpocock
-```
-
-Then, once, add to `~/.copilot/settings.json`:
-
-```json
-{
-  "extraKnownMarketplaces": {
-    "mattpocock": { "source": { "source": "github", "repo": "mattpocock/skills" }, "autoUpdate": true }
-  }
-}
-```
-
-In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.
-
-</details>
-
-<details>
-<summary><strong>Gemini CLI</strong> (manual updates)</summary>
-
-```bash
-gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
-gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
-```
-
-Re-run both commands to update.
-
-</details>
-
-<details>
-<summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
-
-```bash
-npx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
-```
-
-When the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
-
-</details>
-
-### 2. Run `/setup-matt-pocock-skills`
-
-In your agent, run it once per repo. It will:
-
-- Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)
-- Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)
-- Ask you where you want to save any docs we create
-
-### 3. Bam - you're ready to go.
-
-## Why These Skills Exist
-
-I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.
-
-### #1: The Agent Didn't Do What I Want
-
-> "No-one knows exactly what they want"
->
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
-
-**The Problem**. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.
-
-This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a **grilling session** - getting the agent to ask you detailed questions about what you're building.
-
-**The Fix** is to use:
-
-- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses
-- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)
-
-These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
-
-### #2: The Agent Is Way Too Verbose
-
-> With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.
->
-> Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
-
-**The Problem**: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.
-
-I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.
-
-**The Fix** for this is a shared language. It's a document that helps agents decode the jargon used in the project.
-
-<details>
-<summary>
-Example
-</summary>
-
-Here's an example [glossary](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md) (still named `CONTEXT.md` at that pinned commit, from before the skills renamed the convention), from my `course-video-manager` repo. Which one is easier to read?
-
-- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
-- **AFTER**: "There's a problem with the materialization cascade"
-
-This concision pays off session after session.
-
-</details>
-
-This is built into [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.
-
-It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.
-
-> [!TIP]
-> A shared language has many other benefits than reducing verbosity:
->
-> - **Variables, functions and files are named consistently**, using the shared language
-> - As a result, the **codebase is easier to navigate** for the agent
-> - The agent also **spends fewer tokens on thinking**, because it has access to a more concise language
-
-### #3: The Code Doesn't Work
-
-> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."
->
-> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
-
-**The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?
-
-It's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.
-
-**The Fix**: You need the usual tranche of feedback loops: static types, browser access, and automated tests.
-
-For automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.
-
-I've built a **[`/tdd`](./skills/engineering/tdd/SKILL.md) skill** you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what makes good and bad tests.
-
-For debugging, I've also built a **[`/diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md)** skill that wraps best debugging practices into a disciplined loop, gated phase by phase.
-
-### #4: We Built A Ball Of Mud
-
-> "Invest in the design of the system _every day_."
->
-> Kent Beck, [Extreme Programming Explained](https://www.amazon.co.uk/Extreme-Programming-Explained-Embrace-Change/dp/0321278658)
-
-> "The best modules are deep. They allow a lot of functionality to be accessed through a simple interface."
->
-> John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)
-
-**The Problem**: Most apps built with agents are complex and hard to change. Because agents can radically speed up coding, they also accelerate software entropy. Codebases get more complex at an unprecedented rate.
-
-**The Fix** for this is a radical new approach to AI-powered development: caring about the design of the code.
-
-This is built in to every layer of these skills:
-
-- [`/to-spec`](./skills/engineering/to-spec/SKILL.md) quizzes you about which modules you're touching before creating a spec
-
-And crucially, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) surveys a codebase for deepening opportunities and hands you the candidates. I recommend running it on your codebase once every few days. It is a survey, not a rescue: on a genuinely old codebase it will find real candidates, but it won't untangle the mud for you.
-
-### Summary
-
-Software engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.
-
-## Reference
-
-These split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.
-
-### Engineering
-
-Skills I use daily for code work.
-
-**User-invoked**
-
-- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `GLOSSARY.md` and ADRs inline.
-- **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
-- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.
-- **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.
-- **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.
-- **[implement](./skills/engineering/implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.
-- **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Implement a whole spec on one integration branch. Works the tickets as a task graph, running implementer subagents across the ready frontier for maximum concurrency, then closes out with `/code-review`.
-- **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.
-- **[retro](./skills/engineering/retro/SKILL.md)**: Suggest improvements to the coding agent's environment (navigation, automated checks, coding standards, steering files, tooling) after a session, most severe first.
-
-**Model-invoked**
-
-- **[prototype](./skills/engineering/prototype/SKILL.md)**: Build a throwaway prototype to answer a design question, either a single shareable HTML file for state/logic questions, or several radically different UI variations toggleable from one route.
-- **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.
-- **[research](./skills/engineering/research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.
-- **[tdd](./skills/engineering/tdd/SKILL.md)**: Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
-- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `GLOSSARY.md` and ADRs inline.
-- **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.
-- **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.
-- **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).
-- **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
-
-### Productivity
-
-General workflow tools, not code-specific.
-
-**User-invoked**
-
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)**: Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.
-- **[handoff](./skills/productivity/handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.
-- **[teach](./skills/productivity/teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
-- **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the subject.
-- **[wait-what](./skills/productivity/wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `GLOSSARY.md` vocabulary.
-
-**Model-invoked**
-
-- **[grilling](./skills/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `grill-me`, `grill-with-docs`, `triage`, `wayfinder` and `improve-codebase-architecture`.
-- **[writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.
+## What changes for UI tickets
+
+- Ticket/spec acceptance includes prerequisites, the actual user action sequence, expected visible results, relevant alternate states, and key capture states.
+- `implement` selects `ui-tdd` for UI/mixed behavior. Regression work reproduces the symptom live and proves E2E RED/GREEN; feature coverage follows the accepted interaction boundary.
+- Agent Browser operates the **actual changed app**, including the real Electron target when applicable. Internal state injection is diagnostic support, not a replacement for user operation.
+- The agent saves the key captures, **opens and inspects the images**, fixes in-scope defects, and verifies the final candidate.
+- Completion reports include performed actions, observed results, automated checks, inspected screenshots displayed inline when supported, documentation, and unverified gaps. Workers propagate those artifacts through batch/spec orchestration.
+- Missing required live evidence leaves the task incomplete. Screenshots supplement tests; they do not alone prove persistence, IPC, or interaction correctness.
+
+The canonical rules live in [ui-tdd](skills/engineering/ui-tdd/SKILL.md), its [evidence protocol](skills/engineering/ui-tdd/EVIDENCE.md), and [the execution contract](skills/engineering/implement/EXECUTION.md).
+
+## Project setup and prerequisites
+
+Use `setup-matt-pocock-skills` when a project needs tracker, label, domain, or UI runtime routing. The command name is retained for upstream compatibility. Existing setup and `CONTEXT.md`/`GLOSSARY.md` conventions are respected.
+
+Agent Browser is a separate CLI/runtime: use the project-pinned wrapper and installed instructions, or a resolved installation if the project has no route. The app URL/CDP target, build, fixtures, E2E/session conventions, product decisions, and user-guide/QA owners remain project-specific. Global skill installation does not launch an app or install all project tools.
+
+The optional architecture scanner requires Node 24+, Git, npm, and its own pinned preparation. `library-docs` requires a project-provided copied corpus and CLI. Impeccable remains a separately installed design tool. See [source integration and local-skill migration](docs/customization.md) before deleting old adapters.
+
+## Skills
+
+Explicit-only skills run when requested. Other skills can be selected automatically when their description matches. In Codex, use the skill picker or `$skill-name`; names may appear under the `kalstein-skills` namespace. `ask-matt` remains the upstream-compatible router.
+
+### User-invoked
+
+- **[ask-matt](skills/engineering/ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the skills in this repo.
+- **[diagnose](skills/engineering/diagnose/SKILL.md)**: Establish a bug's cause from runtime evidence without authorizing a production fix.
+- **[grill-me](skills/productivity/grill-me/SKILL.md)**: A relentless interview to sharpen a plan or design.
+- **[grill-with-docs](skills/engineering/grill-with-docs/SKILL.md)**: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
+- **[handoff](skills/productivity/handoff/SKILL.md)**: Compact the current conversation into a handoff document for another agent to pick up.
+- **[implement](skills/engineering/implement/SKILL.md)**: Implement a piece of work based on a spec or set of tickets.
+- **[implement-spec](skills/engineering/implement-spec/SKILL.md)**: Implement the result of /to-spec and /to-tickets in code.
+- **[implement-tickets](skills/engineering/implement-tickets/SKILL.md)**: Orchestrate an explicit list of tickets sequentially through implement subagents in one checkout, carrying verified lessons between tickets. Use for batch ticket implementation; use implement for a single ticket and implement-spec for a spec's parallel ticket graph.
+- **[improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
+- **[retro](skills/engineering/retro/SKILL.md)**: Conduct a retrospective on a coding session.
+- **[setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.
+- **[teach](skills/productivity/teach/SKILL.md)**: Teach the user a new skill or concept, within this workspace.
+- **[to-questionnaire](skills/productivity/to-questionnaire/SKILL.md)**: Turn a decision you can't fully answer into a questionnaire for someone else to fill in.
+- **[to-spec](skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed.
+- **[to-tickets](skills/engineering/to-tickets/SKILL.md)**: Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker).
+- **[triage](skills/engineering/triage/SKILL.md)**: Move issues and external PRs through a state machine of triage roles, categorise, verify, grill if needed, and write agent-ready briefs.
+- **[wait-what](skills/productivity/wait-what/SKILL.md)**: Stop. That last message did not land: re-pitch it.
+- **[wayfinder](skills/engineering/wayfinder/SKILL.md)**: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on your issue tracker, and resolve them one at a time until the way to the destination is clear.
+
+### Model-invoked
+
+- **[agent-browser](skills/engineering/agent-browser/SKILL.md)**: Operate and inspect websites or Electron apps through the Agent Browser CLI, including navigation, forms, screenshots, and live UI verification. Use the target project's wrapper and pinned runtime when supplied.
+- **[architecture-evidence](skills/engineering/architecture-evidence/SKILL.md)**: Generate reproducible architecture measurements and a bounded evidence queue from a Git repository, or explicitly continue a saved scan. Use when the user requests deterministic metrics, measurement coverage, ranking, or an architecture evidence report. Findings are evidence for later human or agent review, not automatic architecture decisions or refactoring.
+- **[behavior-test](skills/engineering/behavior-test/SKILL.md)**: Write one minimal test through a stable public seam for an explicitly selected RED or COVERAGE cycle. Use as a fundamental capability inside TDD workflows, not as a feature implementation workflow.
+- **[close-spec](skills/engineering/close-spec/SKILL.md)**: Verify completion and close a spec or ticket when requested, using current tracker relationships, acceptance criteria, and implementation evidence. Use existing project scope and acceptance evidence without requiring a new issue schema.
+- **[code-review](skills/engineering/code-review/SKILL.md)**: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
+- **[codebase-design](skills/engineering/codebase-design/SKILL.md)**: Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.
+- **[diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md)**: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
+- **[domain-modeling](skills/engineering/domain-modeling/SKILL.md)**: Build and sharpen a project's domain model. Use when discussing codebase terminology, editing its GLOSSARY.md or existing CONTEXT.md, or recording an ADR.
+- **[e2e-coverage](skills/engineering/e2e-coverage/SKILL.md)**: Add or update target-authoritative end-to-end coverage for UI acceptance while preserving project fixtures, test catalogs, and app-session lifecycle. Use inside UI implementation or for explicitly requested coverage of existing behavior.
+- **[git-commit](skills/engineering/git-commit/SKILL.md)**: Finalize a scoped local Git change by reusing existing review and verification, staging only the intended candidate, and committing it. Push only when explicitly requested. Use when implementation is finished and Git finalization remains; review and repair belong to the owning workflow.
+- **[grilling](skills/productivity/grilling/SKILL.md)**: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
+- **[library-docs](skills/engineering/library-docs/SKILL.md)**: Find versioned evidence in a project's copied library documentation before changing external-library APIs or lifecycle behavior. Use when the project has pinned documentation packages; disclose missing preparation or absent source evidence.
+- **[pr](skills/engineering/pr/SKILL.md)**: Use when writing a PR body.
+- **[prototype](skills/engineering/prototype/SKILL.md)**: Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like.
+- **[research](skills/engineering/research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent.
+- **[sync-user-manual](skills/engineering/sync-user-manual/SKILL.md)**: Synchronize canonical user documentation with changed UI acceptance during implementation or review. Use when changed behavior, E2E/catalog mappings, or an explicit request affects the user guide; Git finalization only consumes completed evidence.
+- **[tdd](skills/engineering/tdd/SKILL.md)**: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
+- **[test-evidence](skills/engineering/test-evidence/SKILL.md)**: Validate focused test output as deterministic RED, GREEN, or COVERAGE evidence. Use as a fundamental capability inside test-first workflows, not to implement behavior.
+- **[ui-tdd](skills/engineering/ui-tdd/SKILL.md)**: Implement UI features or repair UI regressions test-first, then operate the actual app with Agent Browser and inspect screenshots before reporting completion. Use for interaction, rendering/layout, accessibility behavior, IPC, persistence, or restore changes; literal copy-only edits use direct verification.
+- **[wizard](skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform. Use when provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover. Don't invoke this for steps the agent can perform itself.
+- **[write-a-skill](skills/engineering/write-a-skill/SKILL.md)**: Create or update a focused agent skill with valid metadata, progressive disclosure, and tested bundled resources. Use when the user asks to write, build, restructure, or improve a reusable skill.
+- **[writing-for-agents](skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.
+- **[zoom-out](skills/engineering/zoom-out/SKILL.md)**: Orient the user in an unfamiliar code area by mapping the higher-level architecture, ownership, callers, dependencies, and domain concepts. Use when local code context is confusing or the user asks for the bigger picture.
+
+## Maintain this fork
+
+Edit the source repository, commit reviewed changes, and bump the release version. Keep an `upstream` remote for selected mattpocock updates and integrate them with the local adaptations. See [customization and source revisions](docs/customization.md), [verification and limits](docs/verification.md), and the [canonical install wording](.agents/install-block.md).
+
+Upstream attribution: [Matt Pocock and contributors](https://github.com/mattpocock/skills). This fork is maintained independently and is not an official upstream release. See [LICENSE](LICENSE).

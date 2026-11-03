@@ -1,0 +1,3 @@
+interface:
+  display_name: "Sync User Manual"
+  short_description: "Keep user documentation aligned with behavior"

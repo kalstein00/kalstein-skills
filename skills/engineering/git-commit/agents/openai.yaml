@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Commit"
+  short_description: "Commit scoped changes using existing review evidence"
+  default_prompt: "Use $git-commit to commit the intended changes, reusing applicable review and verification without starting another review or repair cycle."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "E2e Coverage"
+  short_description: "Target-authoritative UI acceptance tests"

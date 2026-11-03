@@ -3,14 +3,14 @@ name: code-review
 description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
 ---
 
-Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
+Two-axis review of the committed and working-tree candidate since a fixed point supplied by the user or calling workflow:
 
 - **Standards**: does the code conform to this repo's documented coding standards?
 - **Spec**: does the code faithfully implement the originating issue / spec?
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. Start every sub-agent with a fresh context window.
 
-The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
+Use the project's tracker instructions when the source is a ticket. Conversation requirements are a valid spec for an ordinary chat task; they do not require tracker setup.
 
 ## Process
 
@@ -18,13 +18,13 @@ The issue tracker should have been provided to you. If not, tell the user to run
 
 Whatever the user said is the fixed point (a commit SHA, branch name, tag, `main`, `HEAD~5`, etc.). If they didn't specify one, ask for it.
 
-Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so the comparison is against the merge-base). Also note the list of commits via `git log <fixed-point>..HEAD --oneline`.
+Resolve `git merge-base <fixed-point> HEAD`, then capture `git diff <base>` for the committed, staged, and unstaged candidate and `git ls-files --others --exclude-standard` for new files to read separately. Note commits via `git log <fixed-point>..HEAD --oneline`. Honor the caller's candidate paths and preserve unrelated pre-existing work. Pass both reviewers the same base, path boundary, and new-file list.
 
-Before going further, confirm the fixed point resolves (`git rev-parse <fixed-point>`) and the diff is non-empty. A bad ref or empty diff should fail here, not inside two parallel sub-agents.
+Before going further, confirm the fixed point resolves (`git rev-parse <fixed-point>`) and the candidate has a diff or new files. A pre-commit candidate must not disappear because `HEAD` has no new commits. Both reviewers inspect read-only and do not mutate files or tracker state.
 
 ### 2. Identify the spec source
 
-Look for the originating spec, in this order:
+Reuse caller-supplied tickets/specs or the task's conversation requirements first. Otherwise look for the originating spec, in this order:
 
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.), fetched via the workflow in the tracker doc.
 2. A path the user passed as an argument.
@@ -58,6 +58,10 @@ Each smell reads *what it is* → *how to fix*; match it against the diff:
 ### 4. Spawn both sub-agents in parallel
 
 Issue both sub-agent calls together, in the foreground, and aggregate the reports they return.
+
+Apply any caller-supplied model/effort settings through the spawn tool, not just prompt text. Preserve fresh contexts and supply repository, candidate, standards, source requirements, and relevant evidence explicitly. Without such a policy use the host's normal settings. Report a required setting/capability that cannot be honored rather than silently substituting it.
+
+For UI claims, give the Spec reviewer the accepted journey, automated results, final app/candidate identity, inspected screenshot paths, and observations under `ui-tdd`'s [evidence protocol](../ui-tdd/EVIDENCE.md). The reviewer checks coverage and freshness; routine review does not rerun unchanged browser work. Missing required evidence is a finding. A code smell alone cannot expand the requested outcome into unrelated work.
 
 **Standards sub-agent prompt** should include:
 

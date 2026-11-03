@@ -58,6 +58,8 @@ Exception: if a prototype produced a snippet that encodes a decision more precis
 
 ## Testing Decisions
 
+For UI outcomes, record the `ui-tdd` feature/regression route, agreed public/E2E seams, prerequisites and normal user journey, relevant alternate states, and required final Agent Browser operation, capture, pixel inspection, and completion evidence. Use [the UI evidence protocol](../ui-tdd/EVIDENCE.md); mixed UI/logic outcomes retain one outer UI workflow. Keep UI labels in the target project's required language. A literal copy-only change uses proportionate direct verification.
+
 A list of testing decisions that were made. Include:
 
 - A description of what makes a good test (only test external behavior, not implementation details)

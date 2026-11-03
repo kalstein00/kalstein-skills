@@ -1,9 +1,11 @@
 ---
 name: domain-modeling
-description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.
+description: Build and sharpen a project's domain model. Use when discussing codebase terminology, editing its GLOSSARY.md or existing CONTEXT.md, or recording an ADR.
 ---
 
 # Domain Modeling
+
+Resolve the project's domain routing first. `GLOSSARY.md` and `GLOSSARY-MAP.md` below name the default layout; when the project already uses `CONTEXT.md`/`CONTEXT-MAP.md` or another configured glossary, read and update that owner instead. Preserve its accepted format and scope. Do not rename it or create a second domain source without an explicit migration decision.
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline: challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `GLOSSARY.md` for vocabulary is not this skill: that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 

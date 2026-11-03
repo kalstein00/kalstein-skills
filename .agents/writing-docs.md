@@ -1,3 +1,7 @@
+# Fork documentation authority
+
+For this fork, link skills and docs to absolute `https://github.com/kalstein00/kalstein-skills/blob/main/...` URLs. The aihero publication/widget assumptions below describe upstream history only; install commands belong in the fork README and canonical install block. Use this task's observed user questions, source integration record, and changelog as primary FAQ evidence before querying unrelated upstream issues. Preserve the page structure and completion criteria below.
+
 # Writing docs pages
 
 Every skill in `engineering/` and `productivity/` has a human-facing **docs page** at `docs/<bucket>/<skill-name>.md`. The docs tree mirrors those two bucket folders under `skills/`. It is published at `https://aihero.dev/skills-<skill-name>`; the URL is always `skills-<skill-name>` regardless of bucket, so the docs path is repo organisation only. The page is not the skill and not a copy of `SKILL.md`. Only these two buckets are promoted; the rest (`misc/`, `in-progress/`, `deprecated/`) ship no docs page.

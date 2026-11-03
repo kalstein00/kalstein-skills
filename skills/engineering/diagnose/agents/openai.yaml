@@ -1,0 +1,5 @@
+interface:
+  display_name: "Diagnose"
+  short_description: "Evidence-based diagnosis without a repair"
+policy:
+  allow_implicit_invocation: false

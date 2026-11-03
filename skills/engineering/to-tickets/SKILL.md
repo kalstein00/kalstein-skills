@@ -41,6 +41,8 @@ Give each ticket its **blocking edges**: the other tickets that must complete be
 
 ### 4. Quiz the user
 
+For each UI behavior or layout ticket, add a **UI verification** section using [the UI evidence protocol](../ui-tdd/EVIDENCE.md): prerequisites/starting screen, ordered normal user actions, expected visible result, relevant alternate states, required E2E/public seam, and key screenshot states. Inherit testing decisions already agreed in the spec. State that implementation must operate the actual app with Agent Browser, open and inspect selected captures, and carry the action/result evidence and images into its completion response. Include persistence/reopen and window-size checks only when acceptance requires them. Non-UI and literal-copy-only tickets omit this mandatory section. A fixed label replacement follows direct proportionate checks, with a live appearance check when wrapping/truncation may change; it does not require a fabricated RED or full UI journey. Computed text, action meaning, conditional visibility, or accessibility behavior uses the UI route.
+
 Present the proposed breakdown as a numbered list. For each ticket, show:
 
 - **Title**: short descriptive name
@@ -79,6 +81,8 @@ Do NOT close or modify any parent issue.
 - [ ] Acceptance criterion 1
 - [ ] Acceptance criterion 2
 
+For UI behavior/layout work, append the scenario-specific UI verification section defined above.
+
 </local-ticket-template>
 
 <issue-template>
@@ -95,6 +99,8 @@ The end-to-end behaviour this ticket makes work, from the user's perspective, no
 
 - [ ] Criterion 1
 - [ ] Criterion 2
+
+For UI behavior/layout work, append the scenario-specific UI verification section defined above.
 
 ## Blocked by
 

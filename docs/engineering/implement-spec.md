@@ -1,6 +1,8 @@
 ## What it does
 
-`implement-spec` takes a [spec](https://www.aihero.dev/ai-coding-dictionary/spec) and its [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) and lands the whole thing in one run. The orchestrating [agent](https://www.aihero.dev/ai-coding-dictionary/agent) hands each ticket to an implementer [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) working in its own git worktree, merges each finished branch into a single **integration branch**, runs [code-review](https://aihero.dev/skills-code-review) over the result, and resolves the tickets.
+Each fresh ticket worker selects its applicable route and returns acceptance, documentation, and image evidence. The integration candidate gets combined verification and one review; invalidated UI observations are refreshed.
+
+`implement-spec` takes a [spec](https://www.aihero.dev/ai-coding-dictionary/spec) and its [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) and lands the whole thing in one run. The orchestrating [agent](https://www.aihero.dev/ai-coding-dictionary/agent) hands each ticket to an implementer [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) working in its own git worktree, merges each finished branch into a single **integration branch**, runs [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md) over the result, and resolves the tickets.
 
 It reads the tickets as a **task graph**, not a list. Blocking edges decide what can start, so at any moment there is a **frontier** of tickets whose blockers have all landed, and every ticket on the frontier runs at once. That is the difference from working the tickets one by one. The graph's shape sets the pace, not the tickets' order on the tracker.
 
@@ -11,14 +13,14 @@ You invoke this by typing `/implement-spec`, and the agent won't reach for it on
 | Your situation | Reach for |
 | --- | --- |
 | A spec, split into tickets with blocking edges, that you want landed in one run | `/implement-spec` |
-| One ticket at a time, in your own [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), [clearing](https://www.aihero.dev/ai-coding-dictionary/clearing) between tickets | [implement](https://aihero.dev/skills-implement) |
-| A spec that isn't split into tickets yet | [to-tickets](https://aihero.dev/skills-to-tickets) first |
-| A small piece of work with no real graph to it | [implement](https://aihero.dev/skills-implement) directly |
+| One ticket at a time, in your own [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), [clearing](https://www.aihero.dev/ai-coding-dictionary/clearing) between tickets | [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) |
+| A spec that isn't split into tickets yet | [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) first |
+| A small piece of work with no real graph to it | [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) directly |
 
 ## Prerequisites
 
-- **An issue tracker.** The skill reads the tickets from, and resolves them on, the tracker [setup-matt-pocock-skills](https://aihero.dev/skills-setup-matt-pocock-skills) configured. If none has been configured, it stops and tells you to run that first rather than guessing.
-- **Tickets with blocking edges**, as [to-tickets](https://aihero.dev/skills-to-tickets) writes them. Without edges the graph is flat and every ticket starts at once.
+- **An issue tracker.** The skill reads the tickets from, and resolves them on, the tracker [setup-matt-pocock-skills](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/setup-matt-pocock-skills.md) configured. If none has been configured, it stops and tells you to run that first rather than guessing.
+- **Tickets with blocking edges**, as [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) writes them. Without edges the graph is flat and every ticket starts at once.
 - **A [harness](https://www.aihero.dev/ai-coding-dictionary/harness) that runs subagents in the background and gives each one a git worktree.** The skill exists to run tickets at the same time, so on a harness that runs subagents one at a time, it is only a slower `implement`.
 
 ## The integration branch
@@ -26,7 +28,7 @@ You invoke this by typing `/implement-spec`, and the agent won't reach for it on
 Everything lands on one branch. Each implementer:
 
 1. confirms its worktree is based on the integration branch before it starts,
-2. builds its ticket with [tdd](https://aihero.dev/skills-tdd), red-green one slice at a time,
+2. selects ui-tdd for UI/mixed behavior, tdd for non-UI behavior, or direct checks for documentation/metadata/copy, retaining its ticket-specific acceptance evidence,
 3. merges the integration branch tip into its own branch before reporting done, so landing it is a fast-forward.
 
 The tracker decides whether a pull request exists at all. If your tracker closes work through PRs, or you ask for one, the skill opens a draft PR after the first merge and marks it ready at the end. Otherwise the run stops on the integration branch with every ticket resolved the way your tracker closes work, which works fully offline against a local markdown tracker.
@@ -47,9 +49,9 @@ No, not any more. One user who liked the in-progress version had exactly this co
 
 Both happen when `code-review` runs anywhere other than the one point the skill gives it. It compares the code against the whole spec, so it only makes sense once every ticket has landed. If it runs mid-run, every unbuilt ticket reads as a failure. The agent then builds that ticket, and that triggers another review. At the end, the skill runs `code-review` once and sends every finding to one fix subagent, but it doesn't yet say when to stop after that fix. One user reported a five-ticket feature where "the review and fix loop took roughly four hours". If you see a second broad review start, tell it to run focused checks for the fixed findings and stop. Expect that first review to find real problems. The run's output is a draft that the review completes, not something to ship on its own.
 
-**Does it drive tdd like implement does?**
+**Does it preserve the implementation route inside each worker?**
 
-It does now, though it didn't at first. Users running the in-progress version noticed that "the implementer subagents don't inherit the /tdd directive", so red-green stopped as soon as they scaled up from one ticket to a whole spec. Each implementer now builds its ticket with `tdd`. There is still no step where you agree seams interactively, as there is in an `implement` session, so name the seams in the spec or the tickets if you want them pinned.
+Yes. Each fresh worker selects the same UI, non-UI, or direct route as implement. Carry already agreed seams in the spec/tickets. UI workers return the actual app journey, observed result, and inspected screenshot paths; integration refreshes evidence invalidated by later changes.
 
 **Two implementers running in parallel collided on the same file, or picked different names for the same thing.**
 
@@ -71,16 +73,16 @@ A worktree holds only what git tracks. Tests that read gitignored fixtures, loca
 
 - Several implementers are running at once whenever the graph allows, not one after another.
 - A ticket starts as soon as its last blocker lands on the integration branch, not when the whole run ends.
-- Every ticket's trace shows `tdd` running, with a failing test before the code.
+- Each ticket shows its appropriate route and acceptance proof; behavior tickets have RED/GREEN, UI tickets also have final live images, and direct changes have proportionate checks.
 - Merges into the integration branch are fast-forwards, not conflict resolutions.
 - The run ends on one branch with every ticket resolved, and a PR only if your tracker wanted one.
 
 ## Where it fits
 
-`implement-spec` is the build step of the main chain, as the parallel alternative to running [implement](https://aihero.dev/skills-implement) once per ticket:
+`implement-spec` is the build step of the main chain, as the parallel alternative to running [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) once per ticket:
 
 ```txt
 grill-with-docs → to-spec → to-tickets → implement-spec → retro
 ```
 
-Its neighbours are [to-tickets](https://aihero.dev/skills-to-tickets), which declares the blocking edges it reads as a task graph, and [code-review](https://aihero.dev/skills-code-review), which it runs over the integration branch before closing out. [ask-matt](https://aihero.dev/skills-ask-matt) is the router over the whole set when you are not sure which flow you are in.
+Its neighbours are [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md), which declares the blocking edges it reads as a task graph, and [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), which it runs over the integration branch before closing out. [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) is the router over the whole set when you are not sure which flow you are in.

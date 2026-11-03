@@ -1,0 +1,1 @@
+{"name":"architecture-evidence","version":"1.0.0","private":true,"description":"Portable deterministic architecture evidence skill","engines":{"node":">=24"},"scripts":{"test":"node --test scripts/*.test.cjs"},"files":["SKILL.md","scripts/","references/"],"dependencies":{"typescript":"5.3.3","dependency-cruiser":"17.4.0"}}

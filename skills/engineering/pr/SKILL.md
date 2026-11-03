@@ -157,6 +157,8 @@ You may use one of these, you may use several, it is unlikely you will use all o
 
 ### Evidence
 
+For UI changes use `ui-tdd`'s [evidence protocol](../ui-tdd/EVIDENCE.md): state the actual app/candidate, user action sequence, and observed result; include the inspected key screenshots as accessible artifacts. Reuse valid evidence and disclose unverified behavior. A still image alone does not establish interaction, persistence, or IPC acceptance. Uploads follow the task's established delivery authority.
+
 Concrete evidence that the change works. Show a before and after.
 
 Screenshots are S-tier - when the environment is set up for it and the change is visual.

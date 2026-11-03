@@ -1,14 +1,8 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Question or "how do I...?"
-    url: https://github.com/mattpocock/skills/discussions/categories/q-a
-    about: Ask in Q&A. Issues are for bugs and changes to existing skills only.
-  - name: New skill idea, or a skill you want to donate
-    url: https://github.com/mattpocock/skills/discussions/categories/ideas
-    about: Post it in Ideas. New skills do not start as issues.
-  - name: Support for another harness or issue tracker
-    url: https://github.com/mattpocock/skills/discussions/categories/ideas
-    about: Post it in Ideas. Read the out-of-scope notes first, most trackers are already ruled out.
-  - name: Is my request out of scope?
-    url: https://github.com/mattpocock/skills/blob/main/SCOPE.md
-    about: The bar every issue must clear, and the requests this repo has already decided not to take.
+  - name: Installation and updates
+    url: https://github.com/kalstein00/kalstein-skills#install-on-any-pc
+    about: Install the customized plugin and verify its version on another PC.
+  - name: Fork scope and source integration
+    url: https://github.com/kalstein00/kalstein-skills/blob/main/docs/customization.md
+    about: See portable extensions, project-owned adapters, and upstream attribution.

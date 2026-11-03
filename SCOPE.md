@@ -1,3 +1,7 @@
+# Fork scope, 2026-11-03
+
+The kalstein-skills fork includes the portable workflow extensions accepted in [docs/customization.md](docs/customization.md), including UI evidence and local skill integration. The upstream scope below remains historical context; it does not exclude the accepted fork additions.
+
 # Scope
 
 This repo is the set of skills I use every day. It is curated: ideas are welcome, and each one is judged against the bar below. Issues are for tracking changes to the skills. Questions and discussion go to [GitHub Discussions](https://github.com/mattpocock/skills/discussions).

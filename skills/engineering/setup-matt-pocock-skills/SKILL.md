@@ -4,7 +4,7 @@ description: "Configure this repo for the engineering skills: set up its issue t
 disable-model-invocation: true
 ---
 
-# Setup Matt Pocock's Skills
+# Setup Kalstein Skills
 
 Scaffold the per-repo configuration that the engineering skills assume:
 
@@ -12,7 +12,7 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Triage labels**: the strings used for the five canonical triage roles
 - **Domain docs**: where `GLOSSARY.md` and ADRs live, and the consumer rules for reading them
 
-This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
+This is a prompt-driven skill, not a deterministic script. Explore, present unresolved material choices, then write within the user's established authorization. Reuse an existing setup rather than asking settled questions or rewriting accepted routing.
 
 ## Process
 
@@ -22,10 +22,11 @@ Look at the current repo to understand its starting state. Read whatever exists;
 
 - `git remote -v` and `.git/config`: is this a GitHub repo? Which one?
 - `AGENTS.md` and `CLAUDE.md` at the repo root: does either exist? Is there already an `## Agent skills` section in either?
-- `GLOSSARY.md` and `GLOSSARY-MAP.md` at the repo root, and the legacy `CONTEXT.md` / `CONTEXT-MAP.md`. If a legacy file exists, offer to `git mv` it to its `GLOSSARY` name and rewrite those names in `docs/agents/domain.md`.
+- `GLOSSARY.md` and `GLOSSARY-MAP.md` at the repo root, and existing `CONTEXT.md` / `CONTEXT-MAP.md`. Preserve the current domain owner and its links; migration needs an explicit decision and is not a setup prerequisite.
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/`: does this skill's prior output already exist?
 - `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
+- UI projects: existing app launch/build commands, Agent Browser wrapper/version route, URL or Electron attachment discovery, fixtures, E2E/catalog/session authority, and user-guide/QA owners. Record only resolved project-specific facts in the existing guidance or `docs/agents/ui-verification.md`; the bundled UI evidence protocol owns common completion rules. Never copy a developer's ports or absolute paths into another project.
 - Is the `triage` skill installed? (a `triage` skill folder alongside this one, or `triage` in your available skills.) This decides whether Section B runs at all.
 - Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
 

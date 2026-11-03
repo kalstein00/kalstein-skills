@@ -1,0 +1,4 @@
+interface:
+  display_name: "Close Spec"
+  short_description: "Verify completion before closing tracked work"
+  default_prompt: "Use $close-spec to verify and close this spec or ticket."

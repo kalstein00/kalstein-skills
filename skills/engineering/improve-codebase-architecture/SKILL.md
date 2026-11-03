@@ -6,6 +6,10 @@ disable-model-invocation: true
 
 # Improve Codebase Architecture
 
+Select the requested outcome before mutation: **Audit** returns evidence-backed candidates, **Issues** publishes approved slices, and **Execute** completes the agreed Candidate Register. Default inspection does not authorize tracker writes or implementation. Honor explicit user scope. Read [audit signals](references/audit-signals.md) when classifying evidence and [the register contract](references/candidate-register.md) before issue publication or execution. Use the project's domain owner, including an existing `CONTEXT.md`, rather than creating a competing glossary.
+
+For an untargeted audit without supplied evidence, call the Skill tool with "architecture-evidence" and use its snapshot-verified bounded queue. Reuse a current verified report; refresh stale evidence only as required by its contract. Preserve status, coverage gaps, rejected reasons, and queue caps. A high metric or type-only cycle is not a confirmed runtime defect. For a named target, inspect that owner directly without an unsolicited whole-repository scan. Supplement metrics with verified ownership, callers, authoritative state, lifecycle, and change-cost evidence.
+
 Surface architectural friction and propose **deepening opportunities**: refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.
 
 This command is _informed_ by the project's domain model and built on a shared design vocabulary:
@@ -58,6 +62,8 @@ End the report with a **Top recommendation** section: which candidate you'd tack
 See [HTML-REPORT.md](HTML-REPORT.md) for the full HTML scaffold, diagram patterns, and styling guidance.
 
 Do NOT propose interfaces yet. After the file is written, ask the user: "Which of these would you like to explore?"
+
+This selection question belongs to Audit. When the user already selected candidates or authorized Issues/Execute, reuse that decision. Publish through the configured tracker using [the issue contract](references/issue-contract.md). Execute a closed register in dependency order with focused checks, the applicable implementation route, and intent-centered review. Each item ends verified or skipped with a concrete reason; unresolved required evidence remains incomplete. An HTML report is presentation evidence, not permission to mutate source or treat ranked signals as defects.
 
 ### 3. Grilling loop
 

@@ -14,3 +14,5 @@ Do not duplicate content already captured in other artifacts (specs, plans, ADRs
 Redact any sensitive information, such as API keys, passwords, or personally identifiable information.
 
 If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.
+
+Include the goal/success condition, current scope and state, stable decisions, source owners, completed and remaining work, blockers, exact verification/candidate/environment and invalidation conditions, plus the next action. For UI work retain the performed journey, observations, and inspected image paths with retention limits; do not reduce them to "UI checked." Prefer a compact continuation brief over transcript or diff copies.

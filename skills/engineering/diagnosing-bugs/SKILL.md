@@ -7,6 +7,8 @@ description: Diagnosis loop for hard bugs and performance regressions. Use when 
 
 A discipline for hard bugs. Skip phases only when explicitly justified.
 
+Establish mutation authority first. A diagnosis/explanation request ends with cause, evidence, and remaining uncertainty, before Phase 5 production repair. For an authorized fix, read [the execution contract](../implement/EXECUTION.md) and carry the minimized reproduction into its required route. UI regression work retains live reproduction, focused E2E RED/GREEN, and final inspected screenshots; a logic harness cannot replace the UI acceptance boundary.
+
 When exploring the codebase, read `GLOSSARY.md` (if it exists) to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
 
 ## Redact

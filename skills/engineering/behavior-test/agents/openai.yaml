@@ -1,0 +1,4 @@
+interface:
+  display_name: "Behavior Test"
+  short_description: "Write one minimal observable behavior test"
+  default_prompt: "Use $behavior-test inside the selected workflow to write one minimal behavior test and return its focused evidence."

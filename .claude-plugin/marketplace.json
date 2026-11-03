@@ -1,15 +1,14 @@
 {
-  "name": "mattpocock",
+  "name": "kalstein",
   "owner": {
-    "name": "Matt Pocock",
-    "url": "https://www.aihero.dev"
+    "name": "kalstein00",
+    "url": "https://github.com/kalstein00"
   },
-  "description": "Matt Pocock's skills for real engineering, as an installable Claude Code plugin.",
   "plugins": [
     {
-      "name": "mattpocock-skills",
+      "name": "kalstein-skills",
       "source": "./",
-      "description": "Matt Pocock's agent skills for real engineering (grilling, spec/ticket flows, TDD, code review, domain modelling and more).",
+      "description": "Portable engineering skills with live UI acceptance evidence",
       "category": "engineering",
       "keywords": [
         "engineering",
@@ -19,5 +18,8 @@
         "grilling"
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "description": "Portable engineering skills with live UI acceptance evidence"
+  }
 }

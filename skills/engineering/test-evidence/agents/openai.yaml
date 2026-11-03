@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test Evidence"
+  short_description: "Validate RED, GREEN, or COVERAGE evidence"
+  default_prompt: "Use $test-evidence inside the selected workflow to classify the focused test result without weakening it."

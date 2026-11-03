@@ -6,6 +6,18 @@ disable-model-invocation: true
 
 # Ask Matt
 
+This router keeps its upstream command name in the `kalstein-skills` fork. Read [the fork's execution contract](../implement/EXECUTION.md) when routing implementation; use the target project's existing domain owner, including `CONTEXT.md`, wherever the upstream examples below say `GLOSSARY.md`.
+
+## Fork extensions
+
+- **UI feature or regression**: `/ui-tdd` owns live reproduction/observation, test-first implementation, actual Agent Browser operation, inspected screenshots, and completion evidence. `/agent-browser`, `/behavior-test`, `/e2e-coverage`, `/test-evidence`, and `/sync-user-manual` are its reusable capabilities, not separate implementation cycles.
+- **An explicit ordered ticket list in one checkout**: `/implement-tickets` runs fresh sequential implementers with ticket-specific checks and parent-owned broad final gates. Use `/implement-spec` for a spec's parallel graph instead.
+- **Requested acceptance verification or tracker closure**: `/close-spec` checks actual evidence and closes only authorized targets. `/implement` alone does not close issues.
+- **Finished changes waiting for a scoped commit**: `/git-commit` consumes existing verification/review rather than starting another cycle.
+- **Cause only, without a repair**: `/diagnose` preserves that boundary; `/diagnosing-bugs` supplies the shared evidence loop.
+- **Versioned copied library evidence**: `/library-docs` uses the target project's prepared corpus and CLI. `/architecture-evidence` produces a deterministic report for review; `/zoom-out` gives read-only orientation in an unfamiliar area.
+- **Create or improve a reusable workflow**: `/write-a-skill` uses `/writing-for-agents` conventions and validates the package's metadata, references, and scenarios.
+
 You don't remember every skill, so ask.
 
 Before stating what a skill does or recommending a step be skipped, read that skill's SKILL.md: the summaries here are for orientation only.
@@ -27,7 +39,7 @@ The route most work travels. You have an idea and want it built.
      - **`/implement-spec`** for the whole spec in one run. It reads the tickets as a **task graph**, runs implementer subagents across the ready **frontier** in parallel, and lands everything on one **integration branch**. Reach for it when you'd rather orchestrate the build than drive each ticket yourself.
    - **No** → **`/implement`** right here, in the same context window.
 
-   Either way, the code gets built by driving **`/tdd`** (one red-green slice at a time) and closes out with **`/code-review`**, a two-axis review (Standards + Spec) of the diff. `/implement` runs both per ticket; `/implement-spec`'s implementers each drive `/tdd`, and it runs one `/code-review` over the integration branch. Reach for **`/tdd`** on its own when you just want to build a concrete behaviour test-first without a full spec, and **`/code-review`** on its own whenever you want to review a branch or PR against a fixed point.
+   Either way, implementation selects one route: **`/ui-tdd`** for UI/mixed behavior, **`/tdd`** for non-UI behavior at agreed seams, and direct proportionate checks for documentation, metadata, mechanical, or literal-copy changes. `/implement` closes each task with **`/code-review`**; `/implement-spec` verifies the combined candidate and runs one integration review. UI completion carries actual app actions, observed results, and inspected screenshots. Reach for `/tdd` or `/code-review` directly when only that capability is needed.
 
    When the work goes up as a pull request, **`/pr`** shapes the body: the smallest visual that shows the change, before/after evidence that it works, and a one-way or two-way door call. It's model-invoked, so the agent reaches for it whenever it writes a PR.
 

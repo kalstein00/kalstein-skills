@@ -1,5 +1,7 @@
 # Model-invoked vs user-invoked
 
+Fork compatibility: when a harness exposes no Skill tool, read and apply the named bundled `SKILL.md` in the current task. This changes only instruction loading, not invocation or mutation authority; explicit-only orchestrators still require a user request. Resolve sibling paths inside the installed package and target-project paths inside its checkout. Loading instructions does not authorize another agent.
+
 Every `SKILL.md` in this repo is a skill. The one axis that splits them is **invocation**, who can reach it:
 
 - **User-invoked**: reachable **only by the human typing its name**. Set `disable-model-invocation: true` in the frontmatter (Claude Code) and `policy.allow_implicit_invocation: false` in `agents/openai.yaml` (Codex). The `description` is **human-facing**: a one-line summary read by a person browsing slash-commands. Strip trigger lists ("Use when the user says…").

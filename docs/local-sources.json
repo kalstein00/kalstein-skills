@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-03",
+  "sourceCommit": "55e6a3b88d563c29219f030a1bcbf58679daffc1",
+  "skills": [
+    {
+      "skill": "agent-browser",
+      "sha256": "70012863a99df755561eef46ae7030f75d0f8de9986a27139e144dfd5832b969"
+    },
+    {
+      "skill": "architecture-evidence",
+      "sha256": "ec44ebf5e1bee301867f99aa635fc50a5e750b216a5932b8362affbd75880eec"
+    },
+    {
+      "skill": "behavior-test",
+      "sha256": "473a2391c130ff241b006e04ab6fdd3e3d1c3d140c25547c834c325b57572b2d"
+    },
+    {
+      "skill": "close-spec",
+      "sha256": "97fd2e02d1a0b6a3a502d0589ed21a65db65a2970c0d7b43034214cd38b2fc51"
+    },
+    {
+      "skill": "code-review",
+      "sha256": "7dfa6d3a4a893f3443f450faa76c2a3ed56c9d0978228d3bb9a15c06a898a944"
+    },
+    {
+      "skill": "codebase-design",
+      "sha256": "2c20617f87ec8af6a434859f381b2f061a69b530444e74eb39e78bb016a6d1e2"
+    },
+    {
+      "skill": "dart-e2e-coverage",
+      "sha256": "799f294e620cff1c570f1f0456fa10ac3b58b67f43eff104a86fb39d94e31d7e"
+    },
+    {
+      "skill": "diagnose",
+      "sha256": "b1653f05e1cef59f450ed84f3b8b73eac8e1c16d949bc892b4fac2a001d9e16d"
+    },
+    {
+      "skill": "domain-modeling",
+      "sha256": "327a2b50620e2fd70abc6893cd6965e76b20f8d0adb0dc2c8d5eb3845efb643e"
+    },
+    {
+      "skill": "git-commit",
+      "sha256": "ef17ef35591b49a9aa278a88d06cf34921bce7e5ad6f0feb161852c48f1fe69d"
+    },
+    {
+      "skill": "grill-me",
+      "sha256": "e0a2070992b1ed7f4d4d8504e0fae0cf9c96c8bab4dd50c37989b0f4c7ff1010"
+    },
+    {
+      "skill": "grill-with-docs",
+      "sha256": "fc6401cbf34f1f3b6cb5e97253e25671d822733fc3f985117fe0d162639abf61"
+    },
+    {
+      "skill": "grilling",
+      "sha256": "10ff989e7498b23b5acb49d5048f11dcd906757d2f79c5cdf8a00001381296f2"
+    },
+    {
+      "skill": "handoff",
+      "sha256": "c9a8493fba528e0b982d17aef6eea075be7a2173358ab2623c1d28815ba12ec2"
+    },
+    {
+      "skill": "impeccable",
+      "sha256": "e213d908813aa153661bbd4697dc262f2f4e5425c2b426f9f7299fcc8f4b2eb8"
+    },
+    {
+      "skill": "implement",
+      "sha256": "4cd3443f92ebf187873547ee671e8368c74be5464b15d7f3f58312435f07cc72"
+    },
+    {
+      "skill": "implement-spec",
+      "sha256": "71257b5b7373401e47be829776e6280420bce7a8f09d0d0ade5e81de2bd569c2"
+    },
+    {
+      "skill": "implement-tickets",
+      "sha256": "4985f6247e03d24be9c181e56574b1ac750ada1c6232d554aebe828bda07560c"
+    },
+    {
+      "skill": "improve-codebase-architecture",
+      "sha256": "1a5161b14a19017e51d7f22e9e50ce0519b0e3aa592a9c7923d2a04f1a7e1ebb"
+    },
+    {
+      "skill": "library-docs",
+      "sha256": "52354f8076036cfab576afcc9750e943eab133ac04c458243e14775fdc310bb2"
+    },
+    {
+      "skill": "retro",
+      "sha256": "319aac46420756ec9a1a7e09fe87272dccdbd0559a2843286f9622011a0c9af0"
+    },
+    {
+      "skill": "setup-matt-pocock-skills",
+      "sha256": "5bc84f993ee715970efaee5f52b564220cb7b00313b1d951c4b3bcbcce9626db"
+    },
+    {
+      "skill": "sync-user-manual",
+      "sha256": "2875f25cfc3ed25a3d2d2109828821130a985b75070667074ec640fcfa9f29b3"
+    },
+    {
+      "skill": "tdd",
+      "sha256": "cb01f66bebfaa25fa1f88e6b7e769cd9fd9f35b1120b8563749820738814c927"
+    },
+    {
+      "skill": "test-evidence",
+      "sha256": "4f4c4f8cd44b1b289705bf19d0ca9fa6bbd2be4bf20a24d0838c679106118411"
+    },
+    {
+      "skill": "to-spec",
+      "sha256": "b53b58949a351c855b3eca76ac5077ec935c93a2af9fb16c70c7d0b5c64d0ab6"
+    },
+    {
+      "skill": "to-tickets",
+      "sha256": "39da2b827f3f8697e10de9aa806d8fd5d40c5fe803ce8e5bc94646fce77262ad"
+    },
+    {
+      "skill": "triage",
+      "sha256": "82916426b26d370aa1e894127ddda4cd51fecb889219608b33854fd5475b2cd0"
+    },
+    {
+      "skill": "ui-tdd",
+      "sha256": "aca03556730436cdcefbe01bd9f2138b8693ab8f47e30824da7d1c7babce8741"
+    },
+    {
+      "skill": "write-a-skill",
+      "sha256": "a4b3c31320d988baadcd3206f637322d888013fd2b8ea81863ce17f5997b1dee"
+    },
+    {
+      "skill": "writing-for-agents",
+      "sha256": "1c0c4ebf2d221917591144f0ced4fe46dae13301cb3d6d93fc88ecf0dda6aed2"
+    },
+    {
+      "skill": "zoom-out",
+      "sha256": "69e3d010b0201c5baa8322be17c806a558a2a751d3bf6aaa3ed2416990a63ada"
+    }
+  ]
+}

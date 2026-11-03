@@ -1,3 +1,11 @@
+# 1.4.0 (Kalstein fork, 2026-11-03)
+
+- Rename the fork and plugin to `kalstein-skills`, distributed through marketplace `kalstein`.
+- Integrate upstream `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d` and portable local workflow extensions, shipping 41 promoted skills.
+- Require actual Agent Browser journeys, opened and inspected screenshots, and action/result/image evidence in UI completion reports, including ticket and spec orchestration.
+- Preserve direct verification for literal copy/documentation work, accepted test seams, existing project domain/runtimes, and scoped delivery authority.
+- Document cross-PC install/update commands, migration decisions, source fingerprints, and actual verification limits.
+
 # mattpocock-skills
 
 ## 1.3.2
