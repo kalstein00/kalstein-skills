@@ -18,7 +18,6 @@
 
 ## Model-invoked
 
-- **[agent-browser](./agent-browser/SKILL.md)**: Operate and inspect websites or Electron apps through the Agent Browser CLI, including navigation, forms, screenshots, and live UI verification. Use the target project's wrapper and pinned runtime when supplied.
 - **[architecture-evidence](./architecture-evidence/SKILL.md)**: Generate reproducible architecture measurements and a bounded evidence queue from a Git repository, or explicitly continue a saved scan. Use when the user requests deterministic metrics, measurement coverage, ranking, or an architecture evidence report. Findings are evidence for later human or agent review, not automatic architecture decisions or refactoring.
 - **[behavior-test](./behavior-test/SKILL.md)**: Write one minimal test through a stable public seam for an explicitly selected RED or COVERAGE cycle. Use as a fundamental capability inside TDD workflows, not as a feature implementation workflow.
 - **[close-spec](./close-spec/SKILL.md)**: Verify completion and close a spec or ticket when requested, using current tracker relationships, acceptance criteria, and implementation evidence. Use existing project scope and acceptance evidence without requiring a new issue schema.

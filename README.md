@@ -1,6 +1,6 @@
 # Kalstein Skills
 
-Personal engineering workflows based on [mattpocock/skills](https://github.com/mattpocock/skills), updated with portable local extensions and evidence-based UI completion. The fork ships 41 promoted skills as one Codex-compatible plugin. Upstream attribution and the MIT license are preserved.
+Personal engineering workflows based on [mattpocock/skills](https://github.com/mattpocock/skills), updated with portable local extensions and evidence-based UI completion. The fork ships 40 promoted skills as one Codex-compatible plugin. Upstream attribution and the MIT license are preserved.
 
 ## Install on any PC
 
@@ -17,7 +17,7 @@ Start a **new chat/session** so the installed skills are loaded. Verify the plug
 codex plugin list --json
 ```
 
-Expected plugin: `kalstein-skills@kalstein`, version `1.4.3` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
+Expected plugin: `kalstein-skills@kalstein`, version `1.4.4` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
 
 ### Update another PC
 
@@ -26,7 +26,7 @@ codex plugin marketplace upgrade kalstein
 codex plugin add kalstein-skills@kalstein
 ```
 
-Restart the app or begin a new session, then check the installed version. A release bumps the manifest version; editing the plugin cache is not the customization workflow. For exact reproducibility, replace `--ref main` with a published version tag, such as `--ref v1.4.3` after the tag exists. A pinned tag does not follow future main updates.
+Restart the app or begin a new session, then check the installed version. A release bumps the manifest version; editing the plugin cache is not the customization workflow. For exact reproducibility, replace `--ref main` with a published version tag, such as `--ref v1.4.4` after the tag exists. A pinned tag does not follow future main updates.
 
 ### Uninstall kalstein-skills
 
@@ -62,7 +62,7 @@ Explicitly invoking `implement-tickets` authorizes the parent orchestrator to re
 
 Use `setup-matt-pocock-skills` when a project needs tracker, label, domain, or UI runtime routing. The command name is retained for upstream compatibility. Existing setup and `CONTEXT.md`/`GLOSSARY.md` conventions are respected.
 
-Agent Browser is a separate CLI/runtime: use the project-pinned wrapper and installed instructions, or a resolved installation if the project has no route. The app URL/CDP target, build, fixtures, E2E/session conventions, product decisions, and user-guide/QA owners remain project-specific. Global skill installation does not launch an app or install all project tools.
+Agent Browser is a separate CLI/runtime. UI work uses the project-pinned wrapper when provided, otherwise an existing CLI. If neither exists, the agent installs the official CLI on first UI use with Node.js and npm, and prepares its browser binary if needed. The app URL/CDP target, build, fixtures, E2E/session conventions, product decisions, and user-guide/QA owners remain project-specific. Global skill installation does not launch an app or install all project tools.
 
 The optional architecture scanner requires Node 24+, Git, npm, and its own pinned preparation. `library-docs` requires a project-provided copied corpus and CLI. Impeccable remains a separately installed design tool. See [source integration and local-skill migration](docs/customization.md) before deleting old adapters.
 
@@ -93,7 +93,6 @@ Explicit-only skills run when requested. Other skills can be selected automatica
 
 ### Model-invoked
 
-- **[agent-browser](skills/engineering/agent-browser/SKILL.md)**: Operate and inspect websites or Electron apps through the Agent Browser CLI, including navigation, forms, screenshots, and live UI verification. Use the target project's wrapper and pinned runtime when supplied.
 - **[architecture-evidence](skills/engineering/architecture-evidence/SKILL.md)**: Generate reproducible architecture measurements and a bounded evidence queue from a Git repository, or explicitly continue a saved scan. Use when the user requests deterministic metrics, measurement coverage, ranking, or an architecture evidence report. Findings are evidence for later human or agent review, not automatic architecture decisions or refactoring.
 - **[behavior-test](skills/engineering/behavior-test/SKILL.md)**: Write one minimal test through a stable public seam for an explicitly selected RED or COVERAGE cycle. Use as a fundamental capability inside TDD workflows, not as a feature implementation workflow.
 - **[close-spec](skills/engineering/close-spec/SKILL.md)**: Verify completion and close a spec or ticket when requested, using current tracker relationships, acceptance criteria, and implementation evidence. Use existing project scope and acceptance evidence without requiring a new issue schema.

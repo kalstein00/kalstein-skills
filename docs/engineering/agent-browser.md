@@ -1,3 +1,5 @@
+> **Archived.** Removed in the 1.4.4 release. Use the official Agent Browser CLI and its bundled, version-matched skills; UI acceptance is owned by ui-tdd.
+
 ## What it does
 
 Operate the actual web or Electron target through the project-approved CLI route. Installed version-matched instructions and a named session keep the tool and target explicit.

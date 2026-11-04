@@ -1,5 +1,17 @@
 # Fork verification
 
+## Candidate, 2026-11-04: official Agent Browser guides
+
+The standalone plugin skill is removed; `ui-tdd` now loads the official CLI guides through the target project route, installs the official CLI on first UI use when no route or installation exists, and retains actual target and UI evidence requirements. The patch changeset was consumed for the 1.4.4 release candidate.
+
+- Official Agent Browser CLI 0.41.2 listed bundled `core` and `electron` guides. A named session opened example.com and returned an interactive snapshot.
+- `npm run check-plugin-version` passed at 1.4.4, and package and lockfile versions agree. Official Claude CLI 2.1.0 validated both manifests without warnings.
+- Codex CLI with an isolated temporary home and process-only local marketplace overrides discovered `kalstein-skills@kalstein` at 1.4.4. A temporary-home PATH-helper warning did not prevent discovery. This does not refresh the installed plugin.
+- Instruction scenario inspection confirmed project-route priority, reuse of an installed CLI, on-demand installation, missing-browser preparation, and blocked failure reporting. This is an instruction check, not an automated fresh-machine UI task.
+- Reference scan found no remaining skill invocation or removed directory path; `git diff --check` passed. The local source fingerprint is historical.
+- The dev link script was not run: it deletes existing non-symlink skill directories in its destinations. No agent-browser entry was found in those destinations. Existing plugin caches require their normal refresh after publication.
+
+
 ## Release 1.4.3, 2026-11-04: repository-neutral package guidance
 
 Base: `5034baac573dbb768f7f667cfcba116d35308465`. The accepted change removes source-project naming and integration assumptions from distributed instructions, architecture references, and test fixture names. Historical validation outcomes and original import metadata remain intact. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.3`; the lockfile root and installation examples match.

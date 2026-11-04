@@ -1,6 +1,6 @@
 {
   "name": "kalstein-skills",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Portable engineering skills with live UI acceptance evidence",
   "author": {
     "name": "kalstein00"
@@ -18,7 +18,6 @@
     "productivity"
   ],
   "skills": [
-    "./skills/engineering/agent-browser",
     "./skills/engineering/architecture-evidence",
     "./skills/engineering/ask-matt",
     "./skills/engineering/behavior-test",

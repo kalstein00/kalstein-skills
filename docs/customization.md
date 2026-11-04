@@ -70,9 +70,13 @@ Ticket-specific acceptance cannot be deferred behind closure. Only broader batch
 
 GitHub's official [parent/sub-issue progress documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-parent-issue-and-sub-issue-progress-fields), checked 2026-11-04, identifies the native parent relationship and completed-sub-issue progress field. The workflow reads that relationship/state rather than maintaining a second PRD counter.
 
-The plugin contains instructions. Agent Browser must be available through the target project's approved wrapper or an installed CLI, with version-matched instructions. The actual web/Electron target, data, build, and required E2E commands must be runnable. The architecture scanner separately requires Node 24+, Git, npm, and its documented preparation; its dependency pins stay in its own package. Library documentation search needs a project's prepared copied corpus and CLI. A missing required capability is reported, not replaced with unrelated green tests.
+The plugin contains instructions. Agent Browser uses the target project's approved wrapper when present, otherwise an installed CLI. On first UI use without either, the agent installs the official CLI using npm and prepares the browser binary if needed, then loads version-matched instructions. The actual web/Electron target, data, build, and required E2E commands must be runnable. The architecture scanner separately requires Node 24+, Git, npm, and its documented preparation; its dependency pins stay in its own package. Library documentation search needs a project's prepared copied corpus and CLI. A missing required capability is reported, not replaced with unrelated green tests.
 
 Projects should keep existing `AGENTS.md`/`CLAUDE.md`, tracker/domain/ADR pointers, runtime wrappers, fixture/session/catalog authority, UI reference decisions, and canonical user-guide/QA owners. A project-mandated adapter remains authoritative; the plugin's default E2E capability satisfies it only when the project explicitly accepts that substitution.
+
+### Decision update, 2026-11-04: official Agent Browser guides
+
+The standalone plugin skill is removed in the 1.4.4 release. The official Agent Browser CLI provides version-matched core and Electron guides. `ui-tdd` retains project-owned wrapper and pin selection, actual target attachment, and UI acceptance requirements. The local-source table and fingerprint remain historical provenance.
 
 ## Upstream maintenance
 

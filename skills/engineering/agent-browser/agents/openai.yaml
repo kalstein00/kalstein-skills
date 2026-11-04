@@ -1,3 +1,0 @@
-interface:
-  display_name: "Agent Browser"
-  short_description: "Operate real browser and Electron targets"

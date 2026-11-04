@@ -1,3 +1,9 @@
+## 1.4.4
+
+### Patch Changes
+
+- Remove the standalone agent-browser skill, use the official CLI guides from ui-tdd, and install the CLI on first UI use when no project route or installation exists.
+
 # 1.4.3 (2026-11-04)
 
 - Remove source-project names and integration-command assumptions from distributed skill guidance and architecture references while preserving historical validation outcomes and original import provenance.

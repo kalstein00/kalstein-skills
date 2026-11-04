@@ -10,7 +10,7 @@ This router keeps its upstream command name in the `kalstein-skills` fork. Read 
 
 ## Fork extensions
 
-- **UI feature or regression**: `/ui-tdd` owns live reproduction/observation, test-first implementation, actual Agent Browser operation, inspected screenshots, and completion evidence. `/agent-browser`, `/behavior-test`, `/e2e-coverage`, `/test-evidence`, and `/sync-user-manual` are its reusable capabilities, not separate implementation cycles.
+- **UI feature or regression**: `/ui-tdd` owns live reproduction/observation, test-first implementation, actual Agent Browser operation, inspected screenshots, and completion evidence. The official Agent Browser CLI and `/behavior-test`, `/e2e-coverage`, `/test-evidence`, and `/sync-user-manual` provide its reusable capabilities, not separate implementation cycles.
 - **An explicit ordered ticket list in one checkout**: `/implement-tickets` runs fresh sequential implementers; after each verified commit, the parent comments on and closes that implementation ticket, confirms its state and available parent progress, then advances. Broad batch gates remain parent-owned and the parent PRD/spec stays open. Use `/implement-spec` for a spec's parallel graph instead.
 - **Requested acceptance verification or tracker closure**: `/close-spec` checks actual evidence and closes only authorized targets. `/implement` alone does not close issues.
 - **Finished changes waiting for a scoped commit**: `/git-commit` consumes existing verification/review rather than starting another cycle.

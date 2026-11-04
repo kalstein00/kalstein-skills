@@ -8,9 +8,13 @@ Type this skill or let the agent select it for UI behavior, rendering/layout, ac
 
 ## Prerequisites
 
-The target project's runnable app, data, approved Agent Browser route, and applicable test/session instructions. Required live capability must be available before production UI edits.
+The target project's runnable app, data, and applicable test/session instructions. The workflow uses a project-approved Agent Browser route when provided. Otherwise, if no CLI is installed, it installs the official CLI on first UI use using Node.js and npm, and installs its browser binary if needed. The CLI supplies its own version-matched core and Electron guides. Required live capability must be available before production UI edits.
 
 ## Common questions
+
+**Does the plugin install Agent Browser?**
+
+The plugin does not install it at plugin installation time. On the first UI task, the agent uses the project route or an existing CLI; if neither exists, it attempts to install the official CLI. Missing prerequisites or failed installation leave UI work blocked.
 
 **Is saving a screenshot enough?**
 
