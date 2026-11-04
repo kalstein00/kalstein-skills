@@ -30,6 +30,12 @@ Manual instruction walkthroughs covered the following inputs and required outcom
 
 The unchanged architecture scanner and application UI suites were not rerun for these instruction edits. No Sol/Terra comparison was executed, so these checks do not establish model compliance or equal implementation quality. The batch's existing same-model policy is preserved.
 
+### Publication verification
+
+Release commit: `52125e62c786e5d45add39213f1d27867d0114b9`. A normal atomic push published `main` and the annotated `v1.4.2` tag; remote ref readback confirmed the tag resolves to that commit. The [release workflow](https://github.com/kalstein00/kalstein-skills/actions/runs/41788479659) completed successfully, and [GitHub release v1.4.2](https://github.com/kalstein00/kalstein-skills/releases/tag/v1.4.2) was published as a stable release on 2026-11-04. Release notes contain only this version's changelog section.
+
+Codex CLI `0.166.0`, using the same isolated temporary home, ran `plugin marketplace add kalstein00/kalstein-skills --ref v1.4.2 --json` and then `plugin list --marketplace kalstein --available --json`. The downloaded Git source discovered `kalstein-skills@kalstein` `1.4.2` as available and uninstalled. The temporary-home PATH-helper warning remained non-blocking. This proves remote tagged-package discovery without updating the user's installed plugin or global configuration. The publication record is a documentation-only follow-up to the release commit.
+
 ## Release 1.4.1, 2026-11-04: sequential ticket close-out
 
 The accepted change is parent-owned successful closure of each supplied implementation ticket before the next dispatch, with completion evidence and tracker readback. Parent PRDs/specs remain open. Ticket acceptance and the batch's deferred broad gates are distinct; later invalidation of acceptance on a ticket closed by this batch requires bounded state reconciliation. This supersedes 1.4.0's commit-only batch completion boundary. No real project ticket is being implemented or closed by editing this instruction package.
