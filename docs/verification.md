@@ -20,6 +20,12 @@ The README and canonical install block now document `codex plugin remove kalstei
 
 The existing standalone-project regression exercises scanner preparation against a temporary Git/TypeScript project with its own rules. This package test does not claim acceptance for an external application. The router was inspected; its target-owned corpus/runtime routing remains accurate without a flow change. The test log is `kalstein-repository-neutral-scanner-tests.log` in the verification host's OS temporary directory; the counts and scope above are the durable record.
 
+### Publication verification
+
+Release commit: `ff8697f3008c9c358df4ad92c8b85559a32c1e5b`. A normal atomic push published `main` and the annotated `v1.4.3` tag; remote ref readback confirmed the tag resolves to that commit. The [release workflow](https://github.com/kalstein00/kalstein-skills/actions/runs/41792972014) completed successfully, and [GitHub release v1.4.3](https://github.com/kalstein00/kalstein-skills/releases/tag/v1.4.3) was published as a stable release on 2026-11-04 with only this version's changelog section.
+
+In the isolated temporary home, `codex plugin marketplace add kalstein00/kalstein-skills --ref v1.4.3 --json` downloaded the published Git source. `plugin list --marketplace kalstein --available --json` then discovered `kalstein-skills@kalstein` `1.4.3` as available and uninstalled. The temporary-home PATH-helper warning remained non-blocking. User configuration and installed plugins are unchanged. This publication record is a documentation-only follow-up to the release commit.
+
 ## Release 1.4.2, 2026-11-04: explicit ticket handoff
 
 Base: `215d6b6ad05bce581a38673b01ee34ef7cadf942`. This instruction-only release adds [the shared ticket handoff contract](../skills/engineering/implement/TICKET.md), links creation/dispatch/implementation to it, clarifies accepted test boundaries and routing by actual behavior, and requires evidence applicability after edits. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.2`; the lockfile root and installation examples were updated to match.
