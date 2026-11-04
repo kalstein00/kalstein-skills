@@ -12,6 +12,10 @@ The standalone plugin skill is removed; `ui-tdd` now loads the official CLI guid
 - The dev link script was not run: it deletes existing non-symlink skill directories in its destinations. No agent-browser entry was found in those destinations. Existing plugin caches require their normal refresh after publication.
 
 
+### Publication verification
+
+Release commit `04742f320c6f0df0e42d34757a1c213a5242b757` was pushed to `main` with annotated tag `v1.4.4`. Remote ref readback confirmed the tag resolves to that commit. The [release workflow](https://github.com/kalstein00/kalstein-skills/actions/runs/41795488695) succeeded, and [GitHub release v1.4.4](https://github.com/kalstein00/kalstein-skills/releases/tag/v1.4.4) is published as the latest stable release. An isolated Codex home fetched the published tag and discovered plugin version 1.4.4; its temporary-home PATH-helper warning did not prevent discovery. The existing installed plugin was not refreshed.
+
 ## Release 1.4.3, 2026-11-04: repository-neutral package guidance
 
 Base: `5034baac573dbb768f7f667cfcba116d35308465`. The accepted change removes source-project naming and integration assumptions from distributed instructions, architecture references, and test fixture names. Historical validation outcomes and original import metadata remain intact. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.3`; the lockfile root and installation examples match.
