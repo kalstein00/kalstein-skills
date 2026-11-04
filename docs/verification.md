@@ -1,3 +1,7 @@
+## Release candidate 1.4.6, 2026-11-05
+
+Individual implementation uses focused checks; full suites run when the release workflow requires them or the user explicitly requests them. Required batch-wide checks remain parent-owned. The patch changeset was consumed and package, lockfile, and plugin versions were aligned. `npm run check-plugin-version`, `git diff --check`, and Claude manifest validation for both manifests passed. These are instruction and packaging checks, not a live implementation batch.
+
 # Fork verification
 
 ## Release candidate 1.4.5, 2026-11-05

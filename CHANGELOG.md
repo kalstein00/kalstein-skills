@@ -1,3 +1,9 @@
+## 1.4.6
+
+### Patch Changes
+
+- Use focused verification for individual work and run full suites when required by the release workflow or explicitly requested. Keep required batch-wide checks with the parent.
+
 ## 1.4.5
 
 ### Patch Changes

@@ -24,9 +24,9 @@ For native linked sub-issues, the parent records each completed child as closed 
 
 No. Explicitly invoking implement-tickets authorizes the orchestrating parent to close the supplied implementation tickets after their own acceptance, review, documentation, and commit are verified. Workers do not write to the tracker. Closing the parent PRD/spec, pushing commits, or merging a PR still needs the corresponding delivery authority.
 
-**Can a ticket close while the batch's full suite is still pending?**
+**Can a ticket close while batch-wide checks are still pending?**
 
-Yes, when all of that ticket's acceptance is already proven and the remaining gates are broader batch regression checks. A check needed to prove the ticket's acceptance runs before closure. The completion comment names deferred gates and local-only commits honestly; batch completion still waits for the final gates.
+Yes, when all of that ticket's acceptance is already proven and the remaining gates are broader batch regression checks. A check needed to prove the ticket's acceptance runs before closure. The completion comment names deferred gates and local-only commits honestly; batch completion still waits for required or explicitly requested batch-wide gates. A full suite runs when the release workflow requires it or the user explicitly requests it.
 
 Before closure the parent matches each required `Verification` entry to a result that covers the relevant candidate, input or starting state, and observed outcome. The check's owner fills any gap with the smallest affected check. The parent reuses valid results and the existing final batch run.
 

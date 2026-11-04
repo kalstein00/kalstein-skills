@@ -10,7 +10,7 @@ If the user passes a ticket reference, fetch it from the issue tracker and state
 
 Record the starting commit and staged, unstaged, and new task files; preserve unrelated changes. Read [EXECUTION.md](EXECUTION.md) and apply its route: `ui-tdd` for UI/mixed behavior, `tdd` for non-UI behavior at agreed seams, and proportionate direct checks for documentation, metadata, mechanical, and literal copy changes. Reuse already accepted scope and test seams rather than asking for them again.
 
-Run affected typechecking and focused tests during behavior implementation and the project's applicable full suite once on the final candidate. Direct documentation/metadata work uses its relevant package checks. A calling batch may assign broad final gates to its parent; ticket-specific acceptance, E2E, and live evidence stay with this task. Update affected canonical documentation before review.
+Run affected typechecking and focused tests for the changed behavior. Run a full test suite only when the release workflow requires it or the user explicitly requests it. Direct documentation/metadata work uses relevant package checks. In a batch, keep ticket-specific acceptance, required E2E, and live evidence with the ticket. Update affected canonical documentation before review.
 
 Once done, call the Skill tool with "code-review" to review the complete candidate against the recorded starting point and the source ticket or conversation requirements. Include staged, unstaged, and new task files. Resolve in-scope findings and refresh affected checks before committing.
 

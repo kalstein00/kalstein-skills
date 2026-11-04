@@ -39,7 +39,7 @@ A run has five steps, in order:
 1. Read the ticket or spec, recover accepted decisions, and check its handoff and test boundaries.
 2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for behavior-preserving documentation, metadata, mechanical, and literal-copy changes. Actual behavior takes precedence over file type.
 3. Typecheck often, run single test files as it goes.
-4. Run the full test suite once, at the end.
+4. Verify affected behavior and consuming boundaries, including required acceptance and live checks. Run the full suite when the release workflow requires it or you explicitly request it.
 5. Run [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), then commit to the current branch.
 
 One run covers one ticket. The tickets [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) produces are tracer-bullet vertical slices sized to fit a single fresh [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), so the intended rhythm is: clear context, implement one ticket, commit, clear again. Each ticket is self-contained, so you can discard the previous ticket's context.
@@ -74,7 +74,7 @@ Separately, some people do not want the review inside the run at all, because an
 
 **One ticket burned 150k tokens. Am I using it wrong?**
 
-Probably not. The ticket is more likely too big. A run does codebase exploration, a red-green loop per seam, a full suite, and a review, so a non-trivial ticket exceeding 100k [tokens](https://www.aihero.dev/ai-coding-dictionary/token) is normal rather than a sign something broke. The fix is upstream. Right-size the tickets in [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) so each fits one fresh window. If a single ticket keeps going over, split it rather than raising the [effort](https://www.aihero.dev/ai-coding-dictionary/effort) level.
+Probably not. The ticket is more likely too big. A run does codebase exploration, a red-green loop per seam, focused verification, and a review, so a non-trivial ticket exceeding 100k [tokens](https://www.aihero.dev/ai-coding-dictionary/token) is normal rather than a sign something broke. The fix is upstream. Right-size the tickets in [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) so each fits one fresh window. If a single ticket keeps going over, split it rather than raising the [effort](https://www.aihero.dev/ai-coding-dictionary/effort) level.
 
 **`/implement #2` in a fresh session worked on something completely unrelated.**
 
@@ -84,7 +84,7 @@ The agent resolved `#2` against another numbered list in context, such as a todo
 
 - The session opens by reading the ticket or spec and restating what it will build, rather than asking you what to build.
 - The trace shows the selected route and its actual evidence: UI journey and inspected images, non-UI RED/GREEN, or direct package/document checks.
-- Typechecks and single test files run repeatedly during the run, and the full suite runs once near the end.
+- Affected typechecks and focused tests run during the work, and required acceptance checks cover the final candidate.
 - The run reaches a commit on your current branch without you prompting it to carry on.
 - The diff is one ticket's worth of change: a vertical slice through every layer, not several tickets swept together.
 

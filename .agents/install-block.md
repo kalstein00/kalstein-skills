@@ -18,7 +18,7 @@ codex plugin marketplace upgrade kalstein
 codex plugin add kalstein-skills@kalstein
 ```
 
-Restart the app or start a new session and inspect the installed version. Marketplace refresh and installed plugin refresh are separate observations. Releases increment the plugin/package version. For a reproducible release, use `--ref v1.4.5` only after that tag is published; a tag intentionally does not follow later main updates.
+Restart the app or start a new session and inspect the installed version. Marketplace refresh and installed plugin refresh are separate observations. Releases increment the plugin/package version. For a reproducible release, use `--ref v1.4.6` only after that tag is published; a tag intentionally does not follow later main updates.
 
 ### Uninstall kalstein-skills
 
