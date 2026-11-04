@@ -35,7 +35,7 @@ Record the candidate commit or working-tree state, app/build identity, target, s
 | --- | --- | --- | --- | --- |
 | Expected visible behavior | Ordered UI actions | Actual visible outcome | Inspected image and test reference | Pass / Fail / Unverified |
 
-Use the project's durable QA owner when it exists; otherwise reference the task's retained artifacts and state their retention limits. Temporary local files are not durable cross-PC proof. Reuse evidence only while the candidate, state, and environment remain relevant. Later visual, interaction, data, or build changes invalidate the affected observation.
+Use the project's durable QA owner when it exists. Keep each selected screenshot in the task's retained artifact location, where it can be reopened after app and test cleanup. If the capture starts in a disposable directory, copy the inspected image to the retained artifact location before cleanup. State any retention or access limits. Reuse evidence while the candidate, state, and environment remain relevant. If review or a later change affects the captured UI result, reopen the affected state in the final app and replace the image after inspecting it.
 
 ## Completion response
 
@@ -44,7 +44,7 @@ Include these facts in the final chat response and carry them through worker/bat
 1. **Changed behavior:** what the user can now do.
 2. **Live verification:** actual action sequence and observed result, with the verified target/candidate.
 3. **Tests:** focused automated result, plus applicable final gates and any deferred parent-owned checks.
-4. **Screenshot:** display the inspected result inline when the client supports it, using the absolute local image path for a local artifact. In a text-only destination, link the accessible retained artifact and name its limitation. A worker must pass the actual image paths to its parent, not just say screenshots exist.
+4. **Screenshot:** name the visible state and provide a reopenable link to the retained image. Also display it inline when supported, using the absolute local image path for a local artifact. A worker passes the retained image paths to its parent.
 5. **Documentation and gaps:** updated document(s) or a concrete no-change reason; failed, skipped, blocked, or unverified acceptance.
 
 Never label required-but-unverified work complete. A screenshot proves only the captured appearance; persistence, interaction, accessibility, or IPC claims need the corresponding observations and tests. Missing rendering support in the chat is a presentation limitation; it does not excuse missing capture or pixel inspection.

@@ -61,6 +61,8 @@ Issue both sub-agent calls together, in the foreground, and aggregate the report
 
 Apply any caller-supplied model/effort settings through the spawn tool, not just prompt text. Preserve fresh contexts and supply repository, candidate, standards, source requirements, and relevant evidence explicitly. Without such a policy use the host's normal settings. Report a required setting/capability that cannot be honored rather than silently substituting it.
 
+Pass the applicable **Verification** entries and recorded evidence to both reviewers. Review the evidence in place. If it is insufficient, identify the unmet criterion or documented rule and the smallest missing observation. The check owner can supply existing evidence or run the focused check.
+
 For UI claims, give the Spec reviewer the accepted journey, automated results, final app/candidate identity, inspected screenshot paths, and observations under `ui-tdd`'s [evidence protocol](../ui-tdd/EVIDENCE.md). The reviewer checks coverage and freshness; routine review does not rerun unchanged browser work. Missing required evidence is a finding. A code smell alone cannot expand the requested outcome into unrelated work.
 
 **Standards sub-agent prompt** should include:
@@ -68,12 +70,14 @@ For UI claims, give the Spec reviewer the accepted journey, automated results, f
 - The full diff command and commit list.
 - The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
 - The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
+- Flag an evidence gap on this axis when a documented repository rule requires the missing check or environment. Cite that rule and the affected change.
 
 **Spec sub-agent prompt** should include:
 
 - The diff command and commit list.
 - The path or fetched contents of the spec.
 - The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
+- Check whether the evidence exercises the condition named in Verification and demonstrates the promised outcome. If the check can pass without exercising that condition, name the criterion, what the evidence actually shows, and the observation needed to resolve the gap. A potential failure outside the agreed scope is advisory unless it contradicts a stated requirement.
 
 If the spec is missing, skip the Spec sub-agent and note this in the final report.
 

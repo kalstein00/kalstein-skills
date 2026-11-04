@@ -62,6 +62,8 @@ Ticket creation, dispatch, and implementation share [implement/TICKET.md](../ski
 
 The execution contract chooses by actual behavior before file type and requires a changed-boundary/check mapping when reusing evidence after edits. The batch parent checks that mapping before acceptance. These instruction changes reduce implicit context transfer and do not establish model equivalence or change implement-tickets' same-model policy.
 
+The 2026-11-05 follow-up uses the same `Verification` entries to record material failure conditions, route checks to the earliest stage that can run them, and match results before ticket closure. Standards checks evidence required by repository rules, while Spec checks whether the evidence demonstrates acceptance under the stated condition. Reviewers reuse existing results and send missing observations to the check owner.
+
 ### Decision update, 2026-11-04: per-ticket closure
 
 Version `1.4.1` changes implement-tickets from commit-only completion to parent-owned tracker close-out after every supplied implementation ticket. After verifying its acceptance, review, documentation, and scoped commit, the parent posts/reuses completion evidence, closes the ticket as completed, reads back its actual state and available parent progress, and only then dispatches the next worker. Workers never mutate the tracker; the parent PRD/spec stays open. This supersedes the initial batch wrapper's no-automatic-ticket-closure rule, without adding push, merge, or parent-closure authority.

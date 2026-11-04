@@ -78,6 +78,8 @@ A very large spec can outgrow what a tracker issue serves back cleanly. There is
 **The acceptance criteria graded nothing: some passed before any work was done.**
 The handoff check now requires an observable pass/fail result, a verification boundary, and acceptance this ticket can satisfy once its prerequisites hold. New or repaired behavior names the observation expected to fail before implementation. Existing-behavior coverage and direct changes use their own checks without inventing a product failure.
 
+If an ordinary success check would miss an acceptance failure, the existing `Verification` entry names the condition that exposes it and the first stage that can check it. For example, startup verification can check the first transition to ready, when a check on an already running app would miss an ordering bug. Existing checks that cover the condition are reused.
+
 **Can a fresh implementer use a different model without guessing what the planning session decided?**
 The ticket must preserve conversation-only decisions inline or in a durable note and link relevant specs or ADRs. UI and non-UI behavior tickets both identify test boundaries and their catch/miss limits. Routine implementation choices remain with the worker; unresolved product decisions prevent ready status. This reduces missing context but does not establish equivalent quality across models. The separate [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md) batch retains its same-model policy.
 

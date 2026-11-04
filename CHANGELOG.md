@@ -1,3 +1,9 @@
+## 1.4.5
+
+### Patch Changes
+
+- Clarify ticket verification handoffs and retain final UI screenshots as reopenable evidence.
+
 ## 1.4.4
 
 ### Patch Changes

@@ -2,6 +2,8 @@
 
 Deliver one visible outcome through live observation, test-first implementation, and final real-app evidence. Completion includes screenshots opened for pixel inspection and the actual user journey.
 
+Selected screenshots are kept with the task artifacts so you can reopen them after the app or test session closes. If a later change affects the captured result, the report uses an inspected replacement from the final app.
+
 ## When to reach for it
 
 Type this skill or let the agent select it for UI behavior, rendering/layout, accessibility, IPC, persistence, or restore changes. Literal copy-only changes use proportionate direct verification.

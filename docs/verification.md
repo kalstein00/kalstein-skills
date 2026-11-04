@@ -1,5 +1,15 @@
 # Fork verification
 
+## Release candidate 1.4.5, 2026-11-05
+
+Ticket verification handoffs and retained UI screenshot evidence are clarified. The patch changeset was consumed; package, lockfile, and plugin versions match 1.4.5. `npm run check-plugin-version` and `git diff --check` passed. Claude CLI 2.0.76 validated both manifests without warnings. `npm audit --omit=dev` found no vulnerabilities; the full development dependency audit reported a high severity js-yaml advisory. The instruction scenarios below are desk checks, not a live ticket batch or model run.
+
+## Working tree, 2026-11-05: ticket verification handoff
+
+- `npm run check-plugin-version` passed at 1.4.4. Claude CLI 2.0.76 validated both repository manifests without warnings. Codex CLI listed the installed and enabled 1.4.4 plugin from its configured marketplace, which is separate from the edited checkout.
+- The three edited skill entrypoints retain their frontmatter and agent metadata. Their local links resolve and the companion docs reflect the new instructions.
+- A desk check of a startup ordering ticket confirmed that an existing test of the first ready transition supplies reusable evidence. A test that only inspects an already ready app leaves a Spec evidence gap for the check owner. A documentation typo keeps its ordinary document check. These scenarios were checked against the instructions in source. A live ticket batch or model run has yet to validate the behavior.
+
 ## Candidate, 2026-11-04: official Agent Browser guides
 
 The standalone plugin skill is removed; `ui-tdd` now loads the official CLI guides through the target project route, installs the official CLI on first UI use when no route or installation exists, and retains actual target and UI evidence requirements. The patch changeset was consumed for the 1.4.4 release candidate.

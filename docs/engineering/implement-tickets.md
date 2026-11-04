@@ -28,6 +28,8 @@ No. Explicitly invoking implement-tickets authorizes the orchestrating parent to
 
 Yes, when all of that ticket's acceptance is already proven and the remaining gates are broader batch regression checks. A check needed to prove the ticket's acceptance runs before closure. The completion comment names deferred gates and local-only commits honestly; batch completion still waits for the final gates.
 
+Before closure the parent matches each required `Verification` entry to a result that covers the relevant candidate, input or starting state, and observed outcome. The check's owner fills any gap with the smallest affected check. The parent reuses valid results and the existing final batch run.
+
 **What if closing a ticket fails or a later test finds a regression?**
 
 The parent reconciles the real state before retrying and does not start the next worker while closure is unconfirmed. If later evidence invalidates a ticket closed by this batch, it records the failure, reopens that ticket, and repairs/reverifies it before closing again. Unaffected completed tickets stay closed.

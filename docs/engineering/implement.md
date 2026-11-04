@@ -2,6 +2,8 @@
 
 The fork selects one UI, non-UI, coverage, or direct route by actual effect, including behavior changes made through configuration or wiring. UI completion requires actual app operation, inspected screenshots, and observed results in the final response; review includes new and uncommitted task files.
 
+For a visible UI change, the completion report names the state shown in the actual final app, displays the screenshot inline where supported, and provides a link you can reopen after test cleanup. It reuses the image from live verification when that image still represents the delivered result.
+
 `implement` builds work that has already been decided. You point it at a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the plan you just agreed in the conversation, and it selects the UI, non-UI, or direct verification route, implements the accepted scope, runs [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md) at the end, and commits to the current branch.
 
 Accepted decisions carry forward without another planning interview. Before dependent edits, the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) checks that source decisions, exclusions, acceptance, and verification boundaries can be recovered. A necessary unresolved decision returns to the dispatching parent or standalone user; routine implementation choices remain with the worker.
