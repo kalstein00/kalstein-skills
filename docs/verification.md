@@ -1,5 +1,35 @@
 # Fork verification
 
+## Release 1.4.2, 2026-11-04: explicit ticket handoff
+
+Base: `215d6b6ad05bce581a38673b01ee34ef7cadf942`. This instruction-only release adds [the shared ticket handoff contract](../skills/engineering/implement/TICKET.md), links creation/dispatch/implementation to it, clarifies accepted test boundaries and routing by actual behavior, and requires evidence applicability after edits. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.2`; the lockfile root and installation examples were updated to match.
+
+| Check | Actual result |
+| --- | --- |
+| `npm run check-plugin-version` and lockfile root inspection | Passed: package, plugin, lockfile root, and root package entry agree on `1.4.2`; dependency resolutions are unchanged |
+| Official `@anthropic-ai/claude-code@2.1.0 plugin validate --help`, then `plugin validate` for each manifest | Supported syntax confirmed; both manifests passed with no warnings |
+| Codex CLI `0.166.0`, isolated temporary home with process-only local marketplace overrides, `plugin list --marketplace kalstein --available --json` | Discovered `kalstein-skills@kalstein` `1.4.2` as available and uninstalled; the user's existing installation still reports `1.4.1`. The CLI warned that temporary homes cannot create PATH helper aliases, but discovery succeeded. User configuration and installed plugins are unchanged |
+| Inline Node/`js-yaml` structural inspection | All 41 promoted frontmatters and Codex invocation policies match; changed human docs retain required sections in order; relative and fork-local links/anchors resolve; new prose punctuation passes |
+| Independent Standards and Spec reviews | Standards reported one P3 prose-branch formatting issue, corrected to a three-row execution-flow table and checked locally. Spec reported no findings; accepted decisions, UI proof, tracker ownership, and same-model policy remain intact |
+| `git diff --check` | Passed |
+
+Manual instruction walkthroughs covered the following inputs and required outcomes. They check consistency of the written workflow, not actual model execution.
+
+| Scenario | Outcome under the written instructions |
+| --- | --- |
+| Approved non-UI ticket names an API request/response | Recover and reuse that public boundary with its catch/miss limits, without another seam approval |
+| Feature approved, but no test boundary can be recovered | Return the missing boundary decision to the parent, or ask the standalone user before dependent test writes |
+| Decisions exist only in the planning conversation | Preserve them inline or in a durable linked note before publishing ready tickets; a separate spec is optional |
+| Existing ready ticket lacks handoff fields | Recover accepted context from sources first; a ready label alone cannot resolve a necessary missing decision |
+| Criterion belongs to a sibling ticket | Keep its acceptance with that ticket and represent the actual prerequisite as a dependency |
+| Authentication or restore changes through configuration | Choose the corresponding behavior route rather than direct checks based on the settings file type |
+| Non-UI behavior ticket or documentation-only ticket | Include only affected layers; behavior uses agreed boundaries, documentation uses direct checks without fabricated UI work or RED |
+| Handler/lifecycle edit follows passing checks | Map the changed boundary to affected integration/E2E/live checks and refresh them; parent checks reuse applicability |
+| Documentation edit follows application verification | Run relevant document/package checks and retain unrelated runtime evidence with its applicability reason |
+| User only asks whether a lower-tier worker is suitable | Explain the workflow; discussing or editing skills does not dispatch implementation workers or mutate tickets |
+
+The unchanged architecture scanner and application UI suites were not rerun for these instruction edits. No Sol/Terra comparison was executed, so these checks do not establish model compliance or equal implementation quality. The batch's existing same-model policy is preserved.
+
 ## Release 1.4.1, 2026-11-04: sequential ticket close-out
 
 The accepted change is parent-owned successful closure of each supplied implementation ticket before the next dispatch, with completion evidence and tracker readback. Parent PRDs/specs remain open. Ticket acceptance and the batch's deferred broad gates are distinct; later invalidation of acceptance on a ticket closed by this batch requires bounded state reconciliation. This supersedes 1.4.0's commit-only batch completion boundary. No real project ticket is being implemented or closed by editing this instruction package.

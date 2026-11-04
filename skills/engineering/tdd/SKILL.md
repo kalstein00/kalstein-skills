@@ -19,11 +19,11 @@ See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking g
 
 A **seam** is the public boundary you test at: the interface where you observe behavior without reaching inside. Tests live at seams, never against internals.
 
-**Test only at pre-agreed seams.** Before writing any test, write down the seams under test and confirm them with the user. No test is written at an unconfirmed seam. You can't test everything, so agreeing the seams up front is how testing effort lands on the critical paths and complex logic instead of every edge case.
+**Test at agreed public seams.** Before writing a test, record its boundary and catch/miss limits. Reuse the boundary when it is already accepted; seek confirmation only when it is missing or materially changed.
 
-An accepted spec/ticket or earlier confirmation in this task is that agreement. Reuse it; reopen only a materially changed seam or uncovered decision. UI/mixed outcomes use `ui-tdd` as the outer workflow, which retains final live evidence; this reference does not start a second lifecycle.
+Apply [the ticket handoff contract's accepted test boundaries](../implement/TICKET.md#accepted-test-boundaries) to recover agreement from the spec, ticket, or earlier confirmation. A worker returns an unresolved seam decision to its dispatching parent; standalone work confirms it with the user. UI/mixed outcomes use `ui-tdd` as the outer workflow, which retains final live evidence; this reference does not start a second lifecycle.
 
-Ask: "What's the public interface, and which seams should we test?" Give each proposed seam a one-line note on what it catches and what it misses.
+When confirmation is needed, ask: "What's the public interface, and which seams should we test?" Give each proposed seam a one-line note on what it catches and what it misses.
 
 When the shape of that interface is itself in question (how deep the module is, where the seam belongs, what the interface should expose), call the Skill tool with "codebase-design" for the vocabulary. It is the shared source of the module, interface, depth, seam, adapter, leverage and locality terms, and it is a reference to consult, not a session to run.
 

@@ -8,13 +8,13 @@ Invoke this orchestrator explicitly for a supplied ticket list; use implement-sp
 
 ## Prerequisites
 
-The target project, its configured tracker, and the actual ticket/parent relationships. The parent needs a working tracker route for comments, completed closure, and state readback before implementation begins. Preserve the project's existing setup and documentation.
+The target project, its configured tracker, and the actual ticket/parent relationships. The parent needs a working tracker route for comments, completed closure, and state readback before implementation begins. Before each dispatch it checks the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md), recovering accepted decisions and verification boundaries from their sources. Preserve the project's existing setup and documentation.
 
 ## Common questions
 
 **Can a batch skip live UI verification until the end?**
 
-No. Each UI ticket supplies its required live journey and inspected images; the parent refreshes evidence affected by later tickets.
+No. Each UI ticket supplies its required live journey and inspected images. After a change, the worker maps the changed boundary to affected checks and explains why retained evidence still applies; the parent checks that mapping before acceptance. Evidence with uncertain applicability cannot prove acceptance until the relevant boundary is checked.
 
 **Will the parent's progress move from 1/4 to 2/4 as tickets finish?**
 
@@ -35,6 +35,7 @@ The parent reconciles the real state before retrying and does not start the next
 ## It's working if
 
 - Tickets keep their requested order and scoped commits.
+- Each worker receives source decisions, excluded work, acceptance criteria, and verification boundaries without needing the planning conversation.
 - Each ticket has a completion comment and confirmed completed closure before the next ticket starts.
 - The parent PRD stays open, with progress observed from actual child states or explicitly reported as unavailable.
 - The final batch report carries UI observations and images and distinguishes deferred from completed gates.

@@ -1,6 +1,6 @@
 ## What it does
 
-UI tickets include an executable verification scenario and key capture states. The implementer operates the actual app, inspects the selected images, and carries them into the completion response.
+Every ticket preserves its source decisions, excluded work, observable acceptance criteria, and verification boundaries for a fresh implementer. UI tickets also include an executable verification scenario and key capture states. The implementer operates the actual app, inspects the selected images, and carries them into the completion response.
 
 `to-tickets` takes a plan, a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the conversation you are in, and breaks it into a set of **[tickets](https://www.aihero.dev/ai-coding-dictionary/ticket)** on your issue tracker. Each ticket declares its **blocking edges**: the other tickets that have to finish before it can start.
 
@@ -18,7 +18,7 @@ You invoke this by typing `/to-tickets`. The [agent](https://www.aihero.dev/ai-c
 | Nothing is decided yet | [grill-with-docs](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/grill-with-docs.md), then [to-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-spec.md) |
 | A [wayfinder](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/wayfinder.md) map has cleared | [to-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-spec.md) first, to collapse the map, then `/to-tickets` |
 
-Tickets that `to-tickets` produced are agent-ready by construction. Don't run [triage](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/triage.md) over them. Triage is for work that arrived from someone else.
+Tickets receive `ready-for-agent` after their handoff content passes the shared contract and you approve the breakdown, including its criteria and verification boundaries. Existing accepted decisions carry forward. Don't run [triage](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/triage.md) over them. Triage is for work that arrived from someone else.
 
 ## Prerequisites
 
@@ -26,11 +26,11 @@ Tickets that `to-tickets` produced are agent-ready by construction. Don't run [t
 
 ## Tracer bullets, not layers
 
-A **horizontal** slice ships one layer of the change. Nothing works until every layer has landed, and each ticket's acceptance criteria have to reach into work that another ticket owns. A **vertical** slice (the tracer bullet) ships one thin path through all the layers at once, so it is verifiable alone and owns everything it grades.
+A **horizontal** slice ships one layer of the change. Nothing works until every layer has landed, and each ticket's acceptance criteria have to reach into work that another ticket owns. A **vertical** slice (the tracer bullet) ships one thin path through all affected layers at once, so it is verifiable alone and owns everything it grades. Only layers needed for that outcome are included; a non-UI change does not acquire UI work.
 
 This is the rule people break most often. One team ran a 26-ticket stack sliced by layer (corpus, producer, aggregator, selector) and got roughly twenty agent runs per closed ticket, about three quarters of them rework. Their own post-mortem traced every failure class back to the horizontal slicing rather than to the implementations.
 
-Two things happen before anything is published. `to-tickets` looks for prefactoring (the principle "make the change easy, then make the easy change") and orders that work first. Then it presents the breakdown as a numbered list and quizzes you on it: is the granularity right, are the blocking edges real, should anything merge or split. Nothing reaches the tracker until you approve, and that quiz is the place to push back.
+Before publication, `to-tickets` looks for prefactoring (the principle "make the change easy, then make the easy change") and orders that work first. It checks each ticket against the [shared handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md), then presents the breakdown, criteria, and verification boundaries for approval. The quiz is where you check granularity, blocking edges, and possible merges or splits.
 
 ## Blocking edges
 
@@ -76,17 +76,28 @@ They did, and that was a bug. A single shared file also caused race conditions w
 A very large spec can outgrow what a tracker issue serves back cleanly. There is no local copy to fall back on, so the agent spends [tool calls](https://www.aihero.dev/ai-coding-dictionary/tool-call) fetching chunks again and never reaches the end. Don't [clear](https://www.aihero.dev/ai-coding-dictionary/clearing) or [compact](https://www.aihero.dev/ai-coding-dictionary/compaction) between `/to-spec` and `/to-tickets`. Run them in the same context window and the agent never has to fetch the spec back.
 
 **The acceptance criteria graded nothing: some passed before any work was done.**
-The template asks for criteria and says nothing about whether they can fail, so this happens. Three shapes recur: a criterion already true at the base commit, a criterion that only work in another ticket can satisfy, and one that restates the request rather than deriving from the artifact. Vertical slicing prevents most of it, because a slice that delivers new behaviour fails at the base commit by construction. The check is still worth doing by hand. For each criterion, name the observation that would show it false, and confirm it fails at the commit the implementer starts from.
+The handoff check now requires an observable pass/fail result, a verification boundary, and acceptance this ticket can satisfy once its prerequisites hold. New or repaired behavior names the observation expected to fail before implementation. Existing-behavior coverage and direct changes use their own checks without inventing a product failure.
+
+**Can a fresh implementer use a different model without guessing what the planning session decided?**
+The ticket must preserve conversation-only decisions inline or in a durable note and link relevant specs or ADRs. UI and non-UI behavior tickets both identify test boundaries and their catch/miss limits. Routine implementation choices remain with the worker; unresolved product decisions prevent ready status. This reduces missing context but does not establish equivalent quality across models. The separate [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md) batch retains its same-model policy.
 
 **The tickets are published. How do I actually run them?**
-The skill stops at the artifact, and there is no auto-dispatch mode. Dispatch is manual: look at the board, count the tickets with no open blockers, and open that many agent sessions. Give each ticket a fresh context, and clear between them. [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) does not reliably close or check off the ticket when it finishes, on GitHub or in local markdown, so you update the ticket's state yourself.
+
+The skill stops at the artifact. Choose the execution flow for your work:
+
+| Work | Execution flow |
+| --- | --- |
+| One unblocked ticket | Run [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) in a fresh context and update ticket state yourself. |
+| An ordered ticket batch | Explicitly invoke [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md); the parent owns per-ticket closure. |
+| A parallel spec graph | Use [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md). |
 
 ## It's working if
 
 - Every ticket has an answer to "what can I demo when this is done?", and the answer is behaviour, not a layer.
 - The list comes back to you numbered, with a "Blocked by" line on each, before anything is published.
 - The ticket at the top has no blockers and can be started immediately.
-- Nothing in a ticket body is a file path or a line number, except a snippet a prototype produced.
+- A fresh implementer can find the accepted spec and decisions through stable references or inline content, without the original conversation.
+- Each acceptance criterion has an observable result and a verification check; behavior tests name their accepted public boundaries and catch/miss limits.
 - Each ticket reads like something a fresh session could finish without you in the room.
 - Prefactoring, where it found any, is at the front of the order rather than mixed into feature tickets.
 

@@ -4,7 +4,7 @@ Previously accepted test seams are reused, including their catch/miss limits. Mi
 
 `tdd` builds a feature or fixes a bug test-first: one failing test, then just enough code to pass it, then the next behaviour. It carries the standards that make that loop produce tests worth keeping: what a good test is, where tests go, what mocks are for, and the three anti-patterns that make a suite worthless.
 
-It writes no test at a seam you have not agreed to first. Before any test exists, it names the public boundaries it intends to test at and stops for your confirmation. Testing effort is finite, and this step spends it on the critical paths instead of on every edge case. `tdd` is also a **reference**, not a driver. It contains the rules of the loop, and something else (you, or [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md)) runs the [session](https://www.aihero.dev/ai-coding-dictionary/session) that applies them.
+It writes tests at agreed public boundaries. An accepted spec or ticket that identifies the boundary carries that agreement forward; only a missing or materially changed boundary needs confirmation. Testing effort is finite, and this rule spends it on the critical paths instead of on every edge case. `tdd` is also a **reference**, not a driver. It contains the rules of the loop, and something else (you, or [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md)) runs the [session](https://www.aihero.dev/ai-coding-dictionary/session) that applies them.
 
 ## When to reach for it
 
@@ -18,9 +18,10 @@ Reach for it when there is a concrete behaviour to build, with an input and an o
 | The behaviour isn't pinned down yet | [to-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-spec.md), which also agrees the test seams before any code is written |
 | The question is really the shape of the interface, not the tests | [codebase-design](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/codebase-design.md) |
 | You have a [spec](https://www.aihero.dev/ai-coding-dictionary/spec) or [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) and want the whole build run for you | [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md), which drives `tdd` per ticket |
-| Config, wiring, glue, type annotations, straight CRUD delegation | Nothing here fits well; see the open gap below |
+| Configuration or wiring that changes observable behavior | The corresponding non-UI TDD or outer UI route |
+| Behavior-preserving metadata, mechanical changes, or literal copy | Direct proportionate checks under [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) |
 
-That last row is a real gap. The skill decides *where* the seams go, but nothing in it decides *whether* a change is worth the loop at all. If you run it on a change with no independent source of truth to assert against, you get a test that restates the implementation. That is the tautological anti-pattern the skill warns about, reached from the other direction. It is [issue #746](https://github.com/mattpocock/skills/issues/746), and it is open. Until it closes, you make that call yourself, or write the rule into your `CLAUDE.md`.
+The [execution contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/EXECUTION.md) selects by actual effect before file type. Authentication or restore changes still need behavior verification when made in a settings file. Direct changes use checks appropriate to the artifact, avoiding tests that merely restate it.
 
 ## Prerequisites
 
@@ -34,7 +35,7 @@ The skill rests on three terms.
 
 **Vertical slice.** Write one test at one seam, then the minimal implementation, then repeat. The first cycle is a **tracer bullet** that proves a single path end to end. The opposite is horizontal slicing: all the tests first, then all the code. Tests written in bulk verify *imagined* behaviour. They check the shape of things rather than what a user does, and they commit you to a test structure before you understand the implementation.
 
-**Pre-agreed seam.** A seam is the public boundary you observe behaviour at without reaching inside. The rule has no exceptions. No test goes at an unconfirmed seam. In the full chain the seams are agreed earlier, during [to-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-spec.md): "`/tdd` is told to only work at pre-agreed test seams, `/code-review` checks that only agreed-upon test seams were used." Invoked on its own, `tdd` asks you directly.
+**Pre-agreed seam.** A seam is the public boundary you observe behaviour at without reaching inside. The [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) distinguishes an agreed boundary, including an unambiguous public operation, from generic feature approval. Recover existing agreement first. Missing or materially changed boundaries return to the dispatching parent, or to you for standalone work, with each candidate's catch/miss limits.
 
 The three anti-patterns it is written to prevent:
 
@@ -54,7 +55,7 @@ Because the refactor step was removed and the description was not. The removal w
 
 **It asked me to choose a test seam and I had no idea which to pick.**
 
-This is the most-reported friction with the skill ([issue #607](https://github.com/mattpocock/skills/issues/607)). The prompt lists candidate seams by name only, with nothing about what each one catches or misses, so you are choosing between labels. There is no fix shipped yet. The practical workaround is to ask the agent for the trade-offs before answering: what does the component-level seam miss that the integration seam catches, and how much slower is it. It is also why the chain agrees seams up front in `to-spec`, where you have the whole feature in view rather than one prompt.
+Each proposed seam now includes what it catches and misses, so you can choose by coverage rather than a label. [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) preserves those boundaries for UI and non-UI behavior. An already accepted boundary is reused without another question.
 
 **It wrote the implementation before the test, even though the skill says red first.**
 
@@ -62,7 +63,7 @@ It happens. One user pushed the [model](https://www.aihero.dev/ai-coding-diction
 
 **Should it write browser or end-to-end tests first?**
 
-Usually not, and the skill will not stop it. A user reported the agent writing a Playwright test first, then spending a long loop re-running it and concluding the *test* was broken for a feature that did not exist yet. Browser tests are slow enough that the red-green feedback loop stops paying for itself. State in your repo's `CLAUDE.md` that browser tests come after the behaviour works.
+The accepted public boundary and the selected route decide. UI interactions, IPC, lifecycle, persistence, and restore retain the target-authoritative E2E requirements of [ui-tdd](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ui-tdd.md). Smaller logic seams can provide earlier focused feedback, but do not replace required UI acceptance. An environment or selector failure is not the intended RED.
 
 **Does `/tdd` replace `/implement`, or the course's `/do-work`?**
 
@@ -78,7 +79,7 @@ No. Run against one ticket, it can propose work that belongs to a sibling ticket
 
 ## It's working if
 
-- It stops and names the seams it intends to test at, and waits, before any test file exists.
+- It reuses an accepted test boundary; a missing or changed boundary is explained with catch/miss limits before confirmation.
 - One test appears, goes red, gets just enough code to pass, and only then does the next test appear, not a batch of tests followed by a batch of code.
 - Test names read as capabilities ("user can checkout with valid cart"), not as internals ("checkout calls paymentService.process").
 - Expected values in assertions are literals you can trace to the spec, not values recomputed the way the code computes them.

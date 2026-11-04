@@ -6,9 +6,13 @@ Apply this contract to the target project, not to the installed plugin directory
 
 Read applicable project instructions and the relevant tracker, domain, and ADR pointers. Reuse an existing `CONTEXT.md`/`CONTEXT-MAP.md` or `GLOSSARY.md`/`GLOSSARY-MAP.md` according to the project's routing; do not create a competing glossary. Resolve relative project paths from the target checkout. Resolve bundled skill paths from this installed package. Never import a developer's absolute paths, caches, or project-specific commands into another project.
 
+For ticket work, apply [the ticket handoff contract](TICKET.md) before dependent edits. Recover accepted decisions and verification boundaries from the ticket and its sources; report a necessary unresolved decision to the dispatching parent or standalone user. Reuse completed handoff checks when the ticket and accepted scope are unchanged.
+
 For each model-invoked route or capability named below, call the Skill tool with that one skill name, one call per skill, if available. Otherwise read the bundled sibling `SKILL.md` and apply it in the current task. This is instruction loading, not a reason to launch another agent or nested Codex process. Explicit-only orchestrators run only when requested. Use fresh contexts for explicitly required subagents and supply their checkout, scope, instructions, and evidence pointers.
 
 ## Select one route
+
+Classify the actual effect before the file type. Behavior changes take precedence over the direct route, including changes made through configuration, wiring, or metadata. A setting that changes authentication or restore behavior uses the corresponding non-UI or UI route; direct checks apply when the change preserves behavior or only changes literal copy.
 
 | Accepted change | Route |
 | --- | --- |
@@ -24,6 +28,8 @@ Mixed UI/logic work keeps `ui-tdd` as the outer route. A fixed label replacement
 Record the starting commit and staged, unstaged, and new task files. Preserve unrelated work. Acceptance criteria and requested behavior drive edits and review; heuristics and metrics need concrete evidence before they justify work. Inspect the affected state owner, event wiring, callers, and lifecycle before behavior-sensitive edits. Use project-pinned copied library documentation first when available, then official documentation; distinguish source evidence from inference. Diagnose at the failing boundary before selecting a cause. Fix authoritative state rather than hiding missing handlers or stale restore data behind silent fallbacks.
 
 Reuse applicable instructions, decisions, and verification across stages. Keep candidate identity, covered behavior, environment, commands/results, evidence paths, and material limits in the existing task note. A stage change, commit, or new filename alone does not invalidate evidence. Refresh only checks affected by changes or a concrete unresolved concern. Required RED/GREEN, final live verification, and semantic review remain separate obligations.
+
+When reusing evidence after an edit, record the changed boundary, which checks cover it, and which previous results remain applicable and why. State, event, lifecycle, and rendering changes refresh their affected integration/E2E/live checks; build, dependency, fixture, and runtime configuration changes refresh checks that depend on those inputs. Documentation-only edits use document/package checks and preserve unrelated runtime evidence. If impact is uncertain, run the smallest check at the affected public boundary; expand to its consuming flow if that check cannot establish coverage. Evidence with an unresolved applicability gap cannot prove acceptance. In a batch, the worker returns this mapping and the parent checks it before acceptance or closure.
 
 Run focused checks during implementation and the project's required final gates on the final candidate. Documentation-only changes need relevant package/document checks, not application suites. Save verbose output to temporary logs, preserve actual exit codes and skip/retry counts, and inspect the failing range before retrying. Missing or failing required evidence leaves work incomplete.
 

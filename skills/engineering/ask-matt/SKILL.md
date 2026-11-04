@@ -34,12 +34,12 @@ The route most work travels. You have an idea and want it built.
    - **`/prototype`** to answer the question with throwaway code,
    - **`/handoff`** back what you learned, and reference it from the original idea thread.
 3. **Branch: is this a multi-session build?**
-   - **Yes** → **`/to-spec`** (turn the thread into a spec), then **`/to-tickets`** to split it into tracer-bullet tickets, each declaring its **blocking edges**. Then work the tickets one of two ways:
+   - **Yes** → **`/to-spec`** (turn the thread into a spec), then **`/to-tickets`** to split it into tracer-bullet tickets with blocking edges and an approved handoff of source decisions, acceptance criteria, and verification boundaries. Then work the tickets one of two ways:
      - **`/implement`** per ticket, **`/clear`ing context between each one**. On a local tracker that's one file per ticket under `.scratch/<feature>/issues/`, worked blockers-first by hand; on a real tracker the edges become native blocking links, so any ticket whose blockers are done can be grabbed. Each ticket is self-contained, so the last one's context is disposable.
      - **`/implement-spec`** for the whole spec in one run. It reads the tickets as a **task graph**, runs implementer subagents across the ready **frontier** in parallel, and lands everything on one **integration branch**. Reach for it when you'd rather orchestrate the build than drive each ticket yourself.
    - **No** → **`/implement`** right here, in the same context window.
 
-   Either way, implementation selects one route: **`/ui-tdd`** for UI/mixed behavior, **`/tdd`** for non-UI behavior at agreed seams, and direct proportionate checks for documentation, metadata, mechanical, or literal-copy changes. `/implement` closes each task with **`/code-review`**; `/implement-spec` verifies the combined candidate and runs one integration review. UI completion carries actual app actions, observed results, and inspected screenshots. Reach for `/tdd` or `/code-review` directly when only that capability is needed.
+   Either way, implementation selects one route by actual effect: **`/ui-tdd`** for UI/mixed behavior, **`/tdd`** for non-UI behavior at agreed seams, and direct proportionate checks for behavior-preserving documentation, metadata, mechanical, or literal-copy changes. Configuration and wiring that change behavior follow the behavior route. `/implement` closes each task with **`/code-review`**; `/implement-spec` verifies the combined candidate and runs one integration review. UI completion carries actual app actions, observed results, and inspected screenshots. Reach for `/tdd` or `/code-review` directly when only that capability is needed.
 
    When the work goes up as a pull request, **`/pr`** shapes the body: the smallest visual that shows the change, before/after evidence that it works, and a one-way or two-way door call. It's model-invoked, so the agent reaches for it whenever it writes a PR.
 

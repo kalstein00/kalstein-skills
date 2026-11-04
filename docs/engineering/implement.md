@@ -1,10 +1,10 @@
 ## What it does
 
-The fork selects one UI, non-UI, coverage, or direct route. UI completion requires actual app operation, inspected screenshots, and observed results in the final response; review includes new and uncommitted task files.
+The fork selects one UI, non-UI, coverage, or direct route by actual effect, including behavior changes made through configuration or wiring. UI completion requires actual app operation, inspected screenshots, and observed results in the final response; review includes new and uncommitted task files.
 
 `implement` builds work that has already been decided. You point it at a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the plan you just agreed in the conversation, and it selects the UI, non-UI, or direct verification route, implements the accepted scope, runs [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md) at the end, and commits to the current branch.
 
-It never reopens the plan. There is no interview, no clarifying round, no proposal of a different approach. Whatever was settled upstream is the input, and the skill's whole job is to turn that into a commit. That is what separates it from typing "build this" at a fresh [agent](https://www.aihero.dev/ai-coding-dictionary/agent), which often redesigns the work while it builds it.
+Accepted decisions carry forward without another planning interview. Before dependent edits, the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) checks that source decisions, exclusions, acceptance, and verification boundaries can be recovered. A necessary unresolved decision returns to the dispatching parent or standalone user; routine implementation choices remain with the worker.
 
 ## When to reach for it
 
@@ -34,8 +34,8 @@ If the tickets came from [to-tickets](https://github.com/kalstein00/kalstein-ski
 
 A run has five steps, in order:
 
-1. Read the ticket or spec and work out the seams.
-2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for documentation, metadata, mechanical, and literal-copy changes.
+1. Read the ticket or spec, recover accepted decisions, and check its handoff and test boundaries.
+2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for behavior-preserving documentation, metadata, mechanical, and literal-copy changes. Actual behavior takes precedence over file type.
 3. Typecheck often, run single test files as it goes.
 4. Run the full test suite once, at the end.
 5. Run [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), then commit to the current branch.
@@ -46,13 +46,15 @@ One run covers one ticket. The tickets [to-tickets](https://github.com/kalstein0
 
 The skill's central idea is the **seam**, the public boundary you observe behaviour at without reaching inside. Tests live at seams. When the seam is agreed before any code exists, the tests last, and you can rewrite the implementation underneath without changing them.
 
-Accepted seams carry forward from the spec, ticket, or earlier conversation. Only missing or materially changed seam decisions need confirmation. Behavior changes require the selected route's RED/GREEN; direct changes do not invent a failing behavior test.
+Accepted seams carry forward when the spec, ticket, or earlier agreement identifies the public boundary, explicitly or through an unambiguous public operation. Generic feature approval does not choose an unspecified seam. Only missing or materially changed seam decisions need confirmation. Behavior changes require the selected route's RED/GREEN; direct changes do not invent a failing behavior test.
+
+When an edit follows verification, the implementer records the changed boundary, the checks that cover it, and why retained evidence still applies. Uncertain impact triggers a focused boundary check, expanding to its consuming flow when needed. In a batch, the parent checks that mapping before accepting reused evidence.
 
 ## Common questions
 
 **It finished, but my ticket is still open and the acceptance criteria are still unchecked.**
 
-Correct, and expected. `implement` has no completion step. It ends at the commit and never touches the work item. This is the same on GitHub Issues and on the local markdown tracker, so it is not a tracker integration problem. It also does not act on the findings `code-review` produced, and does not tick the `- [ ]` boxes on the originating issue. Close the ticket and reconcile the criteria yourself. This matters most on a dependency chain, because `to-tickets` defines the frontier as tickets whose blockers are all closed. If nothing gets closed, nothing ever becomes visibly unblocked.
+Standalone `implement` ends after verification, resolved in-scope review findings, and a scoped commit. Tracker closure follows your established delivery authority separately. For [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md), the batch parent owns completion comments and confirmed closure before advancing. This matters on a dependency chain because open blockers keep later tickets from starting.
 
 **Can I point it at all my tickets at once, or run several in parallel?**
 

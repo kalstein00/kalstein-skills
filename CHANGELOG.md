@@ -1,3 +1,10 @@
+# 1.4.2 (2026-11-04)
+
+- Add a shared ticket handoff contract preserving source decisions, exclusions, observable acceptance, and verification boundaries for fresh workers.
+- Check readiness before publication and dispatch; reuse accepted test seams and return only unresolved decisions to the parent or standalone user.
+- Select verification by actual behavior before file type, and record the affected checks and applicability of reused evidence after edits.
+- Synchronize skill documentation and clarify single-ticket, sequential-batch, and parallel-graph execution choices.
+
 # 1.4.1 (2026-11-04)
 
 - Make the implement-tickets parent post completion evidence and close each verified implementation ticket before the next dispatch, with actual state/progress readback.

@@ -50,6 +50,12 @@ Local `.codex/skills/oracle` and `release-electron-app` are project/provider-spe
 
 ## Runtime and project boundary
 
+### Decision update, 2026-11-04: explicit ticket handoff
+
+Ticket creation, dispatch, and implementation share [implement/TICKET.md](../skills/engineering/implement/TICKET.md). Ready tickets preserve source decisions, exclusions, prerequisites, observable criteria, and verification boundaries for UI and non-UI behavior. The existing breakdown approval covers that content; accepted decisions are reused. Stable spec/ADR references are allowed, while implementation paths remain navigation hints rather than acceptance requirements.
+
+The execution contract chooses by actual behavior before file type and requires a changed-boundary/check mapping when reusing evidence after edits. The batch parent checks that mapping before acceptance. These instruction changes reduce implicit context transfer and do not establish model equivalence or change implement-tickets' same-model policy.
+
 ### Decision update, 2026-11-04: per-ticket closure
 
 Version `1.4.1` changes implement-tickets from commit-only completion to parent-owned tracker close-out after every supplied implementation ticket. After verifying its acceptance, review, documentation, and scoped commit, the parent posts/reuses completion evidence, closes the ticket as completed, reads back its actual state and available parent progress, and only then dispatches the next worker. Workers never mutate the tracker; the parent PRD/spec stays open. This supersedes the initial batch wrapper's no-automatic-ticket-closure rule, without adding push, merge, or parent-closure authority.
