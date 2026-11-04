@@ -10,6 +10,8 @@ Type this skill or ask for architecture measurements, rankings, a report, or an 
 
 Node 24+, Git, npm, and the scanner's documented pinned preparation. Keep the installed skill directory separate from the target Git repository.
 
+The target project supplies source dependencies, tsconfigs, and any layer rules. Package fixtures and historical source-project validation records do not require that original project's layout or integration harness.
+
 ## Common questions
 
 **Does a high score prove a design defect?**

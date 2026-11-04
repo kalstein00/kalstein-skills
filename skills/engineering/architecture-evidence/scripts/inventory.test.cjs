@@ -37,11 +37,11 @@ test('unreadable tracked production and unknown source kinds remain visible as p
 });
 
 function fixture(t) {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'dart-inventory-'));
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'architecture-evidence-inventory-'));
   const git = (...args) => execFileSync('git', ['-C', root, ...args], { encoding: 'utf8', windowsHide: true });
   const write = (file, content) => { fs.mkdirSync(path.dirname(path.join(root, file)), { recursive: true }); fs.writeFileSync(path.join(root, file), content); };
   git('init', '-q');
-  t.after(() => { assert.ok(root.startsWith(path.join(os.tmpdir(), 'dart-inventory-'))); fs.rmSync(root, { recursive: true, force: true }); });
+  t.after(() => { assert.ok(root.startsWith(path.join(os.tmpdir(), 'architecture-evidence-inventory-'))); fs.rmSync(root, { recursive: true, force: true }); });
   return { root, git, write };
 }
 

@@ -3,7 +3,7 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {evidenceId,fingerprint}=require('./schema.cjs');
 const {LEDGER_PATH,RAW_ROOT,readLedger,recordDisposition,acceptedEligibility}=require('./ledger.cjs');
-function rootFor(t){const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-ledger-'));t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-ledger-'));fs.rmSync(root,{recursive:true,force:true});});return root;}
+function rootFor(t){const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-ledger-'));t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-ledger-'));fs.rmSync(root,{recursive:true,force:true});});return root;}
 function entry(disposition='accepted'){const identity={kind:'file',path:'src/a.ts'};return {id:evidenceId(identity),identity,disposition,reason:'measured and reviewed',snapshot:{id:fingerprint('snapshot'),head:'a'.repeat(40),baseline:{}},candidateRef:disposition==='accepted'?'docs/audit.md#C1':null};}
 test('read/scan are byte-preserving and only explicit record stores accepted decision evidence',t=>{
   const root=rootFor(t),before=readLedger(root);assert.equal(before.status,'complete');assert.equal(fs.existsSync(path.join(root,'.agents')),false);

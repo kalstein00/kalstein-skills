@@ -18,17 +18,15 @@ codex plugin marketplace upgrade kalstein
 codex plugin add kalstein-skills@kalstein
 ```
 
-Restart the app or start a new session and inspect the installed version. Marketplace refresh and installed plugin refresh are separate observations. Releases increment the plugin/package version. For a reproducible release, use `--ref v1.4.2` only after that tag is published; a tag intentionally does not follow later main updates.
+Restart the app or start a new session and inspect the installed version. Marketplace refresh and installed plugin refresh are separate observations. Releases increment the plugin/package version. For a reproducible release, use `--ref v1.4.3` only after that tag is published; a tag intentionally does not follow later main updates.
 
-### Replace the upstream installation
-
-Install and verify this fork first. Disable the original `mattpocock-skills@mattpocock` in the plugin UI, or explicitly remove it:
+### Uninstall kalstein-skills
 
 ```powershell
-codex plugin remove mattpocock-skills@mattpocock
+codex plugin remove kalstein-skills@kalstein
 ```
 
-Review project-local customizations and adapters before removing overlapping skill copies. Preserve project guidance, runtime wrappers, and unrelated skills. Use the new canonical repository URL for new installs after the rename.
+Restart the app or start a new session after removal.
 
 ## Claude Code
 

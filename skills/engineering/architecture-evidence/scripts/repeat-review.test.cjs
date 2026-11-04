@@ -4,8 +4,8 @@ const {execFileSync}=require('node:child_process');
 const {runScan}=require('./scan.cjs'),{readLedger,recordDisposition,LEDGER_PATH}=require('./ledger.cjs');
 
 test('real scans preserve rejection across committing the ledger and a later docs commit, then reopen a public change',async t=>{
- const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-repeat-review-'));
- t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-repeat-review-'));fs.rmSync(root,{recursive:true,force:true});});
+ const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-repeat-review-'));
+ t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-repeat-review-'));fs.rmSync(root,{recursive:true,force:true});});
  const git=args=>execFileSync('git',['-C',root,...args],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}).trim();
  git(['init','-q']);git(['config','user.email','test@example.invalid']);git(['config','user.name','Test']);
  for(const name of ['a','b','c'])fs.writeFileSync(path.join(root,name+'.ts'),'export const '+name+'=1;\n');

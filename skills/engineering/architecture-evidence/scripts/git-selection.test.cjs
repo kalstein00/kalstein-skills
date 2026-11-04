@@ -4,8 +4,8 @@ const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
 const {selectGitCommits}=require('./git-selection.cjs');
 function repo(t) {
-  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-git-selection-'));
-  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-git-selection-'));fs.rmSync(root,{recursive:true,force:true});});
+  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-git-selection-'));
+  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-git-selection-'));fs.rmSync(root,{recursive:true,force:true});});
   const git=(args,options={})=>execFileSync('git',['-C',root,...args],{encoding:'utf8',windowsHide:true,...options}).trim();
   git(['init','-q','-b','main']);git(['config','user.name','Fixture']);git(['config','user.email','fixture@example.invalid']);
   const tree=git(['write-tree']);

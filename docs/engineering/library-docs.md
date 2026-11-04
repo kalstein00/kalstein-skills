@@ -10,6 +10,8 @@ The agent selects this for external-library API or lifecycle questions when a pr
 
 A project-configured copied corpus and public search CLI, or the project's documented official-source fallback.
 
+Paths, retrieval engine/model, cache, and library scope come from the target project's instructions and configuration. An originating project's setup is not a portable default.
+
 ## Common questions
 
 **Does this plugin contain every library corpus and retrieval engine?**

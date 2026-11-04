@@ -132,8 +132,8 @@ test('typed producer items require their applicable metrics before completion',a
 
 test('CLI writes repeatable ignored artifacts while preserving ledger and Git status',async t=>{
   const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{execFileSync}=require('node:child_process');
-  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-scan-cli-'));
-  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-scan-cli-'));fs.rmSync(root,{recursive:true,force:true});});
+  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-scan-cli-'));
+  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-scan-cli-'));fs.rmSync(root,{recursive:true,force:true});});
   const git=args=>execFileSync('git',['-C',root,...args],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']});git(['init','-q']);
   fs.writeFileSync(path.join(root,'.gitignore'),'.codex/tmp/\n');fs.writeFileSync(path.join(root,'scan.json'),JSON.stringify({}));
   const f=fixture(),args=['--root',root,'--config',path.join(root,'scan.json')],before=git(['status','--porcelain']);

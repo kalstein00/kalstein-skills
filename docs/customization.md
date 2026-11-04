@@ -8,7 +8,7 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 
 - Fork starting point: `d81f3a183412e71a5b1e84ca21bc1a35eea03a60`, package `1.2.3`.
 - Upstream: `mattpocock/skills` `main` at `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d`, fetched 2026-11-03. Its released manifest is `1.3.2`; this revision also includes unreleased changes. The integration retains the full upstream ancestry and its non-promoted experimental skills without promoting them.
-- Local source: the DART repository's `.agents/skills` at `55e6a3b88d563c29219f030a1bcbf58679daffc1`, inspected 2026-11-03. Only tracked package assets are imported; runtime installations, generated reports, caches, and `node_modules` are excluded. Source fingerprints are in [local-sources.json](local-sources.json).
+- Local source: the original project repository's `.agents/skills` at `55e6a3b88d563c29219f030a1bcbf58679daffc1`, inspected 2026-11-03. Only tracked package assets are imported; runtime installations, generated reports, caches, and `node_modules` are excluded. Source fingerprints and original skill identifiers are historical provenance in [local-sources.json](local-sources.json), not installed skill names or runtime requirements.
 - Fork release: `1.4.0`, an independent version sequence. The upstream MIT license and attribution remain in [LICENSE](../LICENSE).
 
 ## Local skill disposition
@@ -21,7 +21,7 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 | `close-spec` | Generalize acceptance-based authorized closure and state readback; require UI evidence |
 | `code-review` | Retain latest upstream standards search and fresh review contexts; add full worktree/new-file candidate, caller policy, and UI evidence handling |
 | `codebase-design` | Retain current upstream; local entrypoint has no additional operative rules |
-| `dart-e2e-coverage` | Generalize to `e2e-coverage`; project E2E catalog/session/fixture rules remain authoritative |
+| Source-project E2E coverage | Distribute as `e2e-coverage`; each target project's E2E catalog/session/fixture rules remain authoritative |
 | `diagnose` | Preserve explicit diagnosis-only entry; latest `diagnosing-bugs` owns the evidence loop and forced-mutation check |
 | `domain-modeling` | Retain upstream discipline with existing `CONTEXT`/context-map compatibility |
 | `git-commit` | Import scoped finalization and reuse of finished verification/review; repair stays with its owner |
@@ -46,9 +46,15 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 | `writing-for-agents` | Retain current upstream; local operative text matches |
 | `zoom-out` | Import read-only architecture orientation |
 
-Local `.codex/skills/oracle` and `release-electron-app` are project/provider-specific operational integrations, not copied into this general plugin. Keep them or migrate their runtime configuration in a separate scoped task. System skills and separately installed plugins are not copied. This update does not delete local skills, alter DART source/guidance, or replace current global installations.
+Project-specific provider, runtime, and release integrations stay in target-project guidance. Existing project skills, system skills, and separately installed plugins retain their own installation and configuration.
 
 ## Runtime and project boundary
+
+### Decision update, 2026-11-04: repository-neutral distribution
+
+Distributed skill instructions, scanner references, and test fixture names use repository-neutral wording. The scanner's production implementation, assertions, report semantics, and historical validation outcomes are preserved. Source-project integration commands in historical references are described as external records rather than package prerequisites. Test temporary-directory prefixes use the package's `architecture-evidence` name.
+
+Original import identifiers and fingerprints remain in `local-sources.json` solely for provenance. Current workflows resolve paths, commands, documentation tooling, fixtures, and project adapters from the target checkout's instructions and configuration.
 
 ### Decision update, 2026-11-04: explicit ticket handoff
 
@@ -66,7 +72,7 @@ GitHub's official [parent/sub-issue progress documentation](https://docs.github.
 
 The plugin contains instructions. Agent Browser must be available through the target project's approved wrapper or an installed CLI, with version-matched instructions. The actual web/Electron target, data, build, and required E2E commands must be runnable. The architecture scanner separately requires Node 24+, Git, npm, and its documented preparation; its dependency pins stay in its own package. Library documentation search needs a project's prepared copied corpus and CLI. A missing required capability is reported, not replaced with unrelated green tests.
 
-Projects should keep existing `AGENTS.md`/`CLAUDE.md`, tracker/domain/ADR pointers, runtime wrappers, fixture/session/catalog authority, UI reference decisions, and canonical user-guide/QA owners. Migrate DART-specific references before deleting local adapters. The global package's default E2E capability does not silently satisfy an explicit project requirement to load `dart-e2e-coverage`.
+Projects should keep existing `AGENTS.md`/`CLAUDE.md`, tracker/domain/ADR pointers, runtime wrappers, fixture/session/catalog authority, UI reference decisions, and canonical user-guide/QA owners. A project-mandated adapter remains authoritative; the plugin's default E2E capability satisfies it only when the project explicitly accepts that substitution.
 
 ## Upstream maintenance
 

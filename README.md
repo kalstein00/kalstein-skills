@@ -17,7 +17,7 @@ Start a **new chat/session** so the installed skills are loaded. Verify the plug
 codex plugin list --json
 ```
 
-Expected plugin: `kalstein-skills@kalstein`, version `1.4.2` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
+Expected plugin: `kalstein-skills@kalstein`, version `1.4.3` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
 
 ### Update another PC
 
@@ -26,17 +26,15 @@ codex plugin marketplace upgrade kalstein
 codex plugin add kalstein-skills@kalstein
 ```
 
-Restart the app or begin a new session, then check the installed version. A release bumps the manifest version; editing the plugin cache is not the customization workflow. For exact reproducibility, replace `--ref main` with a published version tag, such as `--ref v1.4.2` after the tag exists. A pinned tag does not follow future main updates.
+Restart the app or begin a new session, then check the installed version. A release bumps the manifest version; editing the plugin cache is not the customization workflow. For exact reproducibility, replace `--ref main` with a published version tag, such as `--ref v1.4.3` after the tag exists. A pinned tag does not follow future main updates.
 
-### Existing mattpocock installation
-
-Install and verify this fork first, then disable `mattpocock-skills@mattpocock` in the plugin UI or remove it:
+### Uninstall kalstein-skills
 
 ```powershell
-codex plugin remove mattpocock-skills@mattpocock
+codex plugin remove kalstein-skills@kalstein
 ```
 
-Before removing project-local skill copies, migrate their custom rules and project adapters. Keep `AGENTS.md`/`CLAUDE.md`, project documentation, runtime wrappers, and independently installed tools. This update does not delete local skills or change your global plugin configuration. The renamed fork replaces `kalstein00/mattpocock-skills-fork`; new installations should use the canonical URL above.
+Restart the app or start a new session after removal.
 
 ### Claude Code
 

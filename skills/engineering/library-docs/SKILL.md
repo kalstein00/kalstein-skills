@@ -5,7 +5,7 @@ description: Find versioned evidence in a project's copied library documentation
 
 # Library Docs
 
-Resolve the target project's copied-documents lock/manifest, installed search CLI, package/snapshot pin, and configured shared caches from its instructions. The plugin does not ship a documentation engine or copied library corpus. Use the project's public CLI and installed help; never assume a DART path, model, cache, or library scope in another project.
+Resolve the target project's copied-documents lock/manifest, installed search CLI, package/snapshot pin, and configured shared caches from its instructions. The plugin does not ship a documentation engine or copied library corpus. Use that project's public CLI and installed help with its configured paths, engine/model, cache, and library scope.
 
 1. Inspect only the requested library's lock entry and manifest. Distinguish the installed package version from the document snapshot/revision; rolling or legacy snapshots are not release guarantees.
 2. Search a short query that preserves API identifiers, error strings, versions, and negative conditions. Use English for an English source corpus while answering in the user's language. Serialize operations against the same index cache. Verify the returned status and exact requested scope; ranking is a discovery aid, not proof.

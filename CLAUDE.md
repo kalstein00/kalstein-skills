@@ -26,7 +26,7 @@ To (re)link every skill outside `deprecated/` and `misc/` into the local harness
 
 No em-dashes anywhere in this repo's prose (`SKILL.md` files, docs, `README.md`, `CHANGELOG.md`, ADRs, changesets, code comments). Where a sentence reaches for one, rewrite it instead with a comma, colon, period, parentheses, or a conjunction, whichever the sentence actually wants; never do a blind character substitution.
 
-Narrow fork exception: the imported `architecture-evidence` scanner implementation, test fixtures, and historical portability record are preserved byte-for-byte from the recorded local source. Keep that source identity and existing expected report text; new fork prose follows the rule above. Large imported modules are not expanded or split as part of this packaging task.
+Narrow fork exception: the imported `architecture-evidence` production scanner and existing expected report text are preserved byte-for-byte from the recorded local source. Test fixture names and explanatory references may receive repository-neutral wording as recorded in `docs/customization.md`; preserve their assertions and historical validation outcomes. Source fingerprints identify the original import, not a requirement to retain source-project names in the distributed package. New fork prose follows the rule above. Large imported modules are not expanded or split as part of this packaging task.
 
 Every skill that dispatches a subagent says to start it with a fresh context window. Some harnesses (Codex, for one) fork the parent conversation by default, and a fork inherits the parent's context, which is what the subagent was meant to escape.
 

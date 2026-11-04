@@ -4,14 +4,14 @@
 
 2026-09-06, Windows, Node24.16.0.
 
-- Copied the skill folder outside DART without node_modules and ran `npm ci` there:46 packages installed from the package lock.
+- Copied the skill folder outside the source repository without node_modules and ran `npm ci` there: 46 packages installed from the package lock.
 - Created a separate Git repository with two TypeScript source files, a tsconfig and a project-owned CommonJS dependency rule. Built its index through the installed CodeGraph1.2.0 public API.
 - Invoked the copied `scripts/scan.cjs` with explicit --root/--config twice in fresh processes. Required metrics61, missing0, unavailable0, snapshotVerified true; canonical bytes identical. The configured a-no-b violation was observed once. Timings7363ms/5462ms; Git remained clean.
 - Overall status remained partial/exit1 for short Git history and the pinned graph's unresolved-reference coverage. This is not whole-repository or semantic review completion.
-- Package tests: `npm test` —85/85 passed. DART-specific benchmark/reporter regression tests remain outside this package and passed2/2 after relocation.
-- Portability regression tests cover an arbitrary Git root, package-owned tool versions, loaded rule-module identity changes and project-specific layer findings. No DART app or sibling skill is required by the production scripts.
+- Package tests: `npm test`, 85/85 passed. Source-project benchmark/reporter regression tests remained outside this package and passed 2/2 after relocation; they are not package prerequisites.
+- Portability regression tests cover an arbitrary Git root, package-owned tool versions, loaded rule-module identity changes and project-specific layer findings. Production scripts use the supplied target repository and package-owned tools independently of the source project and sibling skills.
 
-This is a small real fixture, not a new full DART benchmark or verification of every operating system. Target projects still need their own source dependencies, compatible graph index and explicit declaration/layer configuration.
+This historical validation used a small real fixture; it does not establish whole-project benchmark coverage or verification of every operating system. Its graph-index setup describes the older runtime only. Current preparation and target-owned source dependencies and declaration/layer configuration follow [execution.md](execution.md).
 
 ## Automatic preparation
 

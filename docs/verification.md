@@ -1,5 +1,25 @@
 # Fork verification
 
+## Release 1.4.3, 2026-11-04: repository-neutral package guidance
+
+Base: `5034baac573dbb768f7f667cfcba116d35308465`. The accepted change removes source-project naming and integration assumptions from distributed instructions, architecture references, and test fixture names. Historical validation outcomes and original import metadata remain intact. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.3`; the lockfile root and installation examples match.
+
+| Check | Actual result |
+| --- | --- |
+| `npm test --prefix skills/engineering/architecture-evidence` | 129 passed, 0 failed, 0 skipped; duration 41761 ms. Reused for the unchanged tested source and fixtures; later edits only affect instructions, installation docs, and release metadata |
+| Production script and fixture scope inspection | All 27 production `.cjs` files retain their Git blob identities. Ten test files differ only in temporary-directory prefixes and one description; assertions are unchanged |
+| Source-project reference scan | Distributed skills, manifests, and current prose have no remaining source-project name. The sole remaining original skill identifier is historical provenance in unchanged `docs/local-sources.json` |
+| Metadata/link inspection | All 41 promoted skill frontmatters and Codex invocation policies match; changed human docs retain required sections and relative/fork-local links resolve |
+| `npm run check-plugin-version` and lockfile root inspection | Passed: package, plugin, lockfile root, and root package entry agree on `1.4.3`; dependency resolutions are unchanged |
+| Official `@anthropic-ai/claude-code@2.1.0 plugin validate --help`, then validation of both manifests | Supported syntax confirmed; both passed without warnings |
+| Codex CLI, isolated temporary home with process-only local marketplace overrides | Discovered `kalstein-skills@kalstein` `1.4.3` as available and uninstalled; user configuration and installation were not modified. The CLI's temporary-home PATH-helper warning did not prevent discovery |
+| Current-session direct-route review | Changes are limited to repository-neutral wording, mechanical fixture names, uninstall guidance, and release metadata; production scanner behavior and project-owned adapters are preserved |
+| `git diff --check` | Passed |
+
+The README and canonical install block now document `codex plugin remove kalstein-skills@kalstein` instead of removing the upstream plugin. The installed `codex plugin remove --help` confirms the `PLUGIN@MARKETPLACE` selector syntax. This was a documentation check; no plugin was removed.
+
+The existing standalone-project regression exercises scanner preparation against a temporary Git/TypeScript project with its own rules. This package test does not claim acceptance for an external application. The router was inspected; its target-owned corpus/runtime routing remains accurate without a flow change. The test log is `kalstein-repository-neutral-scanner-tests.log` in the verification host's OS temporary directory; the counts and scope above are the durable record.
+
 ## Release 1.4.2, 2026-11-04: explicit ticket handoff
 
 Base: `215d6b6ad05bce581a38673b01ee34ef7cadf942`. This instruction-only release adds [the shared ticket handoff contract](../skills/engineering/implement/TICKET.md), links creation/dispatch/implementation to it, clarifies accepted test boundaries and routing by actual behavior, and requires evidence applicability after edits. `npm run version` consumed the patch changeset and synchronized package/plugin version `1.4.2`; the lockfile root and installation examples were updated to match.
@@ -111,6 +131,6 @@ Regressions found during this task were conflicting literal-copy ticket requirem
 
 ## Limits
 
-Global plugin configuration and project-local skills are preserved. Cross-PC installation instructions require an available compatible Codex CLI; external app runtimes and project data are not bundled. No broad DART application suite or unrelated app UI was run for these instruction/package edits.
+Global plugin configuration and project-local skills are preserved. Cross-PC installation instructions require an available compatible Codex CLI; external app runtimes and project data are not bundled. No source-project application suite or unrelated app UI was run for these instruction/package edits.
 
 Root release-tool installation preserves upstream dependency resolutions. `npm audit --json` reported one high-severity indirect `js-yaml` entry in that inherited developer toolchain (exit 1); the plugin's instructions do not require installing the root release dependencies. Dependency remediation is outside this workflow-customization change and was not silently applied. The unchanged `wait-what` human page intentionally omits a FAQ under the authoring guide's optional-question rule; changed/new pages were checked separately rather than forcing unrelated prose edits.

@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{execFileSync}=require('node:child_process');
 const {runCollector}=require('./scan-runtime.cjs');
-test('captures a standalone Git project without any DART layout',async t=>{
+test('captures a standalone Git project without source-project layout',async t=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'architecture-portable-'));
  t.after(()=>{assert.equal(path.dirname(root),os.tmpdir());assert(path.basename(root).startsWith('architecture-portable-'));fs.rmSync(root,{recursive:true,force:true});});
  const git=args=>execFileSync('git',['-C',root,...args],{stdio:'pipe'});

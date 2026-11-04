@@ -1,8 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 test('unchanged projects retain their input identity when inferred declarations resolve package subpaths',t=>{
-  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-project-surface-'));
-  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-project-surface-'));fs.rmSync(root,{recursive:true,force:true});});
+  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-project-surface-'));
+  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-project-surface-'));fs.rmSync(root,{recursive:true,force:true});});
   const write=(p,s)=>{fs.mkdirSync(path.dirname(path.join(root,p)),{recursive:true});fs.writeFileSync(path.join(root,p),s);};
   write('tsconfig.json',JSON.stringify({compilerOptions:{strict:true,module:'esnext',moduleResolution:'bundler',types:[]},include:['*.ts']}));
   write('node_modules/example/package.json',JSON.stringify({name:'example',version:'1.0.0',main:'lib/index.js',types:'lib/index.d.ts'}));
@@ -28,8 +28,8 @@ test('unchanged projects retain their input identity when inferred declarations 
   assert.equal(api.verifyProjectInput(collected.input),false,'new declaration resolution candidates must invalidate collection');
 });
 test('explicit project resolves types and records dependency drift without confusing body changes',t=>{
-  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-project-surface-'));
-  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-project-surface-'));fs.rmSync(root,{recursive:true,force:true});});
+  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-project-surface-'));
+  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-project-surface-'));fs.rmSync(root,{recursive:true,force:true});});
   const write=(p,s)=>{fs.mkdirSync(path.dirname(path.join(root,p)),{recursive:true});fs.writeFileSync(path.join(root,p),s);};
   write('tsconfig.json',JSON.stringify({compilerOptions:{strict:true,baseUrl:'.',paths:{types:['types.d.ts']}},include:['*.ts']}));
   write('types.d.ts','export interface Value { n: number }');write('main.ts','import {Value} from "types"; export function f(v:Value):number { return v.n; }');

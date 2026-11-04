@@ -7,8 +7,8 @@ const {collectGitPressure}=require('./git-pressure.cjs');
 const {evidenceId}=require('./schema.cjs');
 const {rankMetrics}=require('./ranking.cjs');
 function repo(t) {
-  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'dart-git-pressure-'));
-  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('dart-git-pressure-'));fs.rmSync(root,{recursive:true,force:true});});
+  const temp=fs.realpathSync(os.tmpdir()),root=fs.mkdtempSync(path.join(temp,'architecture-evidence-git-pressure-'));
+  t.after(()=>{assert.equal(path.dirname(path.resolve(root)),temp);assert.ok(path.basename(root).startsWith('architecture-evidence-git-pressure-'));fs.rmSync(root,{recursive:true,force:true});});
   const git=args=>execFileSync('git',['-C',root,...args],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}).trim();
   git(['init','-q','-b','main']);git(['config','user.name','Fixture']);git(['config','user.email','fixture@example.invalid']);git(['config','core.autocrlf','false']);
   const save=files=>{for(const [name,source]of Object.entries(files)){fs.mkdirSync(path.dirname(path.join(root,name)),{recursive:true});fs.writeFileSync(path.join(root,name),source);}git(['add','.']);git(['-c','commit.gpgSign=false','commit','-qm','fixture']);return git(['rev-parse','HEAD']);};

@@ -1,3 +1,9 @@
+# 1.4.3 (2026-11-04)
+
+- Remove source-project names and integration-command assumptions from distributed skill guidance and architecture references while preserving historical validation outcomes and original import provenance.
+- Use package-owned names for scanner test fixtures without changing production scripts, assertions, or report behavior.
+- Replace upstream-migration instructions with uninstall guidance for `kalstein-skills@kalstein` in the README and canonical install block.
+
 # 1.4.2 (2026-11-04)
 
 - Add a shared ticket handoff contract preserving source decisions, exclusions, observable acceptance, and verification boundaries for fresh workers.

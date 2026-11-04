@@ -93,14 +93,17 @@ get 0회/0 tokens; 초기 INDEX_MISSING 조회 제외). 검색 결과에는 이�
 declaration emit 예제와 설치된 5.3.3 `typescript.d.ts`의 Program.emit 정의를 확인했다.
 복사 문서 snapshot을 TypeScript 5.3.3 release 문서로 간주하지 않는다.
 
-같은 날짜 검증(HEAD `0208a059`, 이 수정 포함 working tree):
+같은 날짜의 소스 프로젝트 검증 기록(HEAD `0208a059`, 당시 수정 포함 working tree):
 - package subpath의 추론 선언 fixture는 수정 전 identity 불일치로 RED였고, 수정 후
   target 선택과 무관한 identity, 디스크 출력 없음, 새 해석 후보 생성 감지가 GREEN이다.
-- `npm test --prefix .agents/skills/architecture-evidence`: 115/115 PASS, skip 0.
-- 실제 DART `scan.cjs --root .`: 294485 ms, `snapshotVerified: true`, `partial`.
+- 패키지 테스트: 115/115 PASS, skip 0.
+- 소스 프로젝트 전체 scan 실행: 294485 ms, `snapshotVerified: true`, `partial`.
   필수 metric 15843개 중 누락 0, unavailable 62. 미지원 production 언어 파일 153개와
   미분류 33개, 외부 symbol graph 미지원은 계속 명시한다. `project input drift`는 재현되지 않았다.
-- `node --test tools/architecture-evidence/dart-projects.test.cjs`: 0/2 PASS.
+- 패키지에 포함되지 않은 소스 프로젝트 통합 테스트: 0/2 PASS.
   scripts 프로젝트의 기존 compiler diagnostics 80개와 app-local `tsx` 고정 경로 부재로
   실패했다. 수정 전 cached collector에서도 scripts 선언 결과 `partial`/진단 80개를
   재현했다. 이 통합 테스트 실패를 이번 수정의 GREEN이나 전체 측정 완료로 계산하지 않는다.
+
+위 수치는 과거 검증 기록이며 대상 프로젝트의 실행 명령이나 필수 fixture가 아니다.
+현재 대상 저장소와 설정은 [execution.md](execution.md)를 따른다.
