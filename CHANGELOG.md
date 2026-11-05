@@ -1,3 +1,9 @@
+## 1.4.7
+
+### Patch Changes
+
+- Route ticket implementation to Terra and nontrivial diagnosis to Sol, and support direct worker notification on a verified Codex Desktop lifecycle with bounded waits elsewhere.
+
 ## 1.4.6
 
 ### Patch Changes

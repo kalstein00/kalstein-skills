@@ -1,3 +1,7 @@
+## Release candidate 1.4.7, 2026-11-06
+
+The patch changeset was consumed for the ticket model routing and guarded worker notification changes. Package, lockfile, and plugin versions match 1.4.7. `npm run check-plugin-version`, `git diff --check`, and Claude validation of both manifests passed. Codex discovered the separately installed 1.4.6 plugin; the edited candidate was not installed. The queue experiment and its limits are recorded below; no real ticket batch or model comparison was run.
+
 ## Release candidate 1.4.6, 2026-11-05
 
 Individual implementation uses focused checks; full suites run when the release workflow requires them or the user explicitly requests them. Required batch-wide checks remain parent-owned. The patch changeset was consumed and package, lockfile, and plugin versions were aligned. `npm run check-plugin-version`, `git diff --check`, and Claude manifest validation for both manifests passed. These are instruction and packaging checks, not a live implementation batch.
@@ -7,6 +11,15 @@ Individual implementation uses focused checks; full suites run when the release 
 ## Release candidate 1.4.5, 2026-11-05
 
 Ticket verification handoffs and retained UI screenshot evidence are clarified. The patch changeset was consumed; package, lockfile, and plugin versions match 1.4.5. `npm run check-plugin-version` and `git diff --check` passed. Claude CLI 2.0.76 validated both manifests without warnings. `npm audit --omit=dev` found no vulnerabilities; the full development dependency audit reported a high severity js-yaml advisory. The instruction scenarios below are desk checks, not a live ticket batch or model run.
+
+## Working tree, 2026-11-06: direct ticket notification and model routing
+
+- `npm run check-plugin-version`, Claude validation of both manifests, and `git diff --check` passed. Codex listed the installed and enabled 1.4.6 plugin from a separate cache; this checkout's edits are not installed.
+- The Standards review's branching prose was changed to a list. The earlier Spec finding was addressed for the tested Windows Codex Desktop top-level path by the idle-parent experiment below; other hosts and unloaded spawned-parent sessions remain outside that evidence.
+- A native child attempted `codex queue --resume` after its spawned parent ended its turn. Codex rejected the request with `direct app-server input is not allowed for unloaded spawned sub-agents` (exit 1). That parent was itself a subagent, not the user's top-level session.
+- A child queued a harmless message to the active top-level session (exit 0, queued); `--resume` reported `thread already has an active writer`. This shows enqueue acceptance, not idle-session resumption. The CLI can exit 0 with a resume warning.
+- Windows Codex Desktop, CLI `0.166.0-alpha.6`: the top-level parent turn completed at 00:55:15.652 KST; its native child remained active and queued a message at 00:55:56.854; the parent started the next turn at 00:56:01.210 without a manual prompt. The enqueue exited 0 and `--resume` warned of an active writer; the observed continuation establishes delivery despite that warning, not that `--resume` itself succeeded. The child completed at 00:56:05.929, after the parent resumed, so continuation must still confirm terminal state. No observer was used. One test proves this normal path only; crashes and failed delivery before notification are not automatically detected. No real ticket or tracker was modified.
+- Metadata, invocation policy, links, and instructions received source-level inspection. The bundled `quick_validate.py` rejected the pre-existing `disable-model-invocation` frontmatter key after an isolated PyYAML run; system Python lacks PyYAML. The repository requires that key and separately validates `agents/openai.yaml`.
 
 ## Working tree, 2026-11-05: ticket verification handoff
 

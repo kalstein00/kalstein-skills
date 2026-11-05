@@ -31,7 +31,7 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 | `impeccable` | Keep as a separately installed third-party tool; transfer relevant adjacent-control consistency and bounded visual inspection to `ui-tdd`. Do not vendor its independent binary/download lifecycle |
 | `implement` | Add route selection, evidence reuse, documentation, full-candidate review, and UI completion output |
 | `implement-spec` | Retain latest fresh-per-ticket graph orchestration; add per-ticket routes, combined evidence, safe checkout handling, and scoped close-out |
-| `implement-tickets` | Import sequential fresh-worker workflow, same-model role effort settings, parent-owned broad gates, and UI evidence propagation |
+| `implement-tickets` | Import sequential fresh-worker workflow, Terra implementation and Sol diagnosis, guarded Codex queue continuation, parent-owned broad gates, and UI evidence propagation |
 | `improve-codebase-architecture` | Combine upstream report/design vocabulary with evidence-first bounded audit and closed Candidate Register modes |
 | `library-docs` | Generalize pinned copied-source lookup; the target project's CLI/corpus/cache configuration is a prerequisite, not a bundled runtime |
 | `retro` | Retain latest upstream, including writing-for-agents use |
@@ -60,7 +60,7 @@ Original import identifiers and fingerprints remain in `local-sources.json` sole
 
 Ticket creation, dispatch, and implementation share [implement/TICKET.md](../skills/engineering/implement/TICKET.md). Ready tickets preserve source decisions, exclusions, prerequisites, observable criteria, and verification boundaries for UI and non-UI behavior. The existing breakdown approval covers that content; accepted decisions are reused. Stable spec/ADR references are allowed, while implementation paths remain navigation hints rather than acceptance requirements.
 
-The execution contract chooses by actual behavior before file type and requires a changed-boundary/check mapping when reusing evidence after edits. The batch parent checks that mapping before acceptance. These instruction changes reduce implicit context transfer and do not establish model equivalence or change implement-tickets' same-model policy.
+The execution contract chooses by actual behavior before file type and requires a changed-boundary/check mapping when reusing evidence after edits. The batch parent checks that mapping before acceptance. These instruction changes reduce implicit context transfer and do not establish model equivalence. The later queue and model policy below supersedes the earlier same-model policy.
 
 The 2026-11-05 follow-up uses the same `Verification` entries to record material failure conditions, route checks to the earliest stage that can run them, and match results before ticket closure. Standards checks evidence required by repository rules, while Spec checks whether the evidence demonstrates acceptance under the stated condition. Reviewers reuse existing results and send missing observations to the check owner.
 
@@ -89,3 +89,7 @@ The standalone plugin skill is removed in the 1.4.4 release. The official Agent 
 5. Validate the package, review the complete candidate, and publish the authorized update. Use a version tag for exact cross-PC reproducibility, or `main` for curated ongoing updates. Installed sessions are refreshed separately.
 
 Actual verification and its limitations are recorded in [verification.md](verification.md). Packaging checks establish discoverability and integrity; they do not prove that a future app feature has passed live UI acceptance.
+
+## Ticket orchestration continuation
+
+The ticket batch uses Terra for implementation and a read-only Sol agent for nontrivial diagnosis. Reviewers retain the invoking model at high effort. Direct worker-to-parent queue continuation is conditional on a verified Codex worker lifecycle: queue delivery alone cannot establish that a native subagent survives the parent turn, that the parent resumed, or that the worker has completed. Without that capability the active parent uses bounded native waits and reports the limitation. A Windows Codex Desktop top-level parent was observed resuming after direct worker notification; unloaded spawned parents remain unsupported in the tested path.

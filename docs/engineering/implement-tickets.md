@@ -12,6 +12,17 @@ The target project, its configured tracker, and the actual ticket/parent relatio
 
 ## Common questions
 
+**Does the parent keep polling during a long ticket?**
+
+Queue delivery alone does not prove the worker terminated or that the parent resumed.
+
+- On the tested top-level Codex Desktop path, the worker sends completion or attention directly to the parent, which resumes and checks the actual worker and evidence. No separate observer is required for normal completion.
+- On an unverified host or parent type, the parent reports the limitation and uses bounded native waits while the worker runs. A worker crash before sending the message cannot wake an idle parent through this route.
+
+**Which models handle the work?**
+
+By default, implementation workers use GPT-6.1 Terra at medium effort. A difficult failure that needs diagnosis goes to a fresh read-only GPT-6.1 Sol agent; its evidence and proposed repair return to the Terra worker. Standards and Spec reviewers use the invoking model at high effort. Explicit user overrides take precedence.
+
 **Can a batch skip live UI verification until the end?**
 
 No. Each UI ticket supplies its required live journey and inspected images. After a change, the worker maps the changed boundary to affected checks and explains why retained evidence still applies; the parent checks that mapping before acceptance. Evidence with uncertain applicability cannot prove acceptance until the relevant boundary is checked.
