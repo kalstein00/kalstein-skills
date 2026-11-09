@@ -4,6 +4,8 @@ The fork selects one UI, non-UI, coverage, or direct route by actual effect, inc
 
 For a visible UI change, the completion report names the state shown in the actual final app, displays the screenshot inline where supported, and provides a link you can reopen after test cleanup. It reuses the image from live verification when that image still represents the delivered result.
 
+For a standalone GitHub ticket, the run also posts and confirms a completion comment with acceptance results, verification, commit/delivery state, documentation, evidence references, and limits. UI evidence includes the actual journey and inspected captures. Local-only artifacts are identified as such; posting the comment does not authorize uploading them. The issue stays open with its labels unchanged until you separately request closure.
+
 `implement` builds work that has already been decided. You point it at a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the plan you just agreed in the conversation, and it selects the UI, non-UI, or direct verification route, implements the accepted scope, runs [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md) at the end, and commits to the current branch.
 
 Accepted decisions carry forward without another planning interview. Before dependent edits, the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) checks that source decisions, exclusions, acceptance, and verification boundaries can be recovered. A necessary unresolved decision returns to the dispatching parent or standalone user; routine implementation choices remain with the worker.
@@ -34,13 +36,14 @@ If the tickets came from [to-tickets](https://github.com/kalstein00/kalstein-ski
 
 ## What one run does
 
-A run has five steps, in order:
+A run has six steps, in order:
 
 1. Read the ticket or spec, recover accepted decisions, and check its handoff and test boundaries.
 2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for behavior-preserving documentation, metadata, mechanical, and literal-copy changes. Actual behavior takes precedence over file type.
 3. Typecheck often, run single test files as it goes.
 4. Verify affected behavior and consuming boundaries, including required acceptance and live checks. Run the full suite when the release workflow requires it or you explicitly request it.
 5. Run [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), then commit to the current branch.
+6. For a standalone GitHub ticket, post the completion evidence, read back the comment, and return its URL. Conversation-only work finishes with the report; batch workers return evidence to their orchestrator.
 
 One run covers one ticket. The tickets [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) produces are tracer-bullet vertical slices sized to fit a single fresh [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), so the intended rhythm is: clear context, implement one ticket, commit, clear again. Each ticket is self-contained, so you can discard the previous ticket's context.
 
@@ -56,7 +59,11 @@ When an edit follows verification, the implementer records the changed boundary,
 
 **It finished, but my ticket is still open and the acceptance criteria are still unchecked.**
 
-Standalone `implement` ends after verification, resolved in-scope review findings, and a scoped commit. Tracker closure follows your established delivery authority separately. For [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md), the batch parent owns completion comments and confirmed closure before advancing. This matters on a dependency chain because open blockers keep later tickets from starting.
+Standalone `implement` leaves a confirmed GitHub completion comment after verification, resolved in-scope review findings, and a scoped commit. It leaves issue state, labels, and acceptance checkboxes unchanged. Ask separately for [close-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/close-spec.md) to verify and close the issue. For [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md), the batch parent owns completion comments and confirmed closure before advancing. This matters on a dependency chain because open blockers keep later tickets from starting.
+
+**The implementation committed, but the GitHub comment failed. Is the run complete?**
+
+The implementation remains committed, but tracker delivery is incomplete. The agent preserves its evidence and reports the failure. After an uncertain write it checks comment history before retrying, so recovery reuses a matching comment rather than posting a duplicate. The final response includes the comment URL only after readback confirms it.
 
 **Can I point it at all my tickets at once, or run several in parallel?**
 
@@ -86,6 +93,7 @@ The agent resolved `#2` against another numbered list in context, such as a todo
 - The trace shows the selected route and its actual evidence: UI journey and inspected images, non-UI RED/GREEN, or direct package/document checks.
 - Affected typechecks and focused tests run during the work, and required acceptance checks cover the final candidate.
 - The run reaches a commit on your current branch without you prompting it to carry on.
+- A standalone GitHub ticket receives a completion comment with verification and evidence, and the final response links it while the issue state and labels remain unchanged.
 - The diff is one ticket's worth of change: a vertical slice through every layer, not several tickets swept together.
 
 ## Where it fits

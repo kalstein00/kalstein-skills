@@ -1,5 +1,9 @@
 # Customization and source integration
 
+## Standalone ticket evidence, 2026-11-09
+
+An explicit standalone `implement` invocation for a GitHub ticket now authorizes a completion comment after verification, review, and commit. The comment connects acceptance results to verification and retained evidence, discloses local-only delivery and artifact access limits, and is read back before its URL is reported. Recovery reuses a matching comment; failed or unconfirmed posting leaves tracker delivery incomplete. Issue state and labels remain unchanged, and closure still needs a separate request. Batch orchestrators retain their existing tracker ownership. The authoritative instructions are in [implement](../skills/engineering/implement/SKILL.md).
+
 ## Accepted scope, 2026-11-03
 
 Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`, with marketplace namespace `kalstein`. Combine current upstream engineering flows with useful local workflow extensions. UI acceptance includes actual Agent Browser operation, saved captures opened for pixel inspection, and action/result/image evidence in the final completion response. Project commands, data, product decisions, E2E authority, and runtime adapters remain project-owned.
@@ -29,7 +33,7 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 | `grilling` | Retain upstream's newer affirmative recommendations and fresh subagent contexts |
 | `handoff` | Retain upstream entry with compact continuation state, verification freshness, and UI image pointers |
 | `impeccable` | Keep as a separately installed third-party tool; transfer relevant adjacent-control consistency and bounded visual inspection to `ui-tdd`. Do not vendor its independent binary/download lifecycle |
-| `implement` | Add route selection, evidence reuse, documentation, full-candidate review, and UI completion output |
+| `implement` | Add route selection, evidence reuse, documentation, full-candidate review, UI completion output, and confirmed GitHub completion comments |
 | `implement-spec` | Retain latest fresh-per-ticket graph orchestration; add per-ticket routes, combined evidence, safe checkout handling, and scoped close-out |
 | `implement-tickets` | Import sequential fresh-worker workflow, Terra implementation and Sol diagnosis, guarded Codex queue continuation, parent-owned broad gates, and UI evidence propagation |
 | `improve-codebase-architecture` | Combine upstream report/design vocabulary with evidence-first bounded audit and closed Candidate Register modes |

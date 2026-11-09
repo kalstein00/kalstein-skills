@@ -1,3 +1,25 @@
+## Release candidate 1.4.8, 2026-11-09: standalone implementation completion comments
+
+Base `f7e5d6f4e1ec2b1b9d791eab63f54d6f72137a14`; source instructions and companion documentation only. The patch changeset was consumed; package, lockfile, and plugin versions match 1.4.8. The installed plugin cache was not refreshed.
+
+- Release candidate checks: `npm run check-plugin-version`, lockfile version alignment, `git diff --check`, and official Claude CLI 2.1.0 validation of both manifests passed. Codex CLI 0.166.0 discovered the local candidate at 1.4.8 in an isolated temporary home; its PATH-helper warning was non-blocking.
+- Before versioning, `npm run check-plugin-version` passed at 1.4.7.
+- Official `@anthropic-ai/claude-code@2.1.0 plugin validate --help` established syntax; validation of `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` both passed with no warnings.
+- `codex -c 'marketplaces.kalstein.source_type="local"' -c 'marketplaces.kalstein.source="C:/Users/hj0712.jo/vscode/kalstein-skills"' plugin list --marketplace kalstein --available --json` exited 0 and discovered `kalstein-skills@kalstein` at 1.4.7 under process-only local-source overrides. User configuration was unchanged; discovery does not establish that the installed cache contains these edits.
+- Inline Node inspection parsed both changed skill entrypoints and their Codex metadata with `js-yaml`, confirmed explicit-only invocation, resolved 50 local/fork-local link references, checked both companion pages' required sections, and parsed the patch changeset. All passed.
+- Direct intent/standards review and the written-workflow scenarios below passed. `git diff --check` passed. These are source-level instruction checks, not a forward model run or live GitHub mutation test. No application tests are applicable to these prose changes.
+
+| Scenario | Required result checked against the instructions |
+| --- | --- |
+| Standalone GitHub ticket verified, reviewed, and committed | Post one acceptance/verification/evidence comment; read it back and return its URL; preserve issue state and labels |
+| Commit and captures exist only locally | Disclose local-versus-published state and artifact access/retention limits; no implicit push or image upload |
+| Comment response is uncertain or recovery finds a matching comment | Reconcile comment history and reuse matching evidence before retrying; no blind duplicate |
+| Comment publication or readback fails | Preserve the implementation and evidence; report tracker delivery incomplete |
+| Required acceptance is unverified | Existing evidence gates keep implementation incomplete; no completion comment substitutes for proof |
+| Batch worker finishes its ticket | Return evidence to the orchestrator; retain parent-owned tracker writes and closure |
+| Conversation-only implementation without a ticket | Report normally without creating a ticket or posting a tracker comment |
+| User asks only for standalone implementation | Completion comment is authorized; issue closure, labels, push, and PR publication receive no added authority |
+
 ## Release candidate 1.4.7, 2026-11-06
 
 The patch changeset was consumed for the ticket model routing and guarded worker notification changes. Package, lockfile, and plugin versions match 1.4.7. `npm run check-plugin-version`, `git diff --check`, and Claude validation of both manifests passed. Codex discovered the separately installed 1.4.6 plugin; the edited candidate was not installed. The queue experiment and its limits are recorded below; no real ticket batch or model comparison was run.

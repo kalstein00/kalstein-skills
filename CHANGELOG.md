@@ -1,3 +1,9 @@
+## 1.4.8
+
+### Patch Changes
+
+- Require standalone implement runs to post and confirm GitHub ticket completion evidence after committing, while keeping issue closure separately authorized and batch tracker writes parent-owned.
+
 ## 1.4.7
 
 ### Patch Changes
