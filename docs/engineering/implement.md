@@ -10,6 +10,8 @@ For a standalone GitHub ticket, the run also posts and confirms a completion com
 
 Accepted decisions carry forward without another planning interview. Before dependent edits, the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) checks that source decisions, exclusions, acceptance, and verification boundaries can be recovered. A necessary unresolved decision returns to the dispatching parent or standalone user; routine implementation choices remain with the worker.
 
+Before behavior-sensitive function use, the shared execution contract checks the intended call against current accepted instructions, resolved dependency/source versions, actual callee defaults and preconditions, and completion guarantees. A short usage note reuses the existing task record. Stale examples or type-correct calls do not substitute for that contract; literal-copy changes keep proportionate checks.
+
 ## When to reach for it
 
 You invoke this by typing `/implement` yourself, and the agent won't reach for it on its own. It ships with `disable-model-invocation: true`, so no other skill can call it either. Wherever [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) or [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) says "then `/implement` per ticket", that is an instruction to you, not something the agent will do unprompted.
@@ -39,7 +41,7 @@ If the tickets came from [to-tickets](https://github.com/kalstein00/kalstein-ski
 A run has six steps, in order:
 
 1. Read the ticket or spec, recover accepted decisions, and check its handoff and test boundaries.
-2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for behavior-preserving documentation, metadata, mechanical, and literal-copy changes. Actual behavior takes precedence over file type.
+2. Select ui-tdd for UI/mixed behavior, tdd for non-UI behavior at agreed seams, or direct proportionate checks for behavior-preserving documentation, metadata, mechanical, and literal-copy changes. Before behavior edits, resolve material function-use contracts and source-version compatibility. Actual behavior takes precedence over file type.
 3. Typecheck often, run single test files as it goes.
 4. Verify affected behavior and consuming boundaries, including required acceptance and live checks. Run the full suite when the release workflow requires it or you explicitly request it.
 5. Run [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), then commit to the current branch.
@@ -75,7 +77,7 @@ Not built in. It commits straight to the current branch. Several people find thi
 
 **`code-review` says it cannot see my changes.**
 
-`code-review` reviews `git diff <fixed-point>...HEAD`, which excludes staged and working-tree changes. `implement` runs it before committing, so unless an interim commit already exists there is nothing in that diff to review. Multiple people have reported this and it is unfixed on both sides. Commit first, then review against the point you branched from.
+The current fork reviews the complete candidate, including staged, unstaged, and new task files against the recorded starting point. A pre-commit candidate does not need an interim commit to become visible. Confirm the same base and path scope reach both review axes; older HEAD-only guidance does not describe the current fork.
 
 Separately, some people do not want the review inside the run at all, because an agent reviewing the code it just wrote is biased toward its own solution. Running [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md) in a fresh session against a fixed point is a valid alternative. The same bias is why that skill runs its two axes in separate sub-agents.
 
@@ -91,6 +93,7 @@ The agent resolved `#2` against another numbered list in context, such as a todo
 
 - The session opens by reading the ticket or spec and restating what it will build, rather than asking you what to build.
 - The trace shows the selected route and its actual evidence: UI journey and inspected images, non-UI RED/GREEN, or direct package/document checks.
+- Behavior-sensitive calls have source-backed version, default/precondition, and completion evidence before dependent edits; unresolved contracts remain visible rather than assumed safe.
 - Affected typechecks and focused tests run during the work, and required acceptance checks cover the final candidate.
 - The run reaches a commit on your current branch without you prompting it to carry on.
 - A standalone GitHub ticket receives a completion comment with verification and evidence, and the final response links it while the issue state and labels remain unchanged.

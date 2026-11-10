@@ -1,3 +1,30 @@
+## Working tree, 2026-11-10: pre-implementation function-use contracts
+
+Base `46660fc1585f6623d30c73bd6ce88d990db6a073`. The source change adds a conditional function-use check to the shared execution contract, routes standalone implementation/TDD to it, and strengthens copied-document version provenance and semantic evidence. Project-specific runtimes, libraries, corpus pins, and commands are not embedded. A patch changeset is pending; version remains `1.4.8` and no release/cache refresh is part of this change.
+
+Four fresh-context forward-tests used a fictional dependency and supplied first-party/raw copied-source fixtures, not a live package or retrieval engine. Evaluators received the task, fixture and actual proposed instructions without intended answers or previous results. These test pre-implementation decisions, not product execution or full workflow orchestration.
+
+| Sample | Observed decision |
+| --- | --- |
+| New background refresh and completed-job handler, with an older helper example and differing documentation release | Found the internal omitted defaults that changed the requested operation. Distinguished target/installed `2.4.0` from copied release `3.0.0`, then used supplied exact-release evidence to separate queue acceptance from completed work. Proposed the supported call and focused RED cases without changing pins. |
+| Current-phase endpoint whose requested contract is identical across source versions | Supported the narrow call through matching first-party evidence despite the copied-source difference. Did not require a dependency/corpus upgrade or block unrelated work. |
+| Success requiring effects to survive a full worker restart | Kept this stronger guarantee unresolved: neither successful completion nor the return type proved durability. Dependent success-reporting edits remained pending while supported status-observation work could proceed. No invented library limitation or guarantee. |
+| Literal documentation sentence replacement | Selected direct document checks and a short applicability statement, with no library retrieval, caller analysis, RED/GREEN, or app runtime requirement. |
+
+- `library-docs` and `tdd` passed system `skill-creator` quick validation with cached `uv` Python/PyYAML and process-only UTF-8 mode. The strict validator rejects the pre-existing `implement` key `disable-model-invocation`; repository-required explicit-only metadata was preserved and separately validated with `js-yaml` and official plugin manifests. This is a validator-schema limitation, not a newly removed invocation guard.
+- Inline `js-yaml` checks passed identity/invocation, discovery-description synchronization, 65 local/fork-local file references, companion section order and absolute links, patch changeset metadata, generic procedure text, and the new execution-contract anchor.
+- `npm run check-plugin-version` and `git diff --check` passed at `1.4.8`.
+- Official `@anthropic-ai/claude-code@2.1.0` validated both plugin and marketplace manifests without errors or warnings. Its supported syntax was established in the preceding task and reused unchanged.
+- Codex local-marketplace discovery with process-only source overrides exited 0 and listed the checkout as `kalstein-skills@kalstein` version `1.4.8`. It does not prove an existing chat or installed cache reloaded the source.
+
+### Standards (function-use update)
+
+No findings or material evidence gaps. The independent reviewer checked both the generic skill change and the target project's instruction/fixture-reference correction. Shared-contract routing does not invoke explicit-only implementation; companion docs, discovery, router, changeset, historical evidence and validator limits remain consistent. Existing command evidence was reused without rerunning tests.
+
+### Spec (function-use update)
+
+No findings or required evidence gaps. The independent reviewer checked pre-edit instruction authority, dependency/source compatibility, intended-call defaults/preconditions/completion, and the target project's current logical/local mapping. Missing guarantees defer only dependent edits; literal-copy work remains proportionate. Four forward-tests support these pre-edit decisions, not full orchestration or product runtime. Final documentation additions record the reports without changing the tested procedure.
+
 ## Working tree, 2026-11-10: behavior-contract review
 
 Base `f7b2a84fe62f1164b8d47950b08f6c23d8827560`. This is a source update with a pending patch changeset, not a release, publication, or installed-cache refresh. The procedure stays repository-neutral and preserves the independent Standards/Spec axes. Source requirements and raw historical candidates were supplied to fresh Spec reviewers without later fixes, failure explanations, QA records, or previous reviewer results.

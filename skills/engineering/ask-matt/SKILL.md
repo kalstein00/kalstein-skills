@@ -15,7 +15,7 @@ This router keeps its upstream command name in the `kalstein-skills` fork. Read 
 - **Ticket completion evidence or requested closure**: standalone `/implement` posts and confirms a GitHub completion comment after its commit, leaving state and labels unchanged. `/close-spec` checks actual evidence and closes only separately authorized targets.
 - **Finished changes waiting for a scoped commit**: `/git-commit` consumes existing verification/review rather than starting another cycle.
 - **Cause only, without a repair**: `/diagnose` preserves that boundary; `/diagnosing-bugs` supplies the shared evidence loop.
-- **Versioned copied library evidence**: `/library-docs` uses the target project's prepared corpus and CLI. `/architecture-evidence` produces a deterministic report for review; `/zoom-out` gives read-only orientation in an unfamiliar area.
+- **Versioned copied library evidence**: `/library-docs` checks resolved dependency versus source identity and the requested function contract using the target project's prepared corpus and CLI. Implementation's shared execution contract checks material use before dependent behavior edits. `/architecture-evidence` produces a deterministic report for review; `/zoom-out` gives read-only orientation in an unfamiliar area.
 - **Create or improve a reusable workflow**: `/write-a-skill` uses `/writing-for-agents` conventions and validates the package's metadata, references, and scenarios.
 
 You don't remember every skill, so ask.

@@ -9,6 +9,8 @@ TDD is the red → green loop. This skill is the reference that makes that loop 
 
 When exploring the codebase, read the relevant project-configured glossary (`GLOSSARY.md`, an existing `CONTEXT.md`, or its context map) so test names and interface vocabulary match the domain language, and respect ADRs in the area you're touching.
 
+Before behavior-sensitive function use, apply the shared [function-use check](../implement/EXECUTION.md#before-behavior-sensitive-edits). Reuse the caller's valid contract evidence and agreed seam; a relevant misuse counterexample belongs in this same RED/GREEN loop.
+
 ## What a good test is
 
 Tests verify behavior through public interfaces, not implementation details. Code can change entirely; tests shouldn't. A good test reads like a specification: "user can checkout with valid cart" tells you exactly what capability exists, and it survives refactors because it doesn't care about internal structure.

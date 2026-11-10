@@ -2,6 +2,8 @@
 
 Previously accepted test seams are reused, including their catch/miss limits. Mixed UI/logic work retains one outer UI workflow and final live evidence.
 
+Before behavior-sensitive function use, the shared execution contract checks source-version compatibility, callee defaults and preconditions, and completion semantics. Existing contract evidence is reused; relevant misuse counterexamples stay in the same agreed RED/GREEN loop.
+
 `tdd` builds a feature or fixes a bug test-first: one failing test, then just enough code to pass it, then the next behaviour. It carries the standards that make that loop produce tests worth keeping: what a good test is, where tests go, what mocks are for, and the three anti-patterns that make a suite worthless.
 
 It writes tests at agreed public boundaries. An accepted spec or ticket that identifies the boundary carries that agreement forward; only a missing or materially changed boundary needs confirmation. Testing effort is finite, and this rule spends it on the critical paths instead of on every edge case. `tdd` is also a **reference**, not a driver. It contains the rules of the loop, and something else (you, or [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md)) runs the [session](https://www.aihero.dev/ai-coding-dictionary/session) that applies them.

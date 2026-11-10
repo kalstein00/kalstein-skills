@@ -1,5 +1,11 @@
 # Customization and source integration
 
+## Pre-implementation function contracts, 2026-11-10
+
+Implementation now resolves material function-use contracts before dependent behavior edits. The shared [execution contract](../skills/engineering/implement/EXECUTION.md#before-behavior-sensitive-edits) reconciles accepted instructions and examples, resolved dependency/source identities, callee defaults and preconditions, and completion guarantees. Standalone TDD uses the same check; UI and batch routes already consume the shared contract. Existing evidence and agreed test seams are reused, while literal-copy work retains a short applicability path.
+
+[library-docs](../skills/engineering/library-docs/SKILL.md) distinguishes resolved dependency, copied snapshot/revision, and upstream release/tag or rolling source. A narrow exact-version source comparison may support the requested contract despite a source difference; a target packageVersion field or matching signature alone does not. Unsupported contracts remain pending before dependent production edits, without silent pin changes or full-corpus refreshes. Project-specific libraries, products, retrieval engines, runtime commands, and approval decisions remain project-owned.
+
 ## Behavior-contract review, 2026-11-10
 
 The Spec axis now reviews established contracts affected by the candidate alongside explicit ticket or conversation requirements. Behavioral review traces producer snapshots, consumer interpretation, omitted call defaults, and the guard connecting state publication to application and completion. Reviewers try source-reachable counterexamples where a readiness or freshness check passes for the wrong state. Required unresolved evidence remains distinct from a clean pass.
