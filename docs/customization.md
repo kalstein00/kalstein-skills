@@ -1,5 +1,11 @@
 # Customization and source integration
 
+## Behavior-contract review, 2026-11-10
+
+The Spec axis now reviews established contracts affected by the candidate alongside explicit ticket or conversation requirements. Behavioral review traces producer snapshots, consumer interpretation, omitted call defaults, and the guard connecting state publication to application and completion. Reviewers try source-reachable counterexamples where a readiness or freshness check passes for the wrong state. Required unresolved evidence remains distinct from a clean pass.
+
+The procedure is conditional on behavior changes and remains repository-neutral. Historical application failures are verification samples, not required product names, library APIs, data coordinates, or runtime inputs. The authoritative procedure is [code-review/BEHAVIOR.md](../skills/engineering/code-review/BEHAVIOR.md); instruction-only and literal-copy candidates retain proportionate checks. Both independent axes, project-owned verification, and read-only review ownership remain intact. [Verification](verification.md) records the forward-test results and limits.
+
 ## Standalone ticket evidence, 2026-11-09
 
 An explicit standalone `implement` invocation for a GitHub ticket now authorizes a completion comment after verification, review, and commit. The comment connects acceptance results to verification and retained evidence, discloses local-only delivery and artifact access limits, and is read back before its URL is reported. Recovery reuses a matching comment; failed or unconfirmed posting leaves tracker delivery incomplete. Issue state and labels remain unchanged, and closure still needs a separate request. Batch orchestrators retain their existing tracker ownership. The authoritative instructions are in [implement](../skills/engineering/implement/SKILL.md).

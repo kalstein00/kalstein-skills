@@ -1,105 +1,75 @@
 ## What it does
 
-The fork reviews the complete candidate, including staged, unstaged, and new task files, against supplied ticket or conversation requirements. UI findings consider the freshness and coverage of live image evidence.
+`code-review` reviews the complete committed and working-tree candidate along two independent axes. **Standards** checks documented repository rules and the code-smell baseline. **Spec** checks source requirements and established contracts affected by the change. A contract does not leave review scope because the ticket did not repeat it.
 
-Both reviewers read existing `Verification` entries and results. Standards cites the repository rule behind any required check or environment. Spec checks whether the evidence exercised the agreed condition and demonstrated the expected outcome. When evidence is missing, the review names the smallest observation the check owner needs to supply.
-
-`code-review` reviews the diff between `HEAD` and a fixed point you name (a commit, a branch, a tag, `main`, `HEAD~5`) along two axes. **Standards** asks whether the code follows how this repo writes code. **Spec** asks whether the code does what the originating issue or [spec](https://www.aihero.dev/ai-coding-dictionary/spec) asked for. Each axis runs in its own [sub-agent](https://www.aihero.dev/ai-coding-dictionary/subagent) so neither sees the other's reasoning.
-
-The skill never merges or re-ranks the two axes. The report ends with a worst issue *per axis* and declines to name a single winner across them. A change can pass one axis and fail the other. Code that follows every convention but implements the wrong thing passes Standards and fails Spec. Code that does exactly what the [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket) asked but breaks the repo's conventions does the reverse. A blended verdict lets the passing axis hide the failing one.
+For behavior changes, the Spec [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) traces the changed effect through its actual consumers and challenges the guards that claim it is safe. The report keeps defects, unresolved evidence, and advisory suggestions separate. Findings and evidence gaps remain visible under each axis.
 
 ## When to reach for it
 
-Type `/code-review`, or the agent reaches for it automatically when you ask to review a branch, a PR, work in progress, or anything "since X".
+Type `/code-review`, or the agent reaches for it when you request a branch, PR, work-in-progress, or review-since pass.
 
-| Your situation | Reach for |
+| Situation | Reach for |
 | --- | --- |
-| A diff exists and you want to know if it is built right *and* is the right thing | `code-review` |
-| You want bugs hunted in the diff: null paths, races, off-by-one | Claude Code's own built-in review, not this one (see the name clash below) |
-| Nothing is written yet and you want it written test-first | [tdd](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/tdd.md) |
-| A whole spec needs building, review included | [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md), which calls this skill itself |
-| The whole codebase has drifted, not one diff | [improve-codebase-architecture](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/improve-codebase-architecture.md) |
-| Something is broken and you do not know why | [diagnosing-bugs](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/diagnosing-bugs.md) |
-
-You must supply the fixed point. If you do not, the skill asks for one rather than guessing. Before it spawns anything, it checks that the ref resolves and that the diff is not empty, so a mistyped branch name fails in front of you instead of inside two sub-agents.
+| A candidate needs standards, requirement, or affected-contract review | `code-review` |
+| A running system is broken and its cause is unknown | [diagnosing-bugs](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/diagnosing-bugs.md) |
+| The codebase needs an architecture survey beyond one candidate | [improve-codebase-architecture](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/improve-codebase-architecture.md) |
+| Changes are finished and only scoped Git finalization remains | [git-commit](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/git-commit.md) |
 
 ## Prerequisites
 
-The Standards axis needs nothing. It reads whatever the repo documents (`CODING_STANDARDS.md`, `CONTRIBUTING.md`, and the like) and falls back on a built-in baseline when the repo documents nothing.
+Supply a fixed point such as a commit, branch, tag, or merge-base. The skill checks that it resolves and that the candidate contains a diff or new task files. It includes staged, unstaged, and new task files within the caller's scope.
 
-The Spec axis needs a spec to exist and be findable. It looks in this order:
+Supply ticket or conversation requirements when available. Without an explicit product spec, Spec still reviews affected established contracts and discloses the missing source. Inferred expectations remain distinct from accepted requirements.
 
-1. Issue references in the commit messages (`#123`, `Closes #45`, a GitLab `!67`), fetched through the tracker doc.
-2. A path you pass in as an argument.
-3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch or feature name.
-4. Asking you.
+## Behavior review
 
-Step 1 depends on the tracker doc, which [setup-matt-pocock-skills](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/setup-matt-pocock-skills.md) writes. Without it the axis still works if you hand it a path. With no spec at all, the skill skips the Spec sub-agent and the report says "no spec available" rather than inventing requirements.
+The boundary ledger makes the implementation's assumptions checkable. For materially affected stateful or asynchronous behavior, it connects each stage's owner, value identity or coordinate frame, guard, and completion condition. Paths sharing guarantees can be grouped. Literal-copy and mechanical changes with no behavior impact receive a short applicability statement.
 
-## The two axes
+The reviewer tries to construct a reachable state where a guard passes but the promised contract is false. Relevant examples include a new request paired with retained old data, a published update not yet installed by its consumer, a captured position applied to another snapshot, or recovery defaults that differ from normal operation. These are conditional review techniques, not a product-specific checklist.
 
-| | Standards | Spec |
-| --- | --- | --- |
-| Question | Is it built right? | Is it the right thing? |
-| Reads | The repo's documented standards, plus the smell baseline | The originating issue or spec |
-| Reports | Documented breaches (can be hard), and smells (always judgement calls) | Missing or partial requirements, scope creep, requirements implemented wrongly |
-| Every finding cites | The standards file and the rule, or the named smell plus the hunk | The line of the spec |
-
-This design exists to avoid a generic review skill that does not know your standards. Such a skill flags what is deliberate in your codebase and misses the invariants your codebase depends on. So the repo's own documentation is the [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source) on the Standards axis, and **the repo always overrides**.
-
-The **smell baseline** sits under the repo's standards. It is twelve code smells from chapter 3 of Fowler's _Refactoring_: Mysterious Name, Duplicated Code, Feature Envy, Data Clumps, Primitive Obsession, Repeated Switches, Shotgun Surgery, Divergent Change, Speculative Generality, Message Chains, Middle Man, Refused Bequest. Each is a labelled heuristic ("possible Feature Envy"), never a hard violation. Each states what the smell is and how to fix it, so a finding comes with a fix attached rather than only a complaint. Both axes skip anything your linter already enforces.
+A source-backed ordering guarantee can exclude a counterexample. When external-library semantics decide the outcome, the reviewer follows the project's versioned-documentation route. An unresolved consumer edge receives a precise evidence gap and the smallest observation needed to resolve it. Neither a passing test nor the presence of a readiness flag proves every later stage completed.
 
 ## Common questions
 
-**It collides with Claude Code's own `/code-review`. What do I do?**
+**Why can a reviewed change still contain an asynchronous bug?**
 
-This is the most reported problem with the skill, and it is not fixed. Claude Code ships its own `/code-review`, which does something different: it hunts bugs in the diff, where this one checks spec compliance and repo standards. When you install this library, one of them wins, and which one depends on how you installed:
+Individually correct checks can describe different versions of state. A latest-request check does not establish that a retained result or installed consumer belongs to that request. The review now traces these relationships and challenges each material completion guard. It still needs source or documented evidence for the proposed sequence; it does not invent a race because code is asynchronous.
 
-- **Plugin marketplace.** Every skill gets a `mattpocock-skills:` prefix, and the built-in becomes hard to reach at the unqualified name.
-- **Plain skills install.** The local file wins, and this skill shadows the built-in.
+**Does this become a checklist for the product that exposed a bug?**
 
-One answer is to remove Claude Code's built-in skills entirely. That saves a lot of [context](https://www.aihero.dev/ai-coding-dictionary/context), and the collision stops mattering. The shadowing itself is arguably a Claude Code [harness](https://www.aihero.dev/ai-coding-dictionary/harness) bug (a skill author should be free to name a skill anything), so the other answer is to rename the local copy. `npx skills update` undoes an edit to the frontmatter or a renamed directory. The durable workaround users report is to fork the skill to a new name and drop `code-review` from the managed set. Keep a note of the commit you forked from so you can re-sync by hand.
+No product names, grid APIs, or historical row numbers are required by the procedure. Historical failures are validation samples. The same identity, generation, and consumer-boundary questions apply to background jobs, document analysis, caches, and other stateful changes. The target project's contracts determine which questions matter.
 
-**Its sub-agents keep invoking `/code-review` again and spawn more agents.**
+**Does it review uncommitted work?**
 
-This is a known open bug. Several people have reproduced it, in more than one harness. The Standards and Spec prompts do not forbid delegation, so a sub-agent can find the skill again and fan out again. One report reached more than 50 agents. The fix people have applied on forks is one line appended to both sub-agent briefs: "Do not invoke `/code-review` or spawn additional agents: perform this review directly." Some prefer to handle it at the harness level so every skill inherits the guard. Neither is in the shipped skill yet. If you run this unattended, watch the agent count.
+Yes. Both reviewers receive the same base, path scope, complete tracked diff, and new-file list. If the candidate changes, refresh affected review evidence rather than attaching an old verdict to new code.
 
-**Should I run it in the same [session](https://www.aihero.dev/ai-coding-dictionary/session) that wrote the code?**
+**What happens without a spec?**
 
-Prefer a fresh one. As one reader put it: "Same context reviewing itself isn't review, it's confirmation bias with a slash command." An agent that reviews in the authoring session has every assumption that shaped the code in its context. An independent reviewer would not have that context. This is also why people ask for [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) without its built-in review step, because that step runs the review inside the session that just wrote the diff. The independent version is to invoke `/code-review` yourself from a clean session.
+The report says that no explicit spec was available. Spec can still identify a regression of a sourced existing contract. It cannot turn inferred product meaning into an accepted requirement or certify missing product acceptance.
 
-**After every ticket, or once at the end?**
+**Does it run the application or the full test suite?**
 
-Both work, and the skill does not decide for you. Per-ticket keeps each diff small enough that the Spec axis has one clear spec to check against, which is the mode `implement` uses. Batching to the end of a branch catches interactions between tickets that the per-ticket passes each miss. If you are unsure, review per ticket and run one final pass against the branch point.
+It reuses candidate-bound evidence and checks what conditions it actually exercised. Missing required evidence goes to the check owner with a specific requested observation. A reviewer remains read-only and does not start a broad rerun or implementation cycle.
 
-**Can I trust the findings?**
+**Can I treat no findings as proof of correctness?**
 
-Not without checking. Sub-agent output is a hypothesis, not evidence. One team reported a dozen breaking changes that prose-based reviews had missed. The skill combines the two reports as they are, or lightly cleaned. It does not re-verify each claim against the files, so a finding can cite the wrong location or overstate an impact. Read the citation on each finding before you act on it. The skill requires every finding to carry a citation (a standards rule, a smell plus its hunk, or a spec line), and that is what makes the findings checkable.
+Read the coverage and limits alongside the findings. The reviewer may exclude a counterexample through source guards, establish a defect through a reachable sequence, or leave a precise relation unresolved. Required unresolved evidence prevents a clean pass. The report is checkable evidence about the inspected scope, not exhaustive proof of every possible behavior.
 
-**Why does it find new problems every single time I run it?**
+**What if another tool also uses the name `code-review`?**
 
-Each fix adds new code to review, and the judgement-call half of the Standards axis gives different results from run to run. One reader described the loop: "/code-review and /improve-code-architecture always find new stuff every time. I implement fixes, rerun these skills, and again and again." There is no convergence guarantee. Treat a pass as a list of leads. Act on the ones with a cited rule behind them, then stop. Do not run it in a loop until it comes back clean, because it never will.
-
-**Does it review my uncommitted work?**
-
-No. It diffs `<fixed-point>...HEAD`. The three-dot form measures from the merge-base and excludes staged and working-tree changes. If `implement` has not made an interim commit, the review cannot see the work that is about to go into the next commit. Commit first, then review, then amend or add a fixup.
+Use the installed plugin's qualified skill name when the host supports it. Command resolution and recursion limits belong to the host. This skill keeps its existing identity and independent review axes.
 
 ## It's working if
 
-- It refuses to start on a bad ref or an empty diff, before any sub-agent is spawned.
-- The report arrives as two separate blocks under `## Standards` and `## Spec`, not one merged list.
-- Every Standards finding names either a rule in one of your repo's files or one of the twelve smells, with the hunk quoted; every Spec finding quotes a line of the spec.
-- The closing summary gives a worst issue per axis and declines to pick an overall winner.
-- With no spec available, the Spec block says so instead of listing requirements it inferred from the code.
+- Standards and Spec arrive separately, with source citations for their own findings.
+- Behavioral findings show a triggering sequence and the guard that is missing or insufficient.
+- The ledger distinguishes request freshness, result identity, consumer application, and observable completion where those stages exist.
+- Known guards can exclude counterexamples, while unsupported assumptions remain specific evidence gaps.
+- A literal documentation edit completes without an unrelated state-machine audit.
+- Candidate identity, reviewed axes, instruction revision or artifact, and report references are retained in the existing task record.
 
 ## Where it fits
 
-`code-review` is the review step near the tail of the build chain: `grill-with-docs → to-spec → to-tickets → implement → code-review → retro`. It also stands alone on any branch or PR you point it at.
+`code-review` closes the review stage of [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) and the combined candidate in [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md). It also runs independently on a supplied candidate. Implementation owners resolve findings and refresh affected verification; [git-commit](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/git-commit.md) consumes completed evidence.
 
-- [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) is the closest neighbour. It drives the build and calls this skill as its own closing review before committing. [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md) does the same once, over the whole integration branch.
-- [retro](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/retro.md) comes after it and tunes it. When a session shows the review missing a class of mistake, `retro` proposes the check or the `CODING_STANDARDS.md` rule the Standards axis then reads.
-- [pr](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/pr.md) writes the pull request body once the reviewed work goes up.
-- [to-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-spec.md) and [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) produce the document the Spec axis checks against, so a vague spec makes that axis vague.
-- [improve-codebase-architecture](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/improve-codebase-architecture.md) is the whole-codebase counterpart, because this skill only looks at one diff.
-
-[ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) routes across the whole set when you are unsure which skill the situation wants.
+[ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) maps the surrounding workflows.

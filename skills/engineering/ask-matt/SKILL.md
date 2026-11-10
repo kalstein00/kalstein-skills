@@ -41,6 +41,8 @@ The route most work travels. You have an idea and want it built.
 
    Either way, implementation selects one route by actual effect: **`/ui-tdd`** for UI/mixed behavior, **`/tdd`** for non-UI behavior at agreed seams, and direct proportionate checks for behavior-preserving documentation, metadata, mechanical, or literal-copy changes. Configuration and wiring that change behavior follow the behavior route. `/implement` closes each task with **`/code-review`**; `/implement-spec` verifies the combined candidate and runs one integration review. UI completion carries actual app actions, observed results, and inspected screenshots. Reach for `/tdd` or `/code-review` directly when only that capability is needed.
 
+   The Spec axis also reviews established contracts affected by the candidate. Behavior changes trace state/consumer boundaries and challenge completion guards; literal-copy changes keep proportionate checks. Findings remain separate from evidence gaps and advisory suggestions.
+
    When the work goes up as a pull request, **`/pr`** shapes the body: the smallest visual that shows the change, before/after evidence that it works, and a one-way or two-way door call. It's model-invoked, so the agent reaches for it whenever it writes a PR.
 
 4. **`/retro`** closes the loop. After a build, and especially one that went sideways, it looks back over the session and suggests changes to the agent's **environment**, not the code: navigation pointers, automated checks, the coding standards `/code-review` enforces, steering files, tooling. Mechanical mistakes become deterministic checks; judgement calls become coding standards. The next build then starts from a better environment.

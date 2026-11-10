@@ -1,12 +1,12 @@
 ---
 name: code-review
-description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
+description: "Review committed and working-tree changes since a fixed point along Standards and Spec axes, including regressions of affected established contracts. Runs independent reviewers and reports findings and evidence gaps separately. Use for branch, PR, work-in-progress, or review-since requests."
 ---
 
 Two-axis review of the committed and working-tree candidate since a fixed point supplied by the user or calling workflow:
 
 - **Standards**: does the code conform to this repo's documented coding standards?
-- **Spec**: does the code faithfully implement the originating issue / spec?
+- **Spec**: does the code implement the requirements and preserve the established contracts affected by the change?
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. Start every sub-agent with a fresh context window.
 
@@ -29,7 +29,7 @@ Reuse caller-supplied tickets/specs or the task's conversation requirements firs
 1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.), fetched via the workflow in the tracker doc.
 2. A path the user passed as an argument.
 3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
-4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
+4. If nothing is found, ask the user where the spec is. If there is none, report "no explicit spec available" and retain the Spec reviewer for affected established contracts. Distinguish sourced contracts from inferred expectations; unresolved product meaning is a question, not a new requirement.
 
 ### 3. Identify the standards sources
 
@@ -63,29 +63,33 @@ Apply any caller-supplied model/effort settings through the spawn tool, not just
 
 Pass the applicable **Verification** entries and recorded evidence to both reviewers. Review the evidence in place. If it is insufficient, identify the unmet criterion or documented rule and the smallest missing observation. The check owner can supply existing evidence or run the focused check.
 
+Supply relevant domain/ADR pointers alongside the source requirements. Each reviewer derives its conclusions independently; treat the implementer's safety claims as claims to inspect.
+
 For UI claims, give the Spec reviewer the accepted journey, automated results, final app/candidate identity, inspected screenshot paths, and observations under `ui-tdd`'s [evidence protocol](../ui-tdd/EVIDENCE.md). The reviewer checks coverage and freshness; routine review does not rerun unchanged browser work. Missing required evidence is a finding. A code smell alone cannot expand the requested outcome into unrelated work.
 
 **Standards sub-agent prompt** should include:
 
 - The full diff command and commit list.
 - The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
-- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
+- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Be concise; preserve substantiated findings and material limits."
 - Flag an evidence gap on this axis when a documented repository rule requires the missing check or environment. Cite that rule and the affected change.
 
 **Spec sub-agent prompt** should include:
 
 - The diff command and commit list.
-- The path or fetched contents of the spec.
-- The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
-- Check whether the evidence exercises the condition named in Verification and demonstrates the promised outcome. If the check can pass without exercising that condition, name the criterion, what the evidence actually shows, and the observation needed to resolve the gap. A potential failure outside the agreed scope is advisory unless it contradicts a stated requirement.
+- The source requirements and pointers to affected established contracts, with missing sources disclosed.
+- The brief: "Report missing/partial requirements, scope creep, wrong implementations, and regressions of affected established contracts. Cite the violated requirement or contract. For behavior changes, read and apply [BEHAVIOR.md](BEHAVIOR.md) before composing findings, including its boundary ledger and guard challenges. For literal copy or mechanical changes with no behavior impact, state that applicability briefly. Be concise; preserve substantiated findings and material limits."
+- Check whether the evidence exercises the condition named in Verification and demonstrates the promised outcome. If the check can pass without exercising that condition, name the criterion, what the evidence actually shows, and the observation needed to resolve the gap. A regression caused by the candidate is in scope when it violates an affected established contract even if the ticket does not repeat that contract. Unrelated pre-existing defects and proposed new behavior are advisory.
 
-If the spec is missing, skip the Spec sub-agent and note this in the final report.
+Missing product requirements limit product acceptance claims; they do not remove the review of affected established contracts.
 
 ### 5. Aggregate
 
 Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
 
-End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes: that's the reranking the separation exists to prevent.
+Retain each axis's coverage and evidence gaps, including the Spec boundary ledger for affected stateful behavior. A finding on one path does not complete the other affected paths. Distinguish defects, unresolved required evidence, and advisory suggestions; unresolved required evidence is not a clean pass.
+
+Record the base/candidate identity and path scope, the skill revision or instruction artifact, which axes actually ran, and their report references in the existing task record. Refresh affected review evidence if the candidate changes. End with a one-line summary of findings and material gaps per axis, and the worst issue _within each axis_ (if any). Keep the axes separate.
 
 ## Why two axes
 

@@ -1,3 +1,34 @@
+## Working tree, 2026-11-10: behavior-contract review
+
+Base `f7b2a84fe62f1164b8d47950b08f6c23d8827560`. This is a source update with a pending patch changeset, not a release, publication, or installed-cache refresh. The procedure stays repository-neutral and preserves the independent Standards/Spec axes. Source requirements and raw historical candidates were supplied to fresh Spec reviewers without later fixes, failure explanations, QA records, or previous reviewer results.
+
+| Forward-test sample | Actual result |
+| --- | --- |
+| Historical asynchronous grid candidate `66f806843cae7e51dbd3948b048d0793d48dc624` | The reviewer identified that a current request token can coexist with retained old ready data, and that a captured local position can be interpreted by a newer installed model. It reported the exact missing request/result/consumer association as a material evidence gap, including the minimum captured-window/current-model observation needed; it did not claim a reproduced race. A separate click-supersession finding did not end the boundary review. |
+| Scoped later grid snapshot `9ca11298b64d5e1a5ae83927c667c46d3e0748d7` | The reviewer excluded those counterexamples using loaded-token equality, exact installed row-object identity, live model index, and DOM/model index agreement. It distinguished static guard correctness from unobserved integrated liveness and other user-intent interpretation questions. |
+| Historical background-recovery candidate `4f475d0eb7f89b368039d9d0a9383aad3464ad39` | The reviewer traced new call-site defaults into changed viewport geometry and a lost identity anchor. It reported two affected-contract findings and retained consumer-completion evidence gaps. |
+| Safe asynchronous value-model control | No supported defects. Source/request guards exclude stale results; synchronous application and immutable snapshots exclude an unproved downstream installation interval. |
+| Independent document-analysis sample | The reviewer found both installation after document mutation and applying a retained span to another document version. This used no grid or framework API. |
+| Literal documentation word replacement | Pass with a short applicability statement. No behavioral ledger or runtime check was requested. |
+
+These are Spec-procedure forward-tests, not full application runs or a statistical comparison with the old skill. The external historical fixtures are not bundled into the distributed skill. Their original QA and runtime traces were not inputs to the blind reviews. The missing installation association was surfaced and prevented a clean pass; exact historical callback scheduling remained an explicit gap. The later snapshot control establishes that known guards are recognized, not integrated runtime liveness. Additional historical findings were not silently promoted to current-product defects or repaired in this task.
+
+The tested `BEHAVIOR.md` SHA-256 is `33ff3e59a69cb99b3a47c2b89469fd11a3439523e8d8ee50e1f6ca313c5eb137`. The final entrypoint removes a draft-only nested-agent restriction to preserve the repository's existing scope policy; the tested Spec brief and behavior procedure are unchanged. Metadata, discovery descriptions, companion docs, and router text were synchronized afterward.
+
+- System `skill-creator` quick validation passed through cached `uv` Python/PyYAML with process-only UTF-8 mode. The default Windows Python alias was unavailable, and the first cached-Python invocation needed UTF-8 mode; neither failed attempt is counted as validation evidence.
+- Inline Node/`js-yaml` checks passed for identity/invocation preservation, discovery-text consistency, 17 local/fork-local file references, companion section order and absolute links, patch changeset metadata, and repository-neutral procedure text.
+- `npm run check-plugin-version` and `git diff --check` passed at unchanged version `1.4.8`.
+- Official `@anthropic-ai/claude-code@2.1.0 plugin validate --help` confirmed syntax. Both plugin and marketplace manifests validated with no errors or warnings.
+- Codex local-marketplace discovery, using process-only `-c` source overrides, exited 0 and listed `kalstein-skills@kalstein` at `1.4.8` from this checkout. This does not establish that an already loaded chat or separately installed cache uses these edits. User configuration was not rewritten.
+
+### Standards
+
+No findings or material evidence gaps. The independent reviewer inspected all ten scoped tracked/new files against repository documentation, invocation, scope, execution, and smell-baseline rules. Companion docs and router are synchronized; independent axes and fresh contexts remain intact; product runtime inputs are not introduced. Existing validation was reused without rerunning unchanged checks. This is source review, not reproduction of the forward-tests.
+
+### Spec
+
+No supported defects, missing requirements, or scope creep. The independent reviewer checked affected-contract scope, omitted defaults, captured/live state, request/result/consumer/completion relationships, guard counterexamples, distinct evidence-gap reporting, and the literal/mechanical applicability path. All six recorded samples address the requested cases and controls; the exact historical association gap prevented a clean pass, and the procedure hash matches the tested artifact. Full orchestration, integrated application behavior, and statistical improvement remain outside the evidence. The final documentation-only additions record these reports without changing the tested procedure.
+
 ## Release candidate 1.4.8, 2026-11-09: standalone implementation completion comments
 
 Base `f7e5d6f4e1ec2b1b9d791eab63f54d6f72137a14`; source instructions and companion documentation only. The patch changeset was consumed; package, lockfile, and plugin versions match 1.4.8. The installed plugin cache was not refreshed.
