@@ -10,7 +10,12 @@ For a standalone GitHub ticket, the run also posts and confirms a completion com
 
 Accepted decisions carry forward without another planning interview. Before dependent edits, the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md) checks that source decisions, exclusions, acceptance, and verification boundaries can be recovered. A necessary unresolved decision returns to the dispatching parent or standalone user; routine implementation choices remain with the worker.
 
-Before behavior-sensitive function use, the shared execution contract checks the intended call against current accepted instructions, resolved dependency/source versions, actual callee defaults and preconditions, and completion guarantees. A short usage note reuses the existing task record. Stale examples or type-correct calls do not substitute for that contract; literal-copy changes keep proportionate checks.
+Before behavior-sensitive function use, the shared execution contract checks the intended call against current accepted instructions, actual callee defaults and preconditions, and completion guarantees. Version/source compatibility evidence comes from:
+
+- Projects with copied documentation: [library-docs](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/library-docs.md).
+- Projects without copied documentation: the project's approved versioned official-source route.
+
+A short usage note reuses the existing task record. Stale examples or type-correct calls do not substitute for that contract; literal-copy changes keep proportionate checks.
 
 ## When to reach for it
 

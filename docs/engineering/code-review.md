@@ -31,6 +31,12 @@ A source-backed ordering guarantee can exclude a counterexample. When external-l
 
 ## Common questions
 
+**Can review rules live in CODING_STANDARDS.md or CONTRIBUTING.md?**
+
+Yes. Applicable project instructions and current standards pointers lead discovery, including those files at the root and along the changed paths. The review reads relevant sections and follows references for specific gaps. Historical plans and audits are consulted when they resolve authority, supersession, or evidence. Behavior contracts found in a standards document also reach Spec; the filename does not limit them to Standards.
+
+The reusable review method stays in the skill. Project documents own the rules and contracts being checked, while the behavior procedure is loaded for behavior changes. Moving the method into a standards file alone would not preserve its Spec routing or implementation-time checks.
+
 **Why can a reviewed change still contain an asynchronous bug?**
 
 Individually correct checks can describe different versions of state. A latest-request check does not establish that a retained result or installed consumer belongs to that request. The review now traces these relationships and challenges each material completion guard. It still needs source or documented evidence for the proposed sequence; it does not invent a race because code is asynchronous.
@@ -62,6 +68,7 @@ Use the installed plugin's qualified skill name when the host supports it. Comma
 ## It's working if
 
 - Standards and Spec arrive separately, with source citations for their own findings.
+- A behavior contract found in a coding-standard document is checked by Spec without a repository-wide documentation sweep.
 - Behavioral findings show a triggering sequence and the guard that is missing or insufficient.
 - The ledger distinguishes request freshness, result identity, consumer application, and observable completion where those stages exist.
 - Known guards can exclude counterexamples, while unsupported assumptions remain specific evidence gaps.

@@ -33,7 +33,9 @@ Reuse caller-supplied tickets/specs or the task's conversation requirements firs
 
 ### 3. Identify the standards sources
 
-Search the repo for every file that documents how code should be written. When `CODING_STANDARDS.md` or `CONTRIBUTING.md` exists, it must be on the list.
+Start with applicable project instructions and their current standards pointers. Check for `CODING_STANDARDS.md` and `CONTRIBUTING.md` at the repository root and in the candidate's directory ancestry; include existing files as sources and read only sections relevant to the candidate. Reuse sources already supplied by the caller.
+
+Follow references needed to establish an affected rule or contract. Widen discovery only for a named gap; consult historical plans, audits, and verification records when needed to resolve authority, supersession, or evidence. Retain source paths and section/line references. Pass applicable coding rules to Standards and affected behavior contracts found in those same documents to Spec, regardless of the filename.
 
 On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below: a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
 
@@ -70,14 +72,14 @@ For UI claims, give the Spec reviewer the accepted journey, automated results, f
 **Standards sub-agent prompt** should include:
 
 - The full diff command and commit list.
-- The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
+- The applicable rules and source references from step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
 - The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Be concise; preserve substantiated findings and material limits."
 - Flag an evidence gap on this axis when a documented repository rule requires the missing check or environment. Cite that rule and the affected change.
 
 **Spec sub-agent prompt** should include:
 
 - The diff command and commit list.
-- The source requirements and pointers to affected established contracts, with missing sources disclosed.
+- The source requirements and pointers to affected established contracts, including those found in standards documents in step 3, with missing sources disclosed.
 - The brief: "Report missing/partial requirements, scope creep, wrong implementations, and regressions of affected established contracts. Cite the violated requirement or contract. For behavior changes, read and apply [BEHAVIOR.md](BEHAVIOR.md) before composing findings, including its boundary ledger and guard challenges. For literal copy or mechanical changes with no behavior impact, state that applicability briefly. Be concise; preserve substantiated findings and material limits."
 - Check whether the evidence exercises the condition named in Verification and demonstrates the promised outcome. If the check can pass without exercising that condition, name the criterion, what the evidence actually shows, and the observation needed to resolve the gap. A regression caused by the candidate is in scope when it violates an affected established contract even if the ticket does not repeat that contract. Unrelated pre-existing defects and proposed new behavior are advisory.
 

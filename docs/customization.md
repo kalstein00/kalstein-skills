@@ -1,5 +1,11 @@
 # Customization and source integration
 
+## Scoped review inputs, 2026-11-12
+
+Review discovers applicable current standards from project instructions and the candidate's directory ancestry, reads relevant sections, and widens only for a named gap. Behavior contracts found in standards documents are also Spec inputs. The generic behavior-review procedure remains in the skill; historical investigations remain evidence rather than a default documentation sweep.
+
+The shared execution contract retains the pre-edit decision and delegates copied-library version/provenance and compatibility checks to `library-docs`. Its official-source branch remains available when no copied package exists. Callee-use checks, unresolved-contract boundaries, and literal-copy applicability are preserved.
+
 ## Pre-implementation function contracts, 2026-11-10
 
 Implementation now resolves material function-use contracts before dependent behavior edits. The shared [execution contract](../skills/engineering/implement/EXECUTION.md#before-behavior-sensitive-edits) reconciles accepted instructions and examples, resolved dependency/source identities, callee defaults and preconditions, and completion guarantees. Standalone TDD uses the same check; UI and batch routes already consume the shared contract. Existing evidence and agreed test seams are reused, while literal-copy work retains a short applicability path.

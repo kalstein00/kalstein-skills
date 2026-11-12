@@ -36,4 +36,4 @@ Only the required contract needs resolution. Matching official evidence can supp
 
 ## Where it fits
 
-This is a reusable capability or focused standalone workflow. It works with [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) for the neighboring responsibility. [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) maps the full workflow.
+This is a reusable capability or focused standalone workflow. It owns the version, provenance, and compatibility checks consumed by [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md). Implementation owns when that evidence is required and whether it supports the intended call before dependent edits. [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) maps the full workflow.

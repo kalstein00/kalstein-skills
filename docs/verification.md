@@ -1,3 +1,32 @@
+## Working tree, 2026-11-12: scoped review inputs
+
+Base `7122fcb219a1c6acda2d00ee09ddf8a7a3cddd1f`. The requested source update bounds standards discovery, sends affected behavior contracts from standards documents to Spec, and delegates copied-library compatibility checks from `EXECUTION.md` to their existing `library-docs` owner. `BEHAVIOR.md`, library evidence semantics, invocation metadata, and version `1.4.8` remain unchanged. Companion pages, router, customization history, and a patch changeset are synchronized. DART's existing `docs/quality/release-early-detection-plan.md` records the accepted allocation; its AGENTS and product code are unchanged.
+
+One fresh-context evaluator read the proposed instructions and four fictional samples without expected answers or earlier review reports. This tests source selection and pre-edit decisions, not a complete review orchestration, runtime behavior, or measured token savings.
+
+| Sample | Observed routing |
+| --- | --- |
+| Retry behavior with a cancellation contract in CODING_STANDARDS.md, current linked lifecycle rules, and unrelated historical/UI material | Selected the current relevant sections and jobs-specific standards, passed the cancellation contract to Spec, and excluded unrelated history, UI, and release sections. Missing diff/runtime facts were disclosed without inventing a review verdict. |
+| README spelling correction in the same sample | Checked root applicability without following the jobs contract or requiring a behavioral ledger, library lookup, runtime check, or RED cycle. |
+| Copied target label 2.4 backed by upstream 3.0, with official 2.4 submission semantics | Used library-docs, distinguished identities, rejected queue acceptance as proof of completion, and requested matching completion evidence without changing pins. |
+| No copied package, with an approved versioned official-source route | Used official evidence directly, resolved acceptance versus completion, and kept unspecified caller identity/event wiring separate from the external guarantee. No copied-cache setup was required. |
+
+The evaluator considered cancellation alongside the later job samples; those samples did not independently specify a cancellation contract. Only the recorded routing and external-contract observations support this check, not that additional application requirement.
+
+- Inline Node/js-yaml checks passed unchanged skill metadata, patch changeset metadata, 52 local/fork-local file references, companion section order, and the changed-prose em-dash rule for the seven initial tracked Markdown edits plus the new changeset.
+- `npm run check-plugin-version` passed at `1.4.8`; `git diff --check` passed.
+- Official Claude CLI `2.1.0` validated both plugin and marketplace manifests with no reported errors or warnings.
+- Codex local-marketplace discovery with process-only source overrides exited 0 and resolved this checkout as `kalstein-skills@kalstein`, version `1.4.8`. This is source discovery, not proof that the installed cache or current chat loaded the edits.
+- No application code or runtime acceptance changed. No product tests, release, cache update, commit, or push was performed.
+
+### Standards (scoped review inputs)
+
+Fresh-context report `/root/final_standards` reviewed all nine scoped source-repository files, including the new changeset, and the DART history note. It found one P3 companion-document formatting violation: the copied/official evidence alternatives were prose instead of the required list. The two branches were changed to bullets and the reviewer confirmed resolution. Final result: no unresolved violations, advisories, or required evidence gaps. Existing checks were reused; no new runtime claims were added.
+
+### Spec (scoped review inputs)
+
+Fresh-context report `/root/final_spec` found no defects, missing requirements, required evidence gaps, or advisories. It confirmed bounded discovery, behavior-contract forwarding, preserved independent axes, delegated compatibility checks, the no-copied-package official route, and pre-edit/literal-copy boundaries. The review used the working-tree `code-review/SKILL.md` and unchanged `BEHAVIOR.md` as instruction artifacts. The companion formatting correction preserves meaning; final bookkeeping records these results without changing the evaluated procedure.
+
 ## Working tree, 2026-11-10: pre-implementation function-use contracts
 
 Base `46660fc1585f6623d30c73bd6ce88d990db6a073`. The source change adds a conditional function-use check to the shared execution contract, routes standalone implementation/TDD to it, and strengthens copied-document version provenance and semantic evidence. Project-specific runtimes, libraries, corpus pins, and commands are not embedded. A patch changeset is pending; version remains `1.4.8` and no release/cache refresh is part of this change.
