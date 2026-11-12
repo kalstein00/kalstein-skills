@@ -292,3 +292,5 @@ Regressions found during this task were conflicting literal-copy ticket requirem
 Global plugin configuration and project-local skills are preserved. Cross-PC installation instructions require an available compatible Codex CLI; external app runtimes and project data are not bundled. No source-project application suite or unrelated app UI was run for these instruction/package edits.
 
 Root release-tool installation preserves upstream dependency resolutions. `npm audit --json` reported one high-severity indirect `js-yaml` entry in that inherited developer toolchain (exit 1); the plugin's instructions do not require installing the root release dependencies. Dependency remediation is outside this workflow-customization change and was not silently applied. The unchanged `wait-what` human page intentionally omits a FAQ under the authoring guide's optional-question rule; changed/new pages were checked separately rather than forcing unrelated prose edits.
+
+Release 1.4.9: npm run check-plugin-version passed. Claude plugin validation could not run: the available npx Claude CLI executable was incompatible with this Windows environment (2026-11-12).

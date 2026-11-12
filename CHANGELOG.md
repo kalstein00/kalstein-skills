@@ -1,3 +1,13 @@
+## 1.4.9
+
+### Patch Changes
+
+- [`46660fc`](https://github.com/kalstein00/kalstein-skills/commit/46660fc1585f6623d30c73bd6ce88d990db6a073) Thanks [@kalstein00](https://github.com/kalstein00)! - Strengthen Spec review of affected behavior contracts with producer/consumer boundary tracing, source-backed guard counterexamples, and explicit evidence gaps. Keep literal-copy review proportionate and preserve the independent Standards and Spec axes.
+
+- [`7122fcb`](https://github.com/kalstein00/kalstein-skills/commit/7122fcb219a1c6acda2d00ee09ddf8a7a3cddd1f) Thanks [@kalstein00](https://github.com/kalstein00)! - Check material function-use contracts before behavior-sensitive implementation. Reconcile current instructions, dependency and documentation source versions, callee defaults, preconditions, and completion guarantees while preserving focused verification and proportionate literal-copy work.
+
+- [`7594eb1`](https://github.com/kalstein00/kalstein-skills/commit/7594eb1f5ce1b709ce4f7fc9b054f60cd79333ba) Thanks [@kalstein00](https://github.com/kalstein00)! - Scope standards discovery to applicable current sources and pass their affected behavior contracts to Spec. Keep generic review methods in the skill and consolidate copied-library compatibility checks under library-docs.
+
 ## 1.4.8
 
 ### Patch Changes
