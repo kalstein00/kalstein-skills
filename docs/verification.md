@@ -294,3 +294,12 @@ Global plugin configuration and project-local skills are preserved. Cross-PC ins
 Root release-tool installation preserves upstream dependency resolutions. `npm audit --json` reported one high-severity indirect `js-yaml` entry in that inherited developer toolchain (exit 1); the plugin's instructions do not require installing the root release dependencies. Dependency remediation is outside this workflow-customization change and was not silently applied. The unchanged `wait-what` human page intentionally omits a FAQ under the authoring guide's optional-question rule; changed/new pages were checked separately rather than forcing unrelated prose edits.
 
 Release 1.4.9: npm run check-plugin-version passed. Claude plugin validation could not run: the available npx Claude CLI executable was incompatible with this Windows environment (2026-11-12).
+
+## Release 1.4.10
+
+Ticket implementation workers now use GPT-6.2 Sol at medium effort. The skill and its companion page agree on the worker model and diagnosis handoff. No live ticket batch was run.
+
+- Package, lockfile, and plugin versions match 1.4.10. `npm run check-plugin-version` and `git diff --check` passed.
+- Claude CLI 2.0.76 validated both manifests without warnings. The current npm CLI binary could not run on this Windows installation.
+- An isolated Codex home discovered `kalstein-skills@kalstein` 1.4.10 from the local marketplace. Its temporary-home PATH-helper warning did not prevent discovery.
+- `npm audit --omit=dev` found no vulnerabilities. The dependency install reported 16 high-severity findings in the development toolchain.

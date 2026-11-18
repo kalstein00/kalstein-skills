@@ -21,7 +21,7 @@ Queue delivery alone does not prove the worker terminated or that the parent res
 
 **Which models handle the work?**
 
-By default, implementation workers use GPT-6.1 Terra at medium effort. A difficult failure that needs diagnosis goes to a fresh read-only GPT-6.1 Sol agent; its evidence and proposed repair return to the Terra worker. Standards and Spec reviewers use the invoking model at high effort. Explicit user overrides take precedence.
+By default, implementation workers use GPT-6.2 Sol at medium effort. A difficult failure that needs diagnosis goes to a fresh read-only GPT-6.1 Sol agent. The diagnosis agent returns its evidence and proposed repair to the implementation worker. Standards and Spec reviewers use the invoking model at high effort. Explicit user overrides take precedence.
 
 **Can a batch skip live UI verification until the end?**
 

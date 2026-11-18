@@ -1,3 +1,9 @@
+## 1.4.10
+
+### Patch Changes
+
+- Use GPT-6.2 Sol at medium effort for ticket implementation workers.
+
 ## 1.4.9
 
 ### Patch Changes
