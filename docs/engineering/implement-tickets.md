@@ -1,58 +1,35 @@
 ## What it does
 
-Implement an explicit ordered ticket list with fresh sequential workers in one checkout. Each worker returns its verified change and scoped commit; the parent records completion and closes that implementation ticket before the next worker starts. The parent PRD/spec remains open, and broad final batch gates stay separate from each ticket's acceptance.
+`implement-tickets` runs an explicit ordered ticket list in your current Codex session and checkout. It keeps the ordered ticket URLs and completion condition in one Goal, and records progress in a durable checkpoint. The session verifies, commits, and confirms closure for each ticket before moving on.
 
 ## When to reach for it
 
-Invoke this orchestrator explicitly for a supplied ticket list; use implement-spec for a parallel spec graph.
-
-## Prerequisites
-
-The target project, its configured tracker, and the actual ticket/parent relationships. The parent needs a working tracker route for comments, completed closure, and state readback before implementation begins. Before each dispatch it checks the [ticket handoff contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement/TICKET.md), recovering accepted decisions and verification boundaries from their sources. Preserve the project's existing setup and documentation.
+Invoke `$implement-tickets #101 #102 #103` when you already know the tickets and their order. The host needs native Goal support, and the project needs tracker access to read, comment on, close, and confirm the supplied tickets. Use [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md) for a spec's parallel dependency graph.
 
 ## Common questions
 
-**Does the parent keep polling during a long ticket?**
+**Can the reviewers use a different model from the implementation session?**
 
-Queue delivery alone does not prove the worker terminated or that the parent resumed.
+At the start of every new batch, the skill asks which model and reasoning effort to use for the independent Standards and Spec reviewers. The default is the current session's settings when the runtime exposes them. You can choose, for example, GPT-6.2 Astra at high effort while implementing in GPT-6.2 Sol at low effort. The batch saves both confirmed values and uses them for every review and re-review, including after a continuation.
 
-- On the tested top-level Codex Desktop path, the worker sends completion or attention directly to the parent, which resumes and checks the actual worker and evidence. No separate observer is required for normal completion.
-- On an unverified host or parent type, the parent reports the limitation and uses bounded native waits while the worker runs. A worker crash before sending the message cannot wake an idle parent through this route.
+**How does a long batch recover after an interruption or context compaction?**
 
-**Which models handle the work?**
+The Goal retains the ticket order and completion condition. The checkpoint tracks the current ticket, reviewer settings, checkout and branch, commit and evidence references, tracker state, pending checks, and next action. On continuation, the session checks that the checkout and branch match and reconciles the checkpoint with Git and the tracker. A confirmed commit can be reused if interruption happens before issue closure, and an existing matching completion comment can be reused after an uncertain tracker write. Once the Goal is complete, an explicit invocation can start another batch in the same session.
 
-By default, implementation workers use GPT-6.2 Sol at medium effort. A difficult failure that needs diagnosis goes to a fresh read-only GPT-6.1 Sol agent. The diagnosis agent returns its evidence and proposed repair to the implementation worker. Standards and Spec reviewers use the invoking model at high effort. Explicit user overrides take precedence.
+**What must pass before a ticket closes?**
 
-**Can a batch skip live UI verification until the end?**
+Each ticket needs its own acceptance checks, review, documentation as applicable, and a verified scoped commit. UI tickets need their required live journeys and inspected screenshots. Broad regression checks can run on the final combined candidate. If later evidence invalidates an earlier ticket's acceptance, the [close-out contract](https://github.com/kalstein00/kalstein-skills/blob/main/skills/engineering/implement-tickets/CLOSEOUT.md) governs reopening, repair, and re-verification.
 
-No. Each UI ticket supplies its required live journey and inspected images. After a change, the worker maps the changed boundary to affected checks and explains why retained evidence still applies; the parent checks that mapping before acceptance. Evidence with uncertain applicability cannot prove acceptance until the relevant boundary is checked.
+**What changes in the tracker?**
 
-**Will the parent's progress move from 1/4 to 2/4 as tickets finish?**
-
-For native linked sub-issues, the parent records each completed child as closed and reads back its state and available parent progress. It does not merely report a counter in chat. It uses the parent's actual child set, which may include tickets outside this batch. If the tracker does not expose progress or the expected relationship is absent, it reports that limitation rather than inventing a fraction or rewriting the PRD.
-
-**Do I need to ask separately for each ticket to close?**
-
-No. Explicitly invoking implement-tickets authorizes the orchestrating parent to close the supplied implementation tickets after their own acceptance, review, documentation, and commit are verified. Workers do not write to the tracker. Closing the parent PRD/spec, pushing commits, or merging a PR still needs the corresponding delivery authority.
-
-**Can a ticket close while batch-wide checks are still pending?**
-
-Yes, when all of that ticket's acceptance is already proven and the remaining gates are broader batch regression checks. A check needed to prove the ticket's acceptance runs before closure. The completion comment names deferred gates and local-only commits honestly; batch completion still waits for required or explicitly requested batch-wide gates. A full suite runs when the release workflow requires it or the user explicitly requests it.
-
-Before closure the parent matches each required `Verification` entry to a result that covers the relevant candidate, input or starting state, and observed outcome. The check's owner fills any gap with the smallest affected check. The parent reuses valid results and the existing final batch run.
-
-**What if closing a ticket fails or a later test finds a regression?**
-
-The parent reconciles the real state before retrying and does not start the next worker while closure is unconfirmed. If later evidence invalidates a ticket closed by this batch, it records the failure, reopens that ticket, and repairs/reverifies it before closing again. Unaffected completed tickets stay closed.
+The session records completion and closes each supplied implementation ticket, then confirms the actual tracker state and available parent progress. The parent PRD/spec stays open. Push, PR publication, and merge require separate authority.
 
 ## It's working if
 
-- Tickets keep their requested order and scoped commits.
-- Each worker receives source decisions, excluded work, acceptance criteria, and verification boundaries without needing the planning conversation.
-- Each ticket has a completion comment and confirmed completed closure before the next ticket starts.
-- The parent PRD stays open, with progress observed from actual child states or explicitly reported as unavailable.
-- The final batch report carries UI observations and images and distinguishes deferred from completed gates.
+- Each ticket closes in the supplied order with a scoped commit, both independent reviews, and verified acceptance.
+- The next action after an interruption can be recovered from the checkpoint, Git history, and tracker.
+- The Goal completes after all requested closures and passing batch checks on the final combined candidate.
 
 ## Where it fits
 
-This is an explicitly requested orchestration flow. It works with [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md) for the neighboring responsibility. [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) maps the full workflow.
+`implement-tickets` runs the build and close-out steps for an ordered list from [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md). [ask-matt](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/ask-matt.md) maps the full workflow.

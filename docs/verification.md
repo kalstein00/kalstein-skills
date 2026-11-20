@@ -303,3 +303,10 @@ Ticket implementation workers now use GPT-6.2 Sol at medium effort. The skill an
 - Claude CLI 2.0.76 validated both manifests without warnings. The current npm CLI binary could not run on this Windows installation.
 - An isolated Codex home discovered `kalstein-skills@kalstein` 1.4.10 from the local marketplace. Its temporary-home PATH-helper warning did not prevent discovery.
 - `npm audit --omit=dev` found no vulnerabilities. The dependency install reported 16 high-severity findings in the development toolchain.
+
+## Release 1.4.11
+
+- Static workflow checks covered starting a second batch after a completed Goal, reusing concrete reviewer settings across continuations and re-reviews, checking the recorded branch even when HEAD is unchanged, and routing review through the single `implement` call. Explicit-invocation metadata and workflow links passed.
+- `git diff --check` and `npm run check-plugin-version` passed. The package, lockfile, and plugin manifest agree on 1.4.11. Claude CLI 2.0.76 validated both manifests without warnings.
+- Codex CLI 0.167.2 discovered the 1.4.11 candidate from the local marketplace in an isolated Codex home. Its temporary-home PATH-helper warning did not prevent discovery.
+- The changes were checked as workflow instructions. Live Goal rollover and continuation, reviewer launch settings, and resuming after a tracker write remain unverified with an actual ticket batch.

@@ -81,7 +81,7 @@ The handoff check now requires an observable pass/fail result, a verification bo
 If an ordinary success check would miss an acceptance failure, the existing `Verification` entry names the condition that exposes it and the first stage that can check it. For example, startup verification can check the first transition to ready, when a check on an already running app would miss an ordering bug. Existing checks that cover the condition are reused.
 
 **Can a fresh implementer use a different model without guessing what the planning session decided?**
-The ticket must preserve conversation-only decisions inline or in a durable note and link relevant specs or ADRs. UI and non-UI behavior tickets both identify test boundaries and their catch/miss limits. Routine implementation choices remain with the worker; unresolved product decisions prevent ready status. This reduces missing context but does not establish equivalent quality across models. The separate [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md) batch documents its model policy for implementation, diagnosis, and review.
+The ticket must preserve conversation-only decisions inline or in a durable note and link relevant specs or ADRs. UI and non-UI behavior tickets both identify test boundaries and their catch/miss limits. Routine implementation choices remain with the worker; unresolved product decisions prevent ready status. This reduces missing context but does not establish equivalent quality across models. The separate [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md) batch implements in the invoking session and lets you choose the reviewer model and reasoning effort.
 
 **The tickets are published. How do I actually run them?**
 
@@ -90,7 +90,7 @@ The skill stops at the artifact. Choose the execution flow for your work:
 | Work | Execution flow |
 | --- | --- |
 | One unblocked ticket | Run [implement](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement.md) in a fresh context and update ticket state yourself. |
-| An ordered ticket batch | Explicitly invoke [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md); the parent owns per-ticket closure. |
+| An ordered ticket batch | Explicitly invoke [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md) for same-session implementation and per-ticket closure. |
 | A parallel spec graph | Use [implement-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-spec.md). |
 
 ## It's working if

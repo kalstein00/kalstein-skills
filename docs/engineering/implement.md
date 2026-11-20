@@ -50,7 +50,7 @@ A run has six steps, in order:
 3. Typecheck often, run single test files as it goes.
 4. Verify affected behavior and consuming boundaries, including required acceptance and live checks. Run the full suite when the release workflow requires it or you explicitly request it.
 5. Run [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md), then commit to the current branch.
-6. For a standalone GitHub ticket, post the completion evidence, read back the comment, and return its URL. Conversation-only work finishes with the report; batch workers return evidence to their orchestrator.
+6. For a standalone GitHub ticket, post the completion evidence, read back the comment, and return its URL. Conversation-only work finishes with the report. In `implement-tickets`, the current session records the evidence in the batch checkpoint. In `implement-spec`, workers return evidence to their orchestrator.
 
 One run covers one ticket. The tickets [to-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/to-tickets.md) produces are tracer-bullet vertical slices sized to fit a single fresh [context window](https://www.aihero.dev/ai-coding-dictionary/context-window), so the intended rhythm is: clear context, implement one ticket, commit, clear again. Each ticket is self-contained, so you can discard the previous ticket's context.
 
@@ -60,13 +60,13 @@ The skill's central idea is the **seam**, the public boundary you observe behavi
 
 Accepted seams carry forward when the spec, ticket, or earlier agreement identifies the public boundary, explicitly or through an unambiguous public operation. Generic feature approval does not choose an unspecified seam. Only missing or materially changed seam decisions need confirmation. Behavior changes require the selected route's RED/GREEN; direct changes do not invent a failing behavior test.
 
-When an edit follows verification, the implementer records the changed boundary, the checks that cover it, and why retained evidence still applies. Uncertain impact triggers a focused boundary check, expanding to its consuming flow when needed. In a batch, the parent checks that mapping before accepting reused evidence.
+When an edit follows verification, the implementer records the changed boundary, the checks that cover it, and why retained evidence still applies. Uncertain impact triggers a focused boundary check, expanding to its consuming flow when needed. The workflow that accepts or closes the ticket checks that mapping before relying on reused evidence.
 
 ## Common questions
 
 **It finished, but my ticket is still open and the acceptance criteria are still unchecked.**
 
-Standalone `implement` leaves a confirmed GitHub completion comment after verification, resolved in-scope review findings, and a scoped commit. It leaves issue state, labels, and acceptance checkboxes unchanged. Ask separately for [close-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/close-spec.md) to verify and close the issue. For [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md), the batch parent owns completion comments and confirmed closure before advancing. This matters on a dependency chain because open blockers keep later tickets from starting.
+Standalone `implement` leaves a confirmed GitHub completion comment after verification, resolved in-scope review findings, and a scoped commit. It leaves issue state, labels, and acceptance checkboxes unchanged. Ask separately for [close-spec](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/close-spec.md) to verify and close the issue. In [implement-tickets](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/implement-tickets.md), the invoking session posts completion evidence and confirms closure before advancing. This matters on a dependency chain because open blockers keep later tickets from starting.
 
 **The implementation committed, but the GitHub comment failed. Is the run complete?**
 

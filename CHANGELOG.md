@@ -1,3 +1,10 @@
+## 1.4.11
+
+### Patch Changes
+
+- Run ordered `implement-tickets` batches in the invoking session under one Goal. Resume from a durable checkpoint, verify the original branch, and confirm each ticket's tracker closure before advancing.
+- Confirm the reviewer model and reasoning effort for each new batch, default to the invoking session's settings when available, and reuse the confirmed values for independent Standards and Spec reviews.
+
 ## 1.4.10
 
 ### Patch Changes

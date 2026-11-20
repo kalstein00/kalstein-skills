@@ -17,7 +17,7 @@ Start a **new chat/session** so the installed skills are loaded. Verify the plug
 codex plugin list --json
 ```
 
-Expected plugin: `kalstein-skills@kalstein`, version `1.4.8` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
+Expected plugin: `kalstein-skills@kalstein`, version `1.4.11` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
 
 ### Update another PC
 
@@ -56,7 +56,7 @@ The canonical rules live in [ui-tdd](skills/engineering/ui-tdd/SKILL.md), its [e
 
 ## Sequential ticket completion
 
-Explicitly invoking `implement-tickets` authorizes the parent orchestrator to record completion and close each supplied implementation ticket before starting the next one. The parent verifies acceptance, review, documentation, the scoped commit, and required UI evidence, then confirms the tracker state and available parent progress. Workers do not close tickets, and the parent PRD/spec remains open. Only broad batch regression gates may remain pending; a gate needed for ticket acceptance runs before closure. See [the close-out contract](skills/engineering/implement-tickets/CLOSEOUT.md).
+Explicitly invoking `implement-tickets` with an ordered ticket list authorizes one batch Goal and per-ticket closure. The current session implements each ticket, runs independent reviews using the confirmed reviewer settings, and checkpoints the verified commit and confirmed tracker closure before advancing. The parent PRD/spec remains open. Acceptance checks run before the corresponding closure, and broad batch gates run on the final candidate. See [the close-out contract](skills/engineering/implement-tickets/CLOSEOUT.md).
 
 ## Project setup and prerequisites
 
@@ -79,7 +79,7 @@ Explicit-only skills run when requested. Other skills can be selected automatica
 - **[handoff](skills/productivity/handoff/SKILL.md)**: Compact the current conversation into a handoff document for another agent to pick up.
 - **[implement](skills/engineering/implement/SKILL.md)**: Implement a piece of work based on a spec or set of tickets.
 - **[implement-spec](skills/engineering/implement-spec/SKILL.md)**: Implement the result of /to-spec and /to-tickets in code.
-- **[implement-tickets](skills/engineering/implement-tickets/SKILL.md)**: Implement an explicit ticket list sequentially in one checkout, with the parent closing each verified ticket before advancing.
+- **[implement-tickets](skills/engineering/implement-tickets/SKILL.md)**: Implement and close an explicit ordered ticket list in the current session under one Goal.
 - **[improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[retro](skills/engineering/retro/SKILL.md)**: Conduct a retrospective on a coding session.
 - **[setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.

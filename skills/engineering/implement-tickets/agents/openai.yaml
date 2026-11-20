@@ -1,6 +1,6 @@
 interface:
   display_name: "Implement Tickets"
   short_description: "Implement and close verified tickets in sequence"
-  default_prompt: "Use $implement-tickets to implement these tickets in order, with the parent closing each verified ticket before advancing and leaving the parent PRD open."
+  default_prompt: "Use $implement-tickets to confirm review settings, then implement and close these tickets in order in the current session under one batch Goal."
 policy:
   allow_implicit_invocation: false

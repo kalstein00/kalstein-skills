@@ -7,7 +7,7 @@
 - **[grill-with-docs](./grill-with-docs/SKILL.md)**: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
 - **[implement](./implement/SKILL.md)**: Implement a piece of work based on a spec or set of tickets.
 - **[implement-spec](./implement-spec/SKILL.md)**: Implement the result of /to-spec and /to-tickets in code.
-- **[implement-tickets](./implement-tickets/SKILL.md)**: Implement an explicit ticket list sequentially in one checkout, with the parent closing each verified ticket before advancing.
+- **[implement-tickets](./implement-tickets/SKILL.md)**: Implement and close an explicit ordered ticket list in the current session under one Goal.
 - **[improve-codebase-architecture](./improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[retro](./retro/SKILL.md)**: Conduct a retrospective on a coding session.
 - **[setup-matt-pocock-skills](./setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills: set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.
