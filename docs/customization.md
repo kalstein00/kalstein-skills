@@ -47,7 +47,8 @@ Distribute a portable `kalstein-skills` plugin from `kalstein00/kalstein-skills`
 | `diagnose` | Preserve explicit diagnosis-only entry; latest `diagnosing-bugs` owns the evidence loop and forced-mutation check |
 | `domain-modeling` | Retain upstream discipline with existing `CONTEXT`/context-map compatibility |
 | `git-commit` | Import scoped finalization and reuse of finished verification/review; repair stays with its owner |
-| `grill-me`, `grill-with-docs` | Retain current upstream wrappers |
+| `grill-me` | Retain the upstream interview wrapper |
+| `grill-with-docs` | Record domain decisions and end with a reviewable plan. The user starts the next phase separately. |
 | `grilling` | Retain upstream's newer affirmative recommendations and fresh subagent contexts |
 | `handoff` | Retain upstream entry with compact continuation state, verification freshness, and UI image pointers |
 | `impeccable` | Keep as a separately installed third-party tool; transfer relevant adjacent-control consistency and bounded visual inspection to `ui-tdd`. Do not vendor its independent binary/download lifecycle |

@@ -310,3 +310,9 @@ Ticket implementation workers now use GPT-6.2 Sol at medium effort. The skill an
 - `git diff --check` and `npm run check-plugin-version` passed. The package, lockfile, and plugin manifest agree on 1.4.11. Claude CLI 2.0.76 validated both manifests without warnings.
 - Codex CLI 0.167.2 discovered the 1.4.11 candidate from the local marketplace in an isolated Codex home. Its temporary-home PATH-helper warning did not prevent discovery.
 - The changes were checked as workflow instructions. Live Goal rollover and continuation, reviewer launch settings, and resuming after a tracker write remain unverified with an actual ticket batch.
+
+## Grill with Docs planning boundary
+
+- Static scenario review covered a pilot choice during the interview, a documentation-only session, and a separate request after the plan. The pilot choice goes into the plan, the documentation-only session ends with a summary, and a later explicit request starts the next phase.
+- Explicit-invocation metadata, both bundled skill paths, the package version check, and `git diff --check` passed. Claude CLI 2.0.76 validated both manifests without warnings.
+- Codex CLI 0.170.0 listed `kalstein-skills@kalstein` 1.4.11 as installed and enabled with a process-scoped local marketplace override. The three updated skill files in the installed cache matched the source by SHA-256. A fresh interactive grilling session was not run.

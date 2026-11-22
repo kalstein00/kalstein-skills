@@ -17,7 +17,7 @@ Start a **new chat/session** so the installed skills are loaded. Verify the plug
 codex plugin list --json
 ```
 
-Expected plugin: `kalstein-skills@kalstein`, version `1.4.11` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
+Expected plugin: `kalstein-skills@kalstein`, version `1.4.12` for this release. No manual copy into a project or plugin cache is needed. Repository `kalstein00/kalstein-skills`, marketplace `kalstein`, and plugin `kalstein-skills` are distinct names.
 
 ### Update another PC
 

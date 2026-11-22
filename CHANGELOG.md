@@ -1,3 +1,9 @@
+## 1.4.12
+
+### Patch Changes
+
+- Make `grill-with-docs` end with a reviewable plan by default. Record agreed domain decisions during the interview and start implementation or the next workflow only after a separate user request.
+
 ## 1.4.11
 
 ### Patch Changes
