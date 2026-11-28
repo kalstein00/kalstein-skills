@@ -1,3 +1,9 @@
+## 1.4.13
+
+### Patch Changes
+
+- [`e2e8f53`](https://github.com/kalstein00/kalstein-skills/commit/e2e8f530369d538963f34ef87dbe68c735c3e03e) Thanks [@kalstein00](https://github.com/kalstein00)! - Teach tdd and ui-tdd to reuse a relevant RED and probe doubtful assertions with a temporary product mutation before confirming GREEN on the restored candidate.
+
 ## 1.4.12
 
 ### Patch Changes
