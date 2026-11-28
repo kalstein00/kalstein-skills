@@ -316,3 +316,11 @@ Ticket implementation workers now use GPT-6.2 Sol at medium effort. The skill an
 - Static scenario review covered a pilot choice during the interview, a documentation-only session, and a separate request after the plan. The pilot choice goes into the plan, the documentation-only session ends with a summary, and a later explicit request starts the next phase.
 - Explicit-invocation metadata, both bundled skill paths, the package version check, and `git diff --check` passed. Claude CLI 2.0.76 validated both manifests without warnings.
 - Codex CLI 0.170.0 listed `kalstein-skills@kalstein` 1.4.11 as installed and enabled with a process-scoped local marketplace override. The three updated skill files in the installed cache matched the source by SHA-256. A fresh interactive grilling session was not run.
+
+## Selective mutation checks in TDD and UI TDD (2026-11-28)
+
+An in-memory Node.js example used distinct results for two request IDs. The original result assertion failed on the previous value and passed on the current one, providing reusable RED. A presence-only assertion accepted either value. The strengthened result assertion failed on the substituted ID with the predicted actual value and passed after restoring the current ID. This exercise covered the assertion and restoration decisions. Live UI execution remains untested for this instruction change.
+
+Both skill entrypoints passed metadata and relative file-reference checks. The shared procedure's heading and both companion pages' section order were verified. Claude CLI 2.1.0 validated both manifests without warnings. The plugin version check passed, and Codex CLI discovered `kalstein-skills@kalstein` version 1.4.12 using this checkout as its local marketplace source.
+
+An additional Node.js check ran the focused assertion in a fresh process against a temporary source file. A presence check accepted the previous result. The strengthened assertion reported the expected mismatch. An equivalent edit preserved the result, and a syntax error failed before the assertion ran. After each probe the original source, including a pending edit, matched byte for byte and the focused test passed.

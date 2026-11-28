@@ -13,6 +13,10 @@ Own one visible outcome through live observation, RED, implementation, automated
 2. Record the user journey: prerequisites, starting state, actual UI actions, expected visible result, relevant alternate states, and the evidence each criterion needs. Inspect adjacent live controls and reuse their components, tokens, spacing, geometry, typography, and control states. Honor product language and existing design references.
 3. Before production edits, prove the live gate works. Repair authorized environment issues through the project workflow. If the required CLI, app, data, or attachment remains unavailable, return `blocked` with the exact boundary. An isolated browser rendering of an Electron component is not the actual Electron target.
 
+At each tested seam, reuse a RED that already shows the current test catching the intended fault at the expected assertion. If detection is still doubtful after GREEN, apply the [focused mutation procedure](../tdd/SKILL.md#checking-what-a-test-detects) at that seam.
+
+For UI assertions, tie the visible result to the current action. For example, give successive requests distinguishable results if the previous result could remain on screen. For an E2E probe, ensure the app loads the mutated build for the check and the restored build for the confirming GREEN and final live journey.
+
 ## Feature mode
 
 1. Inspect the existing live surface and record the intended difference.

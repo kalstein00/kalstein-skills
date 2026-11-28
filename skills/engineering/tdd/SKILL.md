@@ -40,3 +40,15 @@ When the shape of that interface is itself in question (how deep the module is, 
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
 - **Refactoring is not part of the loop.** It belongs to the review stage (see the `code-review` skill), not the red → green implementation cycle.
+
+## Checking what a test detects
+
+When designing RED, name an observable fault the assertion should catch. Reuse the observed RED if it shows the current test failing at that assertion for that fault. Revisit this judgment if the expectation, wait, or mock changes, or if another path could produce the expected result.
+
+Only when detection is still in doubt after GREEN, try one temporary mutation in product code that would produce the suspected fault for the test input. For example, pass the previous request ID, omit a save, or change a boundary condition. Keep the test fixed and run it against that change.
+
+- A failure at the intended assertion with the predicted wrong result demonstrates detection.
+- If the test passes despite an observed fault, strengthen the test at the agreed seam and demonstrate that it fails for that fault.
+- A mutation that leaves the observed behavior unchanged, a build error, or an unrelated failure leaves detection unresolved. After restoring the candidate, use a probe that exercises the fault or report the gap.
+
+After every probe, undo only the temporary edit, preserving the implementation and other work. Rerun the same focused test on the restored candidate and confirm deterministic GREEN. Keep any improved behavior test and discard the mutation.

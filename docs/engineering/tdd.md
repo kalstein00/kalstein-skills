@@ -51,6 +51,11 @@ Mocks are for system boundaries only: external APIs, time, randomness, sometimes
 
 ## Common questions
 
+**When is the original RED enough?**
+
+- **Reuse RED** when it already showed the current test failing at the intended assertion for the fault in question.
+- **Probe after GREEN** when there is a specific doubt. For example, after a wait changes, temporarily passing the previous request ID can reveal whether the assertion accepts a stale result. The agent removes the temporary change and confirms the focused test passes on the restored implementation.
+
 **Why doesn't it refactor? The description says "red-green-refactor".**
 
 Because the refactor step was removed and the description was not. The removal was deliberate. Agents almost never did the step, and keeping implementation and review in separate sessions works better. Whether the result still counts as TDD by the book matters less than whether the loop produces better code. The mismatch between the trigger phrase and the body is filed as [issue #589](https://github.com/mattpocock/skills/issues/589) and is still open, so "red-green-refactor" continues to work as a phrase that fires the skill. What you get is red-green, with refactoring in [code-review](https://github.com/kalstein00/kalstein-skills/blob/main/docs/engineering/code-review.md).

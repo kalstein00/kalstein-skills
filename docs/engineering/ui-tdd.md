@@ -14,6 +14,13 @@ The target project's runnable app, data, and applicable test/session instruction
 
 ## Common questions
 
+**How can I tell whether the click produced the result on screen?**
+
+Give the previous and current actions visibly different results.
+
+- **Reuse the E2E RED** if the current test already failed because the screen showed the previous result.
+- **Probe after GREEN** if a wait or fixture change leaves that distinction in doubt. The agent can temporarily serve the previous result and check for the predicted failure at the visible-result assertion. It then loads the restored app and confirms the same E2E passes before collecting final live evidence.
+
 **Does the plugin install Agent Browser?**
 
 The plugin does not install it at plugin installation time. On the first UI task, the agent uses the project route or an existing CLI; if neither exists, it attempts to install the official CLI. Missing prerequisites or failed installation leave UI work blocked.
